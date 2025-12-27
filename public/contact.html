@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Heavenly Concordance Ministry International</title>
+    <link rel="icon" type="image/png" href="/images/logo.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16 nav-bar">
+                <div class="flex items-center">
+                    <a href="/"><img src="/images/logo.png" alt="Heavenly Concordance Ministry International logo" class="site-logo"></a>
+                </div>
+                <div class="nav-links-center space-x-8">
+                    <a href="/" class="text-gray-700 hover:text-primary-600 font-medium">Home</a>
+                    <a href="/about.html" class="text-gray-700 hover:text-primary-600 font-medium">About</a>
+                    <a href="/sermons.html" class="text-gray-700 hover:text-primary-600 font-medium">Sermons</a>
+                    <a href="/events.html" class="text-gray-700 hover:text-primary-600 font-medium">Events</a>
+                    <a href="/blog.html" class="text-gray-700 hover:text-primary-600 font-medium">Blog</a>
+                    <a href="/contact.html" class="text-primary-600 font-semibold">Contact</a>
+                </div>
+                <div class="flex space-x-4 items-center">
+                <div class="nav-center hidden md:block">
+                    <a href="/donate.html" class="btn btn-primary">Donate</a>
+                </div>
+                    <a href="/donate.html" class="btn btn-primary md:hidden">Donate</a>
+                    <button id="mobile-menu-btn" class="md:hidden inline-flex items-center justify-center p-2 rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100 focus:outline-none" aria-label="Open menu">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="md:hidden hidden bg-white shadow-lg border-t border-gray-100">
+        <div class="px-4 py-3 space-y-2">
+            <a href="/" class="block text-gray-700 hover:text-primary-600">Home</a>
+            <a href="/about.html" class="block text-gray-700 hover:text-primary-600">About</a>
+            <a href="/sermons.html" class="block text-gray-700 hover:text-primary-600">Sermons</a>
+            <a href="/events.html" class="block text-gray-700 hover:text-primary-600">Events</a>
+            <a href="/blog.html" class="block text-gray-700 hover:text-primary-600">Blog</a>
+            
+            <a href="/contact.html" class="block text-gray-700 hover:text-primary-600">Contact</a>
+        </div>
+    </div>
+
+    <!-- Contact Hero/Header -->
+    <section class="contact-hero relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+            <!-- Left title and card -->
+            <div class="relative">
+                <div class="contact-blob"></div>
+                <div class="relative z-10 pt-6 pl-4">
+                    <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900">Contact</h1>
+                </div>
+
+                <div class="contact-info-card relative z-10 mt-6 ml-6">
+                    <div class="contact-info-item">
+                        <div class="contact-info-title">Phone</div>
+                        <div class="contact-info-text">+234 000 0000</div>
+                    </div>
+                    <div class="contact-info-sep"></div>
+                    <div class="contact-info-item">
+                        <div class="contact-info-title">Email</div>
+                        <div class="contact-info-text">info@hcmintl.org</div>
+                    </div>
+                    <div class="contact-info-sep"></div>
+                    <div class="contact-info-item">
+                        <div class="contact-info-title">Info</div>
+                        <div class="contact-info-text">hello@hcmintl.org</div>
+                    </div>
+                    <div class="contact-social mt-4">
+                        <span class="mr-3 text-gray-300">Follow Us</span>
+                        <div class="social-icons">
+                            <a href="#" aria-label="Facebook" class="social-icon" target="_blank" rel="noopener">
+                                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 12.06C22 6.48 17.52 2 11.94 2S2 6.48 2 12.06c0 5.02 3.66 9.19 8.44 9.94v-7.03H8.34v-2.9h2.1V9.41c0-2.07 1.23-3.22 3.12-3.22.9 0 1.84.16 1.84.16v2.02h-1.04c-1.03 0-1.35.64-1.35 1.3v1.56h2.3l-.37 2.9h-1.93V22c4.78-.75 8.44-4.92 8.44-9.94Z"/></svg>
+                            </a>
+                            <a href="#" aria-label="Twitter" class="social-icon" target="_blank" rel="noopener">
+                                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.7 7.1c.01.18.01.36.01.53 0 5.38-4.09 11.58-11.58 11.58-2.3 0-4.44-.67-6.24-1.82  .32.04.64.05.97.05 1.91 0 3.67-.65 5.07-1.75-1.79-.03-3.3-1.22-3.82-2.84.25.05.5.07.76.07.37 0 .73-.05 1.07-.14-1.87-.38-3.28-2.03-3.28-4.02v-.05c.55.3 1.18.49 1.84.51-1.1-.73-1.82-1.98-1.82-3.39 0-.75.2-1.46.55-2.07 2 2.46 5.03 4.08 8.43 4.25-.07-.3-.1-.61-.1-.93 0-2.25 1.82-4.07 4.07-4.07 1.17 0 2.22.49 2.96 1.27.93-.18 1.8-.52 2.59-.98-.31.96-.96 1.77-1.8 2.28.83-.1 1.63-.32 2.37-.65-.55.83-1.25 1.56-2.05 2.14Z"/></svg>
+                            </a>
+                            <a href="#" aria-label="Instagram" class="social-icon" target="_blank" rel="noopener">
+                                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7Zm5 3.5A5.5 5.5 0 1 1 6.5 13 5.51 5.51 0 0 1 12 7.5Zm0 2A3.5 3.5 0 1 0 15.5 13 3.5 3.5 0 0 0 12 9.5Zm5.75-2.25a1 1 0 1 1-1.5 1.32 1 1 0 0 1 1.5-1.32Z"/></svg>
+                            </a>
+                            <a href="#" aria-label="YouTube" class="social-icon" target="_blank" rel="noopener">
+                                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .6 5.8 3 3 0 0 0 2.1 2.1C4.6 20.5 12 20.5 12 20.5s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.5 15.5V8.5l6 3.5-6 3.5Z"/></svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right form -->
+            <div class="relative">
+                <div class="contact-bg-ring"></div>
+                <div class="max-w-lg ml-auto relative z-10">
+                    <h2 class="text-xl font-semibold text-gray-800 mb-6">Leave us a message</h2>
+                    <form id="contact-page-form" class="space-y-4">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <input type="text" name="fullName" class="contact-input" placeholder="First name" required>
+                            <input type="text" name="lastName" class="contact-input" placeholder="Surname">
+                        </div>
+                        <input type="email" name="email" class="contact-input" placeholder="Write your e-mail" required>
+                        <textarea name="message" class="contact-textarea" rows="5" placeholder="Write your message here..." required></textarea>
+                        <div>
+                            <button type="submit" class="contact-submit w-36 justify-center">SEND</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="contact-float-circle"></div>
+        <div class="contact-float-circle contact-float-circle--sm"></div>
+    </section>
+
+    <!-- Footer (reuse) -->
+    <footer class="bg-gray-900 text-white py-12 mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <img src="/images/logo.png" alt="Heavenly Concordance Ministry International" class="h-20 w-20 mb-4 object-contain">
+                    <h3 class="text-xl font-bold mb-2">HCM International</h3>
+                    <p class="text-gray-300">Heavenly Concordance Ministry International</p>
+                    <div class="mt-4 social-icons">
+                        <a href="#" class="social-icon social-icon--light" aria-label="Facebook" target="_blank" rel="noopener">
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12.06C22 6.48 17.52 2 11.94 2S2 6.48 2 12.06c0 5.02 3.66 9.19 8.44 9.94v-7.03H8.34v-2.9h2.1V9.41c0-2.07 1.23-3.22 3.12-3.22.9 0 1.84.16 1.84.16v2.02h-1.04c-1.03 0-1.35.64-1.35 1.3v1.56h2.3l-.37 2.9h-1.93V22c4.78-.75 8.44-4.92 8.44-9.94Z"/></svg>
+                        </a>
+                        <a href="#" class="social-icon social-icon--light" aria-label="Twitter" target="_blank" rel="noopener">
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.7 7.1c.01.18.01.36.01.53 0 5.38-4.09 11.58-11.58 11.58-2.3 0-4.44-.67-6.24-1.82.32.04.64.05.97.05 1.91 0 3.67-.65 5.07-1.75-1.79-.03-3.3-1.22-3.82-2.84.25.05.5.07.76.07.37 0 .73-.05 1.07-.14-1.87-.38-3.28-2.03-3.28-4.02v-.05c.55.3 1.18.49 1.84.51-1.1-.73-1.82-1.98-1.82-3.39 0-.75.2-1.46.55-2.07 2 2.46 5.03 4.08 8.43 4.25-.07-.3-.1-.61-.1-.93 0-2.25 1.82-4.07 4.07-4.07 1.17 0 2.22.49 2.96 1.27.93-.18 1.8-.52 2.59-.98-.31.96-.96 1.77-1.8 2.28.83-.1 1.63-.32 2.37-.65-.55.83-1.25 1.56-2.05 2.14Z"/></svg>
+                        </a>
+                        <a href="#" class="social-icon social-icon--light" aria-label="Instagram" target="_blank" rel="noopener">
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7Zm5 3.5A5.5 5.5 0 1 1 6.5 13 5.51 5.51 0 0 1 12 7.5Zm0 2A3.5 3.5 0 1 0 15.5 13 3.5 3.5 0 0 0 12 9.5Zm5.75-2.25a1 1 0 1 1-1.5 1.32 1 1 0 0 1 1.5-1.32Z"/></svg>
+                        </a>
+                        <a href="#" class="social-icon social-icon--light" aria-label="YouTube" target="_blank" rel="noopener">
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .6 5.8 3 3 0 0 0 2.1 2.1C4.6 20.5 12 20.5 12 20.5s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.5 15.5V8.5l6 3.5-6 3.5Z"/></svg>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="/about.html" class="hover:text-primary-400">About Us</a></li>
+                        <li><a href="/sermons.html" class="hover:text-primary-400">Sermons</a></li>
+                        <li><a href="/events.html" class="hover:text-primary-400">Events</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">More</h4>
+                    <ul class="space-y-2">
+                        <li><a href="/blog.html" class="hover:text-primary-400">Blog</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Contact</h4>
+                    <ul class="space-y-2">
+                        <li><a href="/contact.html" class="hover:text-primary-400">Get in Touch</a></li>
+                        <li><a href="/donate.html" class="hover:text-primary-400">Donate</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center">
+                <p>&copy; 2024 Heavenly Concordance Ministry International. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Submit handler -> same backend endpoint
+        const contactPageForm = document.getElementById('contact-page-form');
+        if (contactPageForm) {
+            contactPageForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const formData = new FormData(contactPageForm);
+                const payload = Object.fromEntries(formData.entries());
+                // Map to backend expected fields
+                payload.fullName = [payload.fullName, payload.lastName].filter(Boolean).join(' ');
+                try {
+                    const res = await fetch('/api/contact', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ fullName: payload.fullName, email: payload.email, message: payload.message })
+                    });
+                    if (!res.ok) throw new Error('Failed to send message');
+                    alert('Your message has been sent. Thank you!');
+                    contactPageForm.reset();
+                } catch(err) {
+                    alert(err.message || 'Unable to send message');
+                }
+            });
+        }
+
+        // Mobile menu toggle
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        if (mobileBtn && mobileMenu) {
+            mobileBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+    </script>
+</body>
+</html>
+
+

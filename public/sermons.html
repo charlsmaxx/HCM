@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sermons - HCM International</title>
+    <link rel="icon" type="image/png" href="/images/logo.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16 nav-bar">
+                <div class="flex items-center">
+                    <a href="/"><img src="/images/logo.png" alt="Heavenly Concordance Ministry International logo" class="site-logo"></a>
+                </div>
+                <div class="nav-links-center space-x-8">
+                    <a href="/" class="text-gray-700 hover:text-primary-600 font-medium">Home</a>
+                    <a href="/about.html" class="text-gray-700 hover:text-primary-600 font-medium">About</a>
+                    <a href="/sermons.html" class="text-primary-600 font-medium">Sermons</a>
+                    <a href="/events.html" class="text-gray-700 hover:text-primary-600 font-medium">Events</a>
+                    <a href="/blog.html" class="text-gray-700 hover:text-primary-600 font-medium">Blog</a>
+                   
+                    
+                    <a href="/contact.html" class="text-gray-700 hover:text-primary-600 font-medium">Contact</a>
+                </div>
+                <div class="flex space-x-4 items-center">
+                    <div class="nav-center hidden md:block">
+                        <a href="/donate.html" class="btn btn-primary">Donate</a>
+                    </div>
+                    <a href="/donate.html" class="btn btn-primary md:hidden">Donate</a>
+                    <button id="mobile-menu-btn" class="md:hidden inline-flex items-center justify-center p-2 rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100 focus:outline-none" aria-label="Open menu">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="md:hidden hidden bg-white shadow-lg border-t border-gray-100">
+        <div class="px-4 py-3 space-y-2">
+            <a href="/" class="block text-gray-700 hover:text-primary-600">Home</a>
+            <a href="/about.html" class="block text-gray-700 hover:text-primary-600">About</a>
+            <a href="/sermons.html" class="block text-primary-600">Sermons</a>
+            <a href="/events.html" class="block text-gray-700 hover:text-primary-600">Events</a>
+            <a href="/blog.html" class="block text-gray-700 hover:text-primary-600">Blog</a>
+           
+            <a href="/contact.html" class="block text-gray-700 hover:text-primary-600">Contact</a>
+        </div>
+    </div>
+
+    <!-- Sermons Header -->
+    <section class="bg-gradient-to-r from-primary-600 to-secondary-600 text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h1 class="text-4xl font-bold mb-4">Sermons & Messages</h1>
+            <p class="text-xl">Listen, watch, and download sermons from our ministry</p>
+        </div>
+    </section>
+
+    <!-- Sermons List -->
+    <section class="py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Filter/Search Bar -->
+            <div class="mb-8">
+                <input type="text" id="search-input" placeholder="Search sermons..." class="input w-full md:w-1/2">
+            </div>
+
+            <!-- Sermons Grid -->
+            <div id="sermons-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Sermons will be loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <img src="/images/logo.png" alt="Heavenly Concordance Ministry International" class="h-20 w-20 mb-4 object-contain">
+                    <h3 class="text-xl font-bold mb-2">HCM International</h3>
+                    <p class="text-gray-300">Heavenly Concordance Ministry International</p>
+                    <div class="mt-4 social-icons">
+                        <a href="#" class="social-icon social-icon--light" aria-label="Facebook" target="_blank" rel="noopener">
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12.06C22 6.48 17.52 2 11.94 2S2 6.48 2 12.06c0 5.02 3.66 9.19 8.44 9.94v-7.03H8.34v-2.9h2.1V9.41c0-2.07 1.23-3.22 3.12-3.22.9 0 1.84.16 1.84.16v2.02h-1.04c-1.03 0-1.35.64-1.35 1.3v1.56h2.3l-.37 2.9h-1.93V22c4.78-.75 8.44-4.92 8.44-9.94Z"/></svg>
+                        </a>
+                        <a href="#" class="social-icon social-icon--light" aria-label="Twitter" target="_blank" rel="noopener">
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.7 7.1c.01.18.01.36.01.53 0 5.38-4.09 11.58-11.58 11.58-2.3 0-4.44-.67-6.24-1.82.32.04.64.05.97.05 1.91 0 3.67-.65 5.07-1.75-1.79-.03-3.3-1.22-3.82-2.84.25.05.5.07.76.07.37 0 .73-.05 1.07-.14-1.87-.38-3.28-2.03-3.28-4.02v-.05c.55.3 1.18.49 1.84.51-1.1-.73-1.82-1.98-1.82-3.39 0-.75.2-1.46.55-2.07 2 2.46 5.03 4.08 8.43 4.25-.07-.3-.1-.61-.1-.93 0-2.25 1.82-4.07 4.07-4.07 1.17 0 2.22.49 2.96 1.27.93-.18 1.8-.52 2.59-.98-.31.96-.96 1.77-1.8 2.28.83-.1 1.63-.32 2.37-.65-.55.83-1.25 1.56-2.05 2.14Z"/></svg>
+                        </a>
+                        <a href="#" class="social-icon social-icon--light" aria-label="Instagram" target="_blank" rel="noopener">
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7Zm5 3.5A5.5 5.5 0 1 1 6.5 13 5.51 5.51 0 0 1 12 7.5Zm0 2A3.5 3.5 0 1 0 15.5 13 3.5 3.5 0 0 0 12 9.5Zm5.75-2.25a1 1 0 1 1-1.5 1.32 1 1 0 0 1 1.5-1.32Z"/></svg>
+                        </a>
+                        <a href="#" class="social-icon social-icon--light" aria-label="YouTube" target="_blank" rel="noopener">
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .6 5.8 3 3 0 0 0 2.1 2.1C4.6 20.5 12 20.5 12 20.5s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.5 15.5V8.5l6 3.5-6 3.5Z"/></svg>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="/about.html" class="hover:text-primary-400">About Us</a></li>
+                        <li><a href="/sermons.html" class="hover:text-primary-400">Sermons</a></li>
+                        <li><a href="/events.html" class="hover:text-primary-400">Events</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">More</h4>
+                    <ul class="space-y-2">
+                        <li><a href="/blog.html" class="hover:text-primary-400">Blog</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Contact</h4>
+                    <ul class="space-y-2">
+                        <li><a href="/contact.html" class="hover:text-primary-400">Get in Touch</a></li>
+                        <li><a href="/donate.html" class="hover:text-primary-400">Donate</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center">
+                <p>&copy; 2024 Heavenly Concordance Ministry International. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Login/Register Modal -->
+    <div id="auth-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+        <div class="bg-white rounded-lg shadow-xl max-w-md w-full mx-4">
+            <div class="p-6 border-b">
+                <div class="flex justify-between items-center">
+                    <h3 class="text-2xl font-bold" id="auth-modal-title">Login</h3>
+                    <button id="auth-modal-close-btn" class="text-gray-500 hover:text-gray-700 text-2xl">&times;</button>
+                </div>
+            </div>
+            <div class="p-6">
+                <div id="auth-tabs" class="flex mb-6 border-b">
+                    <button id="login-tab" class="flex-1 py-2 px-4 text-center font-medium border-b-2 border-primary-600 text-primary-600">Login</button>
+                    <button id="register-tab" class="flex-1 py-2 px-4 text-center font-medium text-gray-500">Register</button>
+                </div>
+                
+                <form id="login-form" class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                        <input type="email" id="login-email" required class="input w-full" placeholder="your@email.com">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Password</label>
+                        <input type="password" id="login-password" required class="input w-full" placeholder="••••••••">
+                    </div>
+                    <button type="submit" class="btn btn-primary w-full">Login</button>
+                </form>
+
+                <form id="register-form" class="space-y-4 hidden">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                        <input type="email" id="register-email" required class="input w-full" placeholder="your@email.com">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Password</label>
+                        <input type="password" id="register-password" required minlength="6" class="input w-full" placeholder="At least 6 characters">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Confirm Password</label>
+                        <input type="password" id="register-password-confirm" required class="input w-full" placeholder="Confirm password">
+                    </div>
+                    <button type="submit" class="btn btn-primary w-full">Register</button>
+                </form>
+
+                <div id="auth-error" class="mt-4 text-red-600 text-sm hidden"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="/js/api.js"></script>
+    <script>
+        let allSermons = [];
+        let supabaseClient = null;
+        let currentUser = null;
+
+        // Initialize Supabase
+        async function initSupabase() {
+            try {
+                const response = await fetch('/api/config');
+                const config = await response.json();
+                
+                if (!config.supabaseUrl || !config.supabaseKey) {
+                    console.error('Supabase configuration missing');
+                    return;
+                }
+
+                supabaseClient = window.supabase.createClient(config.supabaseUrl, config.supabaseKey);
+                
+                // Check for existing session
+                const { data: { session } } = await supabaseClient.auth.getSession();
+                if (session) {
+                    currentUser = session.user;
+                    updateAuthUI();
+                }
+
+                // Listen for auth changes
+                supabaseClient.auth.onAuthStateChange((event, session) => {
+                    if (session) {
+                        currentUser = session.user;
+                        localStorage.setItem('auth_token', session.access_token);
+                    } else {
+                        currentUser = null;
+                        localStorage.removeItem('auth_token');
+                    }
+                    updateAuthUI();
+                });
+            } catch (error) {
+                console.error('Failed to initialize Supabase:', error);
+            }
+        }
+
+        // Update UI based on auth state
+        function updateAuthUI() {
+            // Reload sermons to update download buttons
+            if (allSermons.length > 0) {
+                displaySermons(allSermons);
+            }
+        }
+
+        // Check if user is authenticated
+        function isAuthenticated() {
+            return currentUser !== null;
+        }
+
+        // Show login tab
+        function showLoginTab() {
+            document.getElementById('login-form').classList.remove('hidden');
+            document.getElementById('register-form').classList.add('hidden');
+            document.getElementById('login-tab').classList.add('border-primary-600', 'text-primary-600');
+            document.getElementById('login-tab').classList.remove('text-gray-500');
+            document.getElementById('register-tab').classList.remove('border-primary-600', 'text-primary-600');
+            document.getElementById('register-tab').classList.add('text-gray-500');
+            document.getElementById('auth-modal-title').textContent = 'Login';
+        }
+
+        // Show register tab
+        function showRegisterTab() {
+            document.getElementById('register-form').classList.remove('hidden');
+            document.getElementById('login-form').classList.add('hidden');
+            document.getElementById('register-tab').classList.add('border-primary-600', 'text-primary-600');
+            document.getElementById('register-tab').classList.remove('text-gray-500');
+            document.getElementById('login-tab').classList.remove('border-primary-600', 'text-primary-600');
+            document.getElementById('login-tab').classList.add('text-gray-500');
+            document.getElementById('auth-modal-title').textContent = 'Register';
+        }
+
+        // Open auth modal
+        function openAuthModal() {
+            document.getElementById('auth-modal').classList.remove('hidden');
+            document.getElementById('auth-modal').classList.add('flex');
+            showLoginTab();
+        }
+
+        // Close auth modal
+        function closeAuthModal() {
+            document.getElementById('auth-modal').classList.add('hidden');
+            document.getElementById('auth-modal').classList.remove('flex');
+            document.getElementById('auth-error').classList.add('hidden');
+        }
+
+        // Handle login
+        document.getElementById('login-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+            const errorDiv = document.getElementById('auth-error');
+
+            try {
+                if (!supabaseClient) {
+                    errorDiv.textContent = 'Supabase not initialized. Please refresh the page.';
+                    errorDiv.classList.remove('hidden');
+                    return;
+                }
+                const { data, error } = await supabaseClient.auth.signInWithPassword({
+                    email,
+                    password
+                });
+
+                if (error) throw error;
+
+                if (data.session) {
+                    currentUser = data.user;
+                    localStorage.setItem('auth_token', data.session.access_token);
+                    closeAuthModal();
+                    updateAuthUI();
+                }
+            } catch (error) {
+                errorDiv.textContent = error.message || 'Login failed. Please try again.';
+                errorDiv.classList.remove('hidden');
+            }
+        });
+
+        // Handle register
+        document.getElementById('register-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('register-email').value;
+            const password = document.getElementById('register-password').value;
+            const passwordConfirm = document.getElementById('register-password-confirm').value;
+            const errorDiv = document.getElementById('auth-error');
+
+            if (password !== passwordConfirm) {
+                errorDiv.textContent = 'Passwords do not match';
+                errorDiv.classList.remove('hidden');
+                return;
+            }
+
+            try {
+                if (!supabaseClient) {
+                    errorDiv.textContent = 'Supabase not initialized. Please refresh the page.';
+                    errorDiv.classList.remove('hidden');
+                    return;
+                }
+                const { data, error } = await supabaseClient.auth.signUp({
+                    email,
+                    password
+                });
+
+                if (error) throw error;
+
+                errorDiv.textContent = 'Registration successful! Please check your email to verify your account.';
+                errorDiv.classList.remove('hidden');
+                errorDiv.classList.remove('text-red-600');
+                errorDiv.classList.add('text-green-600');
+                
+                setTimeout(() => {
+                    showLoginTab();
+                }, 2000);
+            } catch (error) {
+                errorDiv.textContent = error.message || 'Registration failed. Please try again.';
+                errorDiv.classList.remove('hidden');
+                errorDiv.classList.remove('text-green-600');
+                errorDiv.classList.add('text-red-600');
+            }
+        });
+
+        // Handle download with authentication check
+        async function handleDownload(sermonId, type) {
+            if (!isAuthenticated()) {
+                openAuthModal();
+                return;
+            }
+
+            try {
+                const token = localStorage.getItem('auth_token');
+                
+                // First, get the sermon to check if file exists
+                const sermon = await window.api.getSermon(sermonId);
+                const fileUrl = type === 'audio' ? sermon.audioUrl : sermon.videoUrl;
+                
+                if (!fileUrl) {
+                    alert('File not available for this sermon');
+                    return;
+                }
+
+                // If it's already a direct URL (Supabase), open it
+                if (fileUrl.startsWith('http://') || fileUrl.startsWith('https://')) {
+                    // Track download via API
+                    try {
+                        await fetch(`/api/sermons/${sermonId}/download`, {
+                            method: 'POST',
+                            headers: {
+                                'Authorization': `Bearer ${token}`,
+                                'Content-Type': 'application/json'
+                            }
+                        });
+                    } catch (e) {
+                        console.error('Failed to track download:', e);
+                    }
+                    // Open the file URL directly
+                    window.open(fileUrl, '_blank');
+                } else {
+                    // For local files, use the download endpoint
+                    const response = await fetch(`/api/sermons/${sermonId}/download/${type}`, {
+                        method: 'GET',
+                        headers: {
+                            'Authorization': `Bearer ${token}`
+                        }
+                    });
+
+                    if (response.status === 401) {
+                        // Token expired, try to refresh
+                        if (!supabaseClient) {
+                            openAuthModal();
+                            return;
+                        }
+                        const { data: { session } } = await supabaseClient.auth.getSession();
+                        if (session) {
+                            localStorage.setItem('auth_token', session.access_token);
+                            // Retry download
+                            handleDownload(sermonId, type);
+                        } else {
+                            openAuthModal();
+                        }
+                        return;
+                    }
+
+                    if (!response.ok) {
+                        const error = await response.json().catch(() => ({ error: 'Download failed' }));
+                        throw new Error(error.error || 'Download failed');
+                    }
+
+                    // Handle blob download for local files
+                    const blob = await response.blob();
+                    const url = window.URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    const fileName = `${sermon.title.replace(/[^a-z0-9]/gi, '_')}_${type}.${type === 'audio' ? 'mp3' : 'mp4'}`;
+                    a.download = fileName;
+                    document.body.appendChild(a);
+                    a.click();
+                    window.URL.revokeObjectURL(url);
+                    document.body.removeChild(a);
+                }
+            } catch (error) {
+                console.error('Download error:', error);
+                alert(error.message || 'Failed to download. Please try again.');
+            }
+        }
+
+        // Load sermons
+        async function loadSermons() {
+            const container = document.getElementById('sermons-container');
+            
+            try {
+                // Show loading state
+                container.innerHTML = '<p class="text-gray-500 col-span-full text-center py-8">Loading sermons...</p>';
+                
+                console.log('Fetching sermons from API...');
+                const response = await window.api.getSermons();
+                console.log('API Response:', response);
+                console.log('Response type:', typeof response);
+                console.log('Is array?', Array.isArray(response));
+                console.log('Has data?', response && response.data);
+                console.log('Response keys:', response ? Object.keys(response) : 'null');
+                
+                // Handle both array and paginated response formats
+                let sermons = [];
+                if (Array.isArray(response)) {
+                    sermons = response;
+                    console.log('Response is array, using directly');
+                } else if (response && response.data && Array.isArray(response.data)) {
+                    sermons = response.data;
+                    console.log('Using response.data');
+                } else if (response && response.sermons && Array.isArray(response.sermons)) {
+                    sermons = response.sermons;
+                    console.log('Using response.sermons');
+                } else {
+                    console.warn('Unexpected response format:', response);
+                    console.warn('Response structure:', JSON.stringify(response, null, 2));
+                    sermons = [];
+                }
+                
+                console.log('Extracted sermons:', sermons);
+                console.log('Number of sermons:', sermons.length);
+                if (sermons.length > 0) {
+                    console.log('First sermon:', sermons[0]);
+                }
+                
+                if (!Array.isArray(sermons) || sermons.length === 0) {
+                    console.log('No sermons found');
+                    container.innerHTML = '<p class="text-gray-600 col-span-full text-center py-8">No sermons available at this time. Please check back later.</p>';
+                    return;
+                }
+                
+                allSermons = sermons;
+                displaySermons(allSermons);
+            } catch (error) {
+                console.error('Error loading sermons:', error);
+                console.error('Error details:', {
+                    message: error.message,
+                    status: error.status,
+                    stack: error.stack
+                });
+                const errorMessage = error.message || 'Unable to load sermons. Please try again later.';
+                container.innerHTML = `
+                    <div class="col-span-full text-center py-8">
+                        <p class="text-red-500 mb-4">Error loading sermons</p>
+                        <p class="text-gray-500 text-sm mb-4">${errorMessage}</p>
+                        <button id="retry-sermons-btn" class="btn btn-primary">Retry</button>
+                    </div>
+                `;
+                
+                // Attach retry button listener
+                const retryBtn = document.getElementById('retry-sermons-btn');
+                if (retryBtn) {
+                    retryBtn.addEventListener('click', loadSermons);
+                }
+            }
+        }
+
+        // Display sermons with full details
+        function displaySermons(sermons) {
+            const container = document.getElementById('sermons-container');
+            
+            console.log('Displaying sermons:', sermons);
+            
+            if (!Array.isArray(sermons) || sermons.length === 0) {
+                console.log('No sermons to display');
+                container.innerHTML = '<p class="text-gray-600 col-span-full text-center py-8">No sermons found.</p>';
+                return;
+            }
+
+            try {
+                container.innerHTML = sermons.map(sermon => {
+                    // Safely handle sermon data
+                    const sermonId = sermon._id || sermon.id || '';
+                    const title = sermon.title || 'Untitled Sermon';
+                    const speaker = sermon.speaker || sermon.preacher || 'Speaker';
+                    const description = sermon.description || '';
+                    const truncatedDescription = description.length > 150 ? description.substring(0, 150) + '...' : description;
+                    
+                    // Safely handle date
+                    let dateDisplay = 'Date not available';
+                    try {
+                        if (sermon.date) {
+                            const sermonDate = new Date(sermon.date);
+                            if (!isNaN(sermonDate.getTime())) {
+                                dateDisplay = sermonDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+                            }
+                        }
+                    } catch (dateError) {
+                        console.warn('Error parsing date for sermon:', sermonId, dateError);
+                    }
+                    
+                    return `
+                        <div class="card hover:shadow-xl transition-shadow" data-sermon-id="${sermonId}">
+                            ${sermon.thumbnail ? `
+                                <img src="${sermon.thumbnail}" alt="${title}" class="w-full h-48 object-cover cursor-pointer sermon-view-trigger" data-sermon-id="${sermonId}">
+                            ` : `
+                                <div class="w-full h-48 bg-gradient-to-br from-primary-400 to-secondary-400 flex items-center justify-center cursor-pointer sermon-view-trigger" data-sermon-id="${sermonId}">
+                                    <svg class="w-16 h-16 text-white opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"></path>
+                                    </svg>
+                                </div>
+                            `}
+                            <div class="p-6">
+                                <h3 class="text-xl font-bold mb-2 cursor-pointer hover:text-primary-600 sermon-view-trigger" data-sermon-id="${sermonId}">${title}</h3>
+                                <p class="text-gray-600 mb-1 font-medium">${speaker}</p>
+                                <p class="text-sm text-gray-500 mb-3">${dateDisplay}</p>
+                                
+                                ${description ? `
+                                    <p class="text-gray-700 text-sm mb-4 line-clamp-3">${truncatedDescription}</p>
+                                ` : ''}
+                                
+                                <div class="flex flex-wrap gap-2 mb-4">
+                                    ${sermon.audioUrl ? '<span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded">Audio Available</span>' : ''}
+                                    ${sermon.videoUrl ? '<span class="bg-red-100 text-red-800 text-xs px-2 py-1 rounded">Video Available</span>' : ''}
+                                </div>
+                                
+                                <div class="flex gap-2 mt-4">
+                                    ${sermon.audioUrl ? `
+                                        <button class="btn btn-primary flex-1 text-sm inline-flex items-center justify-center gap-1 sermon-download-btn" data-sermon-id="${sermonId}" data-download-type="audio">
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+                                            </svg>
+                                            Download Audio
+                                        </button>
+                                    ` : ''}
+                                    ${sermon.videoUrl ? `
+                                        <button class="btn btn-primary flex-1 text-sm inline-flex items-center justify-center gap-1 sermon-download-btn" data-sermon-id="${sermonId}" data-download-type="video">
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+                                            </svg>
+                                            Download Video
+                                        </button>
+                                    ` : ''}
+                                </div>
+                                ${sermon.downloads > 0 ? `<p class="text-sm text-gray-500 mt-2 text-center">${sermon.downloads} downloads</p>` : ''}
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+                
+                // Attach event listeners after rendering
+                attachSermonEventListeners();
+                
+                console.log('Sermons rendered successfully');
+            } catch (renderError) {
+                console.error('Error rendering sermons:', renderError);
+                container.innerHTML = `
+                    <div class="col-span-full text-center py-8">
+                        <p class="text-red-500 mb-4">Error displaying sermons</p>
+                        <p class="text-gray-500 text-sm">${renderError.message}</p>
+                    </div>
+                `;
+            }
+        }
+
+        // Attach event listeners to sermon cards and buttons
+        function attachSermonEventListeners() {
+            // Event delegation for sermon view triggers
+            document.querySelectorAll('.sermon-view-trigger').forEach(element => {
+                element.addEventListener('click', (e) => {
+                    const sermonId = e.currentTarget.getAttribute('data-sermon-id');
+                    if (sermonId) {
+                        openSermonModal(sermonId);
+                    }
+                });
+            });
+
+            // Event delegation for download buttons
+            document.querySelectorAll('.sermon-download-btn').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const sermonId = button.getAttribute('data-sermon-id');
+                    const downloadType = button.getAttribute('data-download-type');
+                    if (sermonId && downloadType) {
+                        handleDownload(sermonId, downloadType);
+                    }
+                });
+            });
+        }
+
+        // Search functionality
+        document.getElementById('search-input').addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase();
+            const filtered = allSermons.filter(sermon => {
+                const title = (sermon.title || '').toLowerCase();
+                const speaker = ((sermon.speaker || sermon.preacher) || '').toLowerCase();
+                const description = (sermon.description || '').toLowerCase();
+                return title.includes(searchTerm) || speaker.includes(searchTerm) || description.includes(searchTerm);
+            });
+            displaySermons(filtered);
+        });
+
+        // Open sermon modal with full details
+        async function openSermonModal(sermonId) {
+            try {
+                const sermon = await window.api.getSermon(sermonId);
+                showSermonPlayer(sermon);
+            } catch (error) {
+                console.error('Error loading sermon:', error);
+                alert('Error loading sermon details');
+            }
+        }
+
+        // Show sermon player modal with all details
+        function showSermonPlayer(sermon) {
+            const modal = document.createElement('div');
+            modal.className = 'fixed inset-0 bg-black bg-opacity-75 z-50 flex items-center justify-center p-4';
+            const speaker = sermon.speaker || sermon.preacher || 'N/A';
+            
+            modal.innerHTML = `
+                <div class="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+                    <div class="sticky top-0 bg-white border-b p-4 flex justify-between items-center z-10">
+                        <h2 class="text-2xl font-bold">${sermon.title || 'Untitled Sermon'}</h2>
+                        <button class="modal-close-btn text-gray-500 hover:text-gray-700 text-2xl">&times;</button>
+                    </div>
+                    <div class="p-6">
+                        <div class="mb-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <p class="text-sm text-gray-500 mb-1">Speaker</p>
+                                <p class="text-gray-900 font-medium">${speaker}</p>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-500 mb-1">Date</p>
+                                <p class="text-gray-900 font-medium">${new Date(sermon.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+                            </div>
+                        </div>
+                        
+                        ${sermon.description ? `
+                            <div class="mb-6">
+                                <h3 class="text-lg font-semibold mb-3">Description</h3>
+                                <p class="text-gray-700 leading-relaxed whitespace-pre-wrap">${sermon.description}</p>
+                            </div>
+                        ` : ''}
+                        
+                        ${sermon.videoUrl ? `
+                            <div class="mb-6">
+                                <h3 class="text-lg font-semibold mb-2">Video</h3>
+                                <video controls class="w-full rounded-lg shadow-lg">
+                                    <source src="${sermon.videoUrl}" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                                <button class="btn btn-primary mt-3 inline-flex items-center gap-2 modal-download-btn" data-sermon-id="${sermon._id}" data-download-type="video">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+                                    </svg>
+                                    Download Video
+                                </button>
+                            </div>
+                        ` : ''}
+
+                        ${sermon.audioUrl ? `
+                            <div class="mb-6">
+                                <h3 class="text-lg font-semibold mb-2">Audio</h3>
+                                <audio controls class="w-full">
+                                    <source src="${sermon.audioUrl}" type="audio/mpeg">
+                                    Your browser does not support the audio tag.
+                                </audio>
+                                <button class="btn btn-primary mt-3 inline-flex items-center gap-2 modal-download-btn" data-sermon-id="${sermon._id}" data-download-type="audio">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+                                    </svg>
+                                    Download Audio
+                                </button>
+                            </div>
+                        ` : ''}
+
+                        ${sermon.downloads > 0 ? `
+                            <div class="mt-6 pt-4 border-t">
+                                <p class="text-sm text-gray-500">Total Downloads: <span class="font-semibold">${sermon.downloads}</span></p>
+                            </div>
+                        ` : ''}
+                    </div>
+                </div>
+            `;
+            
+            // Attach event listeners to modal buttons
+            const closeBtn = modal.querySelector('.modal-close-btn');
+            if (closeBtn) {
+                closeBtn.addEventListener('click', () => {
+                    modal.remove();
+                });
+            }
+            
+            const downloadBtns = modal.querySelectorAll('.modal-download-btn');
+            downloadBtns.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const sermonId = btn.getAttribute('data-sermon-id');
+                    const downloadType = btn.getAttribute('data-download-type');
+                    if (sermonId && downloadType) {
+                        handleDownload(sermonId, downloadType);
+                    }
+                });
+            });
+            
+            // Close modal when clicking outside
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.remove();
+                }
+            });
+            
+            document.body.appendChild(modal);
+        }
+
+        // Mobile menu toggle
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        if (mobileBtn && mobileMenu) {
+            mobileBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+
+        // Close modal on outside click
+        document.addEventListener('click', (e) => {
+            if (e.target.id === 'auth-modal') {
+                closeAuthModal();
+            }
+        });
+
+        // Attach auth modal event listeners
+        function attachAuthModalListeners() {
+            const closeBtn = document.getElementById('auth-modal-close-btn');
+            if (closeBtn) {
+                closeBtn.addEventListener('click', closeAuthModal);
+            }
+
+            const loginTab = document.getElementById('login-tab');
+            const registerTab = document.getElementById('register-tab');
+            
+            if (loginTab) {
+                loginTab.addEventListener('click', showLoginTab);
+            }
+            
+            if (registerTab) {
+                registerTab.addEventListener('click', showRegisterTab);
+            }
+        }
+
+        // Initialize on page load
+        window.addEventListener('DOMContentLoaded', async () => {
+            await initSupabase();
+            attachAuthModalListeners();
+            loadSermons();
+        });
+    </script>
+</body>
+</html>
+
+

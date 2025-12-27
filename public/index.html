@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome - Heavenly Concordance Ministry International</title>
+    <link rel="icon" type="image/png" href="/images/logo.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16 nav-bar">
+                <div class="flex items-center">
+                    <a href="/"><img src="/images/logo.png" alt="Heavenly Concordance Ministry International logo" class="site-logo"></a>
+                </div>
+                <div class="nav-links-center space-x-8">
+                    <a href="/" class="text-gray-700 hover:text-primary-600 font-medium">Home</a>
+                    <a href="/about.html" class="text-gray-700 hover:text-primary-600 font-medium">About</a>
+                    <a href="/sermons.html" class="text-gray-700 hover:text-primary-600 font-medium">Sermons</a>
+                    
+                    <a href="/blog.html" class="text-gray-700 hover:text-primary-600 font-medium">Blog</a>
+                    
+                    
+                    <a href="/contact.html" class="text-gray-700 hover:text-primary-600 font-medium">Contact</a>
+                </div>
+                <div class="flex space-x-4 items-center">
+                    <div class="nav-center hidden md:block">
+                        <a href="/donate.html" class="btn btn-primary">Donate</a>
+                    </div>
+                    <a href="/donate.html" class="btn btn-primary md:hidden">Donate</a>
+                    <button id="mobile-menu-btn" class="md:hidden inline-flex items-center justify-center p-2 rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100 focus:outline-none" aria-label="Open menu">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="md:hidden hidden bg-white shadow-lg border-t border-gray-100">
+        <div class="px-4 py-3 space-y-2">
+            <a href="/" class="block text-gray-700 hover:text-primary-600">Home</a>
+            <a href="/about.html" class="block text-gray-700 hover:text-primary-600">About</a>
+            <a href="/sermons.html" class="block text-gray-700 hover:text-primary-600">Sermons</a>
+            <a href="/events.html" class="block text-gray-700 hover:text-primary-600">Events</a>
+            <a href="/blog.html" class="block text-gray-700 hover:text-primary-600">Blog</a>
+            <a href="/contact.html" class="block text-gray-700 hover:text-primary-600">Contact</a>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero-section text-white py-20 relative">
+        <!-- Background Media Container -->
+        <div class="hero-background-container">
+            <div class="hero-background-item active" data-type="image" data-src="/images/Mama.png"></div>
+            <!-- Add more background items here -->
+            <div class="hero-background-item" data-type="image" data-src="/images/crowd.jpg"></div>
+        </div>
+        
+        <!-- Video Element (hidden, will be shown when needed) -->
+        <video id="hero-video" class="hero-video" autoplay muted loop style="display: none;">
+        </video>
+        
+        <div class="hero-overlay"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+            <h1 class="text-5xl font-bold mb-6">Welcome to Heavenly Concordance Ministry</h1>
+            <p class="text-xl mb-8 max-w-3xl mx-auto">A place where faith grows, lives are transformed, and God's love is shared with the world.</p>
+            <div class="flex justify-center space-x-4">
+                <a href="/about.html" class="more-info1">Learn More</a>
+                <a href="/sermons.html" class="more-info1">Listen to Sermons</a>
+            </div>
+        </div>
+        
+        <!-- Background Navigation Dots -->
+        <div class="hero-nav-dots">
+            <span class="dot active" data-index="0"></span>
+            <span class="dot" data-index="1"></span>
+        </div>
+    </section>
+
+    <!-- Who We Are Section -->
+    <section class="who-we-are-section py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Section Header -->
+            <div class="text-center mb-16">
+                <p class="text-gray-500 text-sm uppercase tracking-wide mb-4">Who we are</p>
+                <h2 class="text-4xl md:text-5xl font-serif text-gray-900 leading-tight">
+                    An Inter-denominational Outreach Ministry That Loves God And<br>People
+                </h2>
+            </div>
+            
+            <!-- Three Column Content -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                <!-- Our Beliefs -->
+                <div class="text-center">
+                    <div class="beliefs-icon mb-6">
+                        <div class="icon-container">
+                            <svg viewBox="0 0 100 100" class="beliefs-svg">
+                                <defs>
+                                    <clipPath id="triangle">
+                                        <polygon points="50,10 90,80 10,80" />
+                                    </clipPath>
+                                </defs>
+                                <g clip-path="url(#triangle)">
+                                    <circle cx="50" cy="40" r="8" fill="none" stroke="#333" stroke-width="2"/>
+                                    <path d="M35,60 Q50,45 65,60" fill="none" stroke="#333" stroke-width="2"/>
+                                    <path d="M30,70 Q50,55 70,70" fill="none" stroke="#333" stroke-width="2"/>
+                                    <circle cx="40" cy="35" r="3" fill="#333"/>
+                                    <circle cx="60" cy="35" r="3" fill="#333"/>
+                                </g>
+                            </svg>
+                        </div>
+                    </div>
+                    <h3 class="text-2xl font-serif text-gray-900 mb-4">Our Beliefs</h3>
+                    <p class="text-gray-600 mb-6 leading-relaxed">
+                        Worry Ends When Faith Begins. The Magnificent Story of a Life-Changing Journey to God
+                    </p>
+                   
+                </div>
+                
+                <!-- Our Church -->
+                <div class="text-center">
+                    <div class="church-icon mb-6">
+                        <div class="icon-container">
+                            <svg viewBox="0 0 100 100" class="church-svg">
+                                <rect x="30" y="50" width="40" height="30" fill="none" stroke="#333" stroke-width="2"/>
+                                <polygon points="50,20 20,50 80,50" fill="none" stroke="#333" stroke-width="2"/>
+                                <rect x="45" y="60" width="10" height="20" fill="none" stroke="#333" stroke-width="2"/>
+                                <circle cx="50" cy="30" r="3" fill="#333"/>
+                                <rect x="35" y="40" width="6" height="6" fill="none" stroke="#333" stroke-width="1"/>
+                                <rect x="59" y="40" width="6" height="6" fill="none" stroke="#333" stroke-width="1"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <h3 class="text-2xl font-serif text-gray-900 mb-4">Our Mandate</h3>
+                    <p class="text-gray-600 mb-6 leading-relaxed">
+                        To Root out and Pull down, To destroy and To Overthrow, To build and To plant.
+                        - Jer. 1:10
+                    </p>
+                    
+                </div>
+                
+                <!-- Our Mission -->
+                <div class="text-center">
+                    <div class="mission-icon mb-6">
+                        <div class="icon-container">
+                            <svg viewBox="0 0 100 100" class="mission-svg">
+                                <defs>
+                                    <clipPath id="circle">
+                                        <circle cx="50" cy="50" r="40" />
+                                    </clipPath>
+                                </defs>
+                                <g clip-path="url(#circle)">
+                                    <circle cx="50" cy="50" r="15" fill="none" stroke="#333" stroke-width="2"/>
+                                    <path d="M50,35 Q45,45 50,55 Q55,45 50,35" fill="none" stroke="#333" stroke-width="2"/>
+                                    <path d="M35,50 Q45,45 55,50 Q45,55 35,50" fill="none" stroke="#333" stroke-width="2"/>
+                                    <circle cx="50" cy="50" r="3" fill="#333"/>
+                                    <path d="M50,20 Q50,10 50,20" fill="none" stroke="#333" stroke-width="2"/>
+                                    <path d="M50,80 Q50,90 50,80" fill="none" stroke="#333" stroke-width="2"/>
+                                    <path d="M20,50 Q10,50 20,50" fill="none" stroke="#333" stroke-width="2"/>
+                                    <path d="M80,50 Q90,50 80,50" fill="none" stroke="#333" stroke-width="2"/>
+                                </g>
+                            </svg>
+                        </div>
+                    </div>
+                    <h3 class="text-2xl font-serif text-gray-900 mb-4">Our Mission</h3>
+                    <p class="text-gray-600 mb-6 leading-relaxed">
+                        Leading our Generation Back to God, We are saved to save Others, Called to call Others with Jesus our ability
+                    </p>
+                   
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Upcoming Events -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center mb-12">Upcoming Events</h2>
+            <div id="events-container" class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Events will be loaded here dynamically -->
+            </div>
+            <div class="text-center mt-12">
+                <a href="/events.html" class="btn btn-primary">View All Events</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials-section py-20 bg-gray-50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div id="testimonials-container" class="testimonial-container">
+                <div class="p-8 text-center text-gray-500">
+                    <p>Loading testimonials...</p>
+                </div>
+            </div>
+            <div id="testimonial-pagination" class="testimonial-pagination hidden"></div>
+        </div>
+    </section>
+
+    <!-- Latest Sermons -->
+    <section class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center mb-12">Latest Sermons</h2>
+            <div id="sermons-container" class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <!-- Sermons will be loaded here dynamically -->
+            </div>
+            <div class="text-center mt-12">
+                <a href="/sermons.html" class="btn btn-primary">View All Sermons</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section (replaces Ministries) -->
+    <section class="contact-section py-20 bg-white">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-10">
+                <p class="tracking-widest uppercase text-gray-400 text-sm">Reach out to us</p>
+                <h2 class="text-4xl md:text-5xl font-serif text-gray-900 mt-3">
+                    Send Us a <span class="contact-accent">Message</span>
+                </h2>
+                <p class="text-gray-500 mt-4 max-w-3xl mx-auto">
+                    These texts are temporary and will soon be replaced with more details about our ministry.
+                    This dummy text is intended to show you the volume of content that will be used on this page.
+                </p>
+            </div>
+
+            <form id="contact-form" class="contact-card">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <input type="text" name="fullName" placeholder="* Full Name" class="contact-input" required>
+                    <input type="email" name="email" placeholder="* Email Address" class="contact-input" required>
+                </div>
+
+                <div class="mt-6">
+                    <textarea name="message" rows="6" placeholder="Message (s)" class="contact-textarea" required></textarea>
+                </div>
+
+                <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
+                    <label class="flex items-start gap-3 text-gray-600 text-sm">
+                        <input type="checkbox" class="contact-checkbox" required>
+                        <span>By submitting this form you agree to the terms of the <a href="#" class="underline">Privacy Policy</a>.</span>
+                    </label>
+
+                    <div class="flex items-center gap-4 md:justify-end">
+                        <div class="recaptcha-box">I'm not a Robot</div>
+                        <button type="submit" class="contact-submit">
+                            <span>Submit</span>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <img src="/images/logo.png" alt="Heavenly Concordance Ministry International" class="h-20 w-20 mb-4 object-contain">
+                    <h3 class="text-xl font-bold mb-2">HCM International</h3>
+                    <p class="text-gray-300">Heavenly Concordance Ministry International</p>
+                    <div class="mt-4 social-icons">
+                        <a href="#" class="social-icon social-icon--light" aria-label="Facebook" target="_blank" rel="noopener">
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12.06C22 6.48 17.52 2 11.94 2S2 6.48 2 12.06c0 5.02 3.66 9.19 8.44 9.94v-7.03H8.34v-2.9h2.1V9.41c0-2.07 1.23-3.22 3.12-3.22.9 0 1.84.16 1.84.16v2.02h-1.04c-1.03 0-1.35.64-1.35 1.3v1.56h2.3l-.37 2.9h-1.93V22c4.78-.75 8.44-4.92 8.44-9.94Z"/></svg>
+                        </a>
+                        <a href="#" class="social-icon social-icon--light" aria-label="Twitter" target="_blank" rel="noopener">
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.7 7.1c.01.18.01.36.01.53 0 5.38-4.09 11.58-11.58 11.58-2.3 0-4.44-.67-6.24-1.82.32.04.64.05.97.05 1.91 0 3.67-.65 5.07-1.75-1.79-.03-3.3-1.22-3.82-2.84.25.05.5.07.76.07.37 0 .73-.05 1.07-.14-1.87-.38-3.28-2.03-3.28-4.02v-.05c.55.3 1.18.49 1.84.51-1.1-.73-1.82-1.98-1.82-3.39 0-.75.2-1.46.55-2.07 2 2.46 5.03 4.08 8.43 4.25-.07-.3-.1-.61-.1-.93 0-2.25 1.82-4.07 4.07-4.07 1.17 0 2.22.49 2.96 1.27.93-.18 1.8-.52 2.59-.98-.31.96-.96 1.77-1.8 2.28.83-.1 1.63-.32 2.37-.65-.55.83-1.25 1.56-2.05 2.14Z"/></svg>
+                        </a>
+                        <a href="#" class="social-icon social-icon--light" aria-label="Instagram" target="_blank" rel="noopener">
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7Zm5 3.5A5.5 5.5 0 1 1 6.5 13 5.51 5.51 0 0 1 12 7.5Zm0 2A3.5 3.5 0 1 0 15.5 13 3.5 3.5 0 0 0 12 9.5Zm5.75-2.25a1 1 0 1 1-1.5 1.32 1 1 0 0 1 1.5-1.32Z"/></svg>
+                        </a>
+                        <a href="#" class="social-icon social-icon--light" aria-label="YouTube" target="_blank" rel="noopener">
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .6 5.8 3 3 0 0 0 2.1 2.1C4.6 20.5 12 20.5 12 20.5s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.5 15.5V8.5l6 3.5-6 3.5Z"/></svg>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="/about.html" class="hover:text-primary-400">About Us</a></li>
+                        <li><a href="/sermons.html" class="hover:text-primary-400">Sermons</a></li>
+                        <li><a href="/events.html" class="hover:text-primary-400">Events</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">More</h4>
+                    <ul class="space-y-2">
+                        <li><a href="/blog.html" class="hover:text-primary-400">Blog</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Contact</h4>
+                    <ul class="space-y-2">
+                        <li><a href="/contact.html" class="hover:text-primary-400">Get in Touch</a></li>
+                        <li><a href="/donate.html" class="hover:text-primary-400">Donate</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center">
+                <p>&copy; 2024 Heavenly Concordance Ministry International. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/api.js"></script>
+    <script>
+        // Load events
+        async function loadEvents() {
+            try {
+                // Fetch only upcoming events (first page, limit 3)
+                const response = await fetch('/api/events?upcoming=true&page=1&limit=3').then(res => res.json());
+                const container = document.getElementById('events-container');
+                
+                // Handle both old format (array) and new format (paginated response)
+                const events = response.data || response;
+                const upcomingEvents = Array.isArray(events) ? events : [];
+                
+                if (upcomingEvents.length === 0) {
+                    container.innerHTML = '<div class="col-span-full text-center py-8"><p class="text-gray-500">No upcoming events at this time. Please check back soon!</p></div>';
+                    return;
+                }
+                
+                container.innerHTML = upcomingEvents.map(event => `
+                    <div class="card">
+                        <img src="${event.image || '/placeholder.jpg'}" alt="${event.title}" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2">${event.title}</h3>
+                            <p class="text-gray-600 mb-4">${event.description}</p>
+                            <p class="text-primary-600 font-semibold">${new Date(event.date).toLocaleDateString()}</p>
+                        </div>
+                    </div>
+                `).join('');
+            } catch (error) {
+                console.error('Error loading events:', error);
+            }
+        }
+
+        // Load sermons
+        async function loadSermons() {
+            try {
+                const response = await window.api.getSermons();
+                const container = document.getElementById('sermons-container');
+                // Handle both old format (array) and new format (paginated response)
+                const sermons = response.data || response;
+                const latestSermons = Array.isArray(sermons) ? sermons.slice(0, 4) : [];
+                
+                container.innerHTML = latestSermons.map(sermon => `
+                    <div class="card cursor-pointer" onclick="window.location.href='/sermons.html?id=${sermon._id}'">
+                        <img src="${sermon.thumbnail || '/placeholder.jpg'}" alt="${sermon.title}" class="w-full h-40 object-cover">
+                        <div class="p-4">
+                            <h3 class="font-bold mb-2">${sermon.title}</h3>
+                            <p class="text-sm text-gray-600">${sermon.preacher}</p>
+                            <p class="text-xs text-gray-500 mt-2">${new Date(sermon.date).toLocaleDateString()}</p>
+                        </div>
+                    </div>
+                `).join('');
+            } catch (error) {
+                console.error('Error loading sermons:', error);
+            }
+        }
+
+        // Load testimonials for homepage carousel
+        async function loadTestimonials() {
+            const container = document.getElementById('testimonials-container');
+            const pagination = document.getElementById('testimonial-pagination');
+
+            if (!container) return;
+
+            container.innerHTML = `
+                <div class="p-8 text-center text-gray-500">
+                    <p>Loading testimonials...</p>
+                </div>
+            `;
+
+            try {
+                const response = await fetch('/api/testimonials?page=1&limit=10');
+
+                if (!response.ok) {
+                    throw new Error('Failed to fetch testimonials');
+                }
+
+                const payload = await response.json();
+                const testimonials = Array.isArray(payload) ? payload : (payload.data || []);
+                const approvedTestimonials = testimonials.filter(item => item && item.approved);
+
+                if (approvedTestimonials.length === 0) {
+                    container.innerHTML = `
+                        <div class="p-8 text-center text-gray-500">
+                            <p>No testimonials available yet. Please check back soon!</p>
+                        </div>
+                    `;
+                    pagination.classList.add('hidden');
+                    return;
+                }
+
+                const slidesHtml = approvedTestimonials.map((testimonial, index) => {
+                    const image = testimonial.image && testimonial.image.trim() !== '' ? testimonial.image : '/images/logo.png';
+                    const quote = testimonial.testimonial || testimonial.text || '';
+                    const author = testimonial.name || 'Anonymous';
+                    const location = testimonial.location ? `<span class="block text-sm text-gray-400 mt-1">${testimonial.location}</span>` : '';
+
+                    return `
+                        <div class="testimonial-slide ${index === 0 ? 'active' : ''}">
+                            <div class="testimonial-content">
+                                <div class="testimonial-image">
+                                    <img src="${image}" alt="${author}" class="profile-image">
+                                </div>
+                                <div class="testimonial-text">
+                                    <div class="quote-marks">"</div>
+                                    <blockquote class="testimonial-quote">
+                                        ${quote}
+                                    </blockquote>
+                                    <cite class="testimonial-author">
+                                        ${author}
+                                        ${location}
+                                    </cite>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+
+                const dotsHtml = approvedTestimonials.map((_, index) => `
+                    <span class="pagination-dot ${index === 0 ? 'active' : ''}" data-slide="${index}">${index + 1}</span>
+                `).join('');
+
+                container.innerHTML = slidesHtml;
+                pagination.innerHTML = dotsHtml;
+                pagination.classList.toggle('hidden', approvedTestimonials.length < 2);
+
+                initializeTestimonialsCarousel();
+            } catch (error) {
+                console.error('Error loading testimonials:', error);
+                container.innerHTML = `
+                    <div class="p-8 text-center text-red-500">
+                        <p>Unable to load testimonials at the moment. Please try again later.</p>
+                    </div>
+                `;
+                pagination.classList.add('hidden');
+            }
+        }
+
+        let testimonialsCarouselInstance = null;
+
+        function initializeTestimonialsCarousel() {
+            if (testimonialsCarouselInstance && typeof testimonialsCarouselInstance.destroy === 'function') {
+                testimonialsCarouselInstance.destroy();
+            }
+            testimonialsCarouselInstance = new TestimonialsCarousel();
+        }
+
+        // Hero Background Slideshow
+        class HeroSlideshow {
+            constructor() {
+                this.currentIndex = 0;
+                this.backgroundItems = document.querySelectorAll('.hero-background-item');
+                this.dots = document.querySelectorAll('.dot');
+                this.video = document.getElementById('hero-video');
+                this.isVideoPlaying = false;
+                
+                this.init();
+            }
+            
+            init() {
+                // Set initial background
+                this.setBackground(0);
+                
+                // Auto-rotate every 4 seconds
+                this.autoRotate = setInterval(() => {
+                    this.nextSlide();
+                }, 4000);
+                
+                // Add click handlers to dots
+                this.dots.forEach((dot, index) => {
+                    dot.addEventListener('click', () => {
+                        this.setBackground(index);
+                        this.resetAutoRotate();
+                    });
+                });
+                
+                // Pause auto-rotate on hover
+                const heroSection = document.querySelector('.hero-section');
+                heroSection.addEventListener('mouseenter', () => {
+                    clearInterval(this.autoRotate);
+                });
+                
+                heroSection.addEventListener('mouseleave', () => {
+                    this.resetAutoRotate();
+                });
+            }
+            
+            setBackground(index) {
+                // Remove active class from all items
+                this.backgroundItems.forEach(item => item.classList.remove('active'));
+                this.dots.forEach(dot => dot.classList.remove('active'));
+                
+                // Stop current video if playing
+                if (this.isVideoPlaying) {
+                    this.video.pause();
+                    this.video.style.display = 'none';
+                    this.isVideoPlaying = false;
+                }
+                
+                const currentItem = this.backgroundItems[index];
+                const currentDot = this.dots[index];
+                
+                if (currentItem) {
+                    const type = currentItem.dataset.type;
+                    const src = currentItem.dataset.src;
+                    
+                    if (type === 'video') {
+                        // Show video with error handling
+                        this.video.onerror = () => {
+                            console.warn('Video failed to load:', src);
+                            this.video.style.display = 'none';
+                            this.isVideoPlaying = false;
+                            // Skip to next slide if video fails
+                            setTimeout(() => this.nextSlide(), 1000);
+                        };
+                        this.video.src = src;
+                        this.video.style.display = 'block';
+                        this.video.play().catch(err => {
+                            console.warn('Video play failed:', err);
+                            this.video.style.display = 'none';
+                            this.isVideoPlaying = false;
+                            setTimeout(() => this.nextSlide(), 1000);
+                        });
+                        this.isVideoPlaying = true;
+                    } else {
+                        // Show image with error handling
+                        const img = new Image();
+                        img.onerror = () => {
+                            console.warn('Image failed to load:', src);
+                            // Skip to next slide if image fails
+                            setTimeout(() => this.nextSlide(), 1000);
+                        };
+                        img.onload = () => {
+                        currentItem.style.backgroundImage = `url(${src})`;
+                        };
+                        img.src = src;
+                    }
+                    
+                    currentItem.classList.add('active');
+                    if (currentDot) currentDot.classList.add('active');
+                    this.currentIndex = index;
+                }
+            }
+            
+            nextSlide() {
+                const nextIndex = (this.currentIndex + 1) % this.backgroundItems.length;
+                this.setBackground(nextIndex);
+            }
+            
+            resetAutoRotate() {
+                clearInterval(this.autoRotate);
+                this.autoRotate = setInterval(() => {
+                    this.nextSlide();
+                }, 4000);
+            }
+        }
+
+        // Testimonials Carousel
+        class TestimonialsCarousel {
+            constructor() {
+                this.section = document.querySelector('.testimonials-section');
+                this.container = document.querySelector('.testimonial-container');
+                this.pagination = document.getElementById('testimonial-pagination');
+                this.slides = this.container ? Array.from(this.container.querySelectorAll('.testimonial-slide')) : [];
+                this.dots = this.pagination ? Array.from(this.pagination.querySelectorAll('.pagination-dot')) : [];
+                this.totalSlides = this.slides.length;
+                this.currentSlide = 0;
+                this.autoRotate = null;
+                this.boundMouseEnter = null;
+                this.boundMouseLeave = null;
+                
+                if (this.totalSlides === 0) {
+                    return;
+                }
+
+                this.init();
+            }
+            
+            init() {
+                // Set initial slide
+                this.showSlide(0);
+                
+                if (this.totalSlides > 1) {
+                    // Auto-rotate every 6 seconds
+                    this.autoRotate = setInterval(() => {
+                        this.nextSlide();
+                    }, 6000);
+                }
+                
+                // Add click handlers to pagination dots
+                this.dots.forEach((dot, index) => {
+                    dot.addEventListener('click', () => {
+                        this.showSlide(index);
+                        this.resetAutoRotate();
+                    });
+                });
+                
+                // Pause auto-rotate on hover
+                if (this.section && this.totalSlides > 1) {
+                    this.boundMouseEnter = () => {
+                        if (this.autoRotate) {
+                            clearInterval(this.autoRotate);
+                            this.autoRotate = null;
+                        }
+                    };
+
+                    this.boundMouseLeave = () => {
+                        this.resetAutoRotate();
+                    };
+
+                    this.section.addEventListener('mouseenter', this.boundMouseEnter);
+                    this.section.addEventListener('mouseleave', this.boundMouseLeave);
+                }
+            }
+            
+            showSlide(index) {
+                // Remove active class from all slides and dots
+                this.slides.forEach(slide => slide.classList.remove('active'));
+                this.dots.forEach(dot => dot.classList.remove('active'));
+                
+                // Add active class to current slide and dot
+                this.slides[index].classList.add('active');
+                this.dots[index].classList.add('active');
+                
+                this.currentSlide = index;
+            }
+            
+            nextSlide() {
+                const nextIndex = (this.currentSlide + 1) % this.totalSlides;
+                this.showSlide(nextIndex);
+            }
+            
+            resetAutoRotate() {
+                if (this.totalSlides < 2) return;
+
+                if (this.autoRotate) {
+                    clearInterval(this.autoRotate);
+                }
+
+                this.autoRotate = setInterval(() => {
+                    this.nextSlide();
+                }, 6000);
+            }
+
+            destroy() {
+                if (this.autoRotate) {
+                    clearInterval(this.autoRotate);
+                    this.autoRotate = null;
+                }
+
+                if (this.section && this.boundMouseEnter) {
+                    this.section.removeEventListener('mouseenter', this.boundMouseEnter);
+                }
+
+                if (this.section && this.boundMouseLeave) {
+                    this.section.removeEventListener('mouseleave', this.boundMouseLeave);
+                }
+            }
+        }
+
+        // Initialize on page load
+        window.addEventListener('DOMContentLoaded', () => {
+            loadEvents();
+            loadSermons();
+            loadTestimonials();
+            // Contact form submit placeholder
+            const contactForm = document.getElementById('contact-form');
+            if (contactForm) {
+                contactForm.addEventListener('submit', async (e) => {
+                    e.preventDefault();
+                    const formData = new FormData(contactForm);
+                    const payload = Object.fromEntries(formData.entries());
+                    try {
+                        const res = await fetch('/api/contact', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify(payload)
+                        });
+                        if (!res.ok) {
+                            const data = await res.json().catch(() => ({}));
+                            throw new Error(data.error || 'Failed to send message');
+                        }
+                        alert('Thank you! Your message has been sent.');
+                        contactForm.reset();
+                    } catch (err) {
+                        alert(err.message || 'Unable to send message');
+                    }
+                });
+            }
+            
+            // Mobile menu toggle
+            const mobileBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            if (mobileBtn && mobileMenu) {
+                mobileBtn.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+
+            // Initialize hero slideshow
+            new HeroSlideshow();
+        });
+    </script>
+</body>
+</html>
+

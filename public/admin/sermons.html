@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sermons Management - Admin - HCM International</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body class="bg-gray-100">
+    <!-- Admin Navigation -->
+    <nav class="bg-gray-900 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <h1 class="text-xl font-bold">Admin Dashboard</h1>
+                <div class="flex space-x-4">
+                    <a href="/" class="hover:text-gray-300">View Site</a>
+                    <button id="logout-btn" class="hover:text-gray-300">Logout</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Admin Sidebar -->
+    <div class="flex">
+        <aside class="w-64 bg-white shadow-lg min-h-screen">
+            <nav class="p-4 space-y-2">
+                <a href="/admin/" class="admin-nav-link block px-4 py-2 hover:bg-gray-100 rounded">Dashboard</a>
+                <a href="/admin/sermons.html" class="admin-nav-link block px-4 py-2 bg-primary-100 text-primary-700 rounded">Sermons</a>
+                <a href="/admin/events.html" class="admin-nav-link block px-4 py-2 hover:bg-gray-100 rounded">Events</a>
+                <a href="/admin/blog.html" class="admin-nav-link block px-4 py-2 hover:bg-gray-100 rounded">Blog</a>
+                <a href="/admin/team.html" class="admin-nav-link block px-4 py-2 hover:bg-gray-100 rounded">Team</a>
+                <a href="/admin/testimonials.html" class="admin-nav-link block px-4 py-2 hover:bg-gray-100 rounded">Testimonials</a>
+                <a href="/admin/donations.html" class="admin-nav-link block px-4 py-2 hover:bg-gray-100 rounded">Donations</a>
+                <a href="/admin/prayers.html" class="admin-nav-link block px-4 py-2 hover:bg-gray-100 rounded">Prayer Requests</a>
+                <a href="/admin/settings.html" class="admin-nav-link block px-4 py-2 hover:bg-gray-100 rounded">Settings</a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 p-8">
+            <div class="flex justify-between items-center mb-8">
+                <h2 class="text-3xl font-bold">Sermons Management</h2>
+                <button id="add-sermon-btn" class="btn btn-primary">+ Add New Sermon</button>
+            </div>
+
+            <!-- Sermons Table -->
+            <div class="bg-white rounded-lg shadow overflow-hidden">
+                <div id="sermons-table-container">
+                    <div class="p-8 text-center text-gray-500">
+                        <p>Loading sermons...</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Sermon Modal -->
+    <div id="sermon-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+        <div class="bg-white rounded-lg shadow-xl max-w-3xl w-full mx-4 max-h-[90vh] overflow-y-auto">
+            <div class="p-6 border-b">
+                <h3 class="text-2xl font-bold" id="modal-title">Add New Sermon</h3>
+            </div>
+            <form id="sermon-form" class="p-6 space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Title *</label>
+                    <input type="text" id="sermon-title" required class="input w-full" placeholder="Sermon title">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Speaker</label>
+                    <input type="text" id="sermon-speaker" class="input w-full" placeholder="Speaker name">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Date *</label>
+                    <input type="date" id="sermon-date" required class="input w-full">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Description</label>
+                    <textarea id="sermon-description" rows="4" class="input w-full" placeholder="Sermon description"></textarea>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Audio File</label>
+                    <div id="audio-upload-container"></div>
+                    <input type="hidden" id="sermon-audio-url" class="input w-full">
+                    <p class="text-sm text-gray-500 mt-1">Upload audio file (MP3, WAV, M4A) or paste URL below</p>
+                    <input type="url" id="sermon-audio-url-manual" class="input w-full mt-2" placeholder="Or enter audio URL manually">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Video File</label>
+                    <div id="video-upload-container"></div>
+                    <input type="hidden" id="sermon-video-url" class="input w-full">
+                    <p class="text-sm text-gray-500 mt-1">Upload video file (MP4, MOV, AVI, WEBM) or paste URL below</p>
+                    <input type="url" id="sermon-video-url-manual" class="input w-full mt-2" placeholder="Or enter video URL manually (YouTube, etc.)">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Thumbnail Image</label>
+                    <div id="thumbnail-upload-container"></div>
+                    <input type="hidden" id="sermon-thumbnail" class="input w-full">
+                    <p class="text-sm text-gray-500 mt-1">Upload thumbnail image or paste URL below</p>
+                    <input type="url" id="sermon-thumbnail-manual" class="input w-full mt-2" placeholder="Or enter image URL manually">
+                </div>
+                <div class="flex space-x-4 pt-4">
+                    <button type="submit" class="btn btn-primary flex-1">Save Sermon</button>
+                    <button type="button" id="close-sermon-modal-btn" class="btn btn-secondary flex-1">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="/js/api.js"></script>
+    <script src="/admin/js/admin-layout.js"></script>
+    <script src="/admin/js/file-upload.js"></script>
+    <script>
+        let sermons = [];
+        let editingSermonId = null;
+        let audioUploader, videoUploader, thumbnailUploader;
+
+        // Initialize file uploaders (called when modal opens)
+        function initFileUploaders() {
+            // Only initialize if containers exist and uploaders don't exist yet
+            if (!audioUploader && document.getElementById('audio-upload-container')) {
+                // Audio uploader
+                audioUploader = createFileUploadComponent({
+                    containerId: 'audio-upload-container',
+                    inputId: 'audio-file-input',
+                    accept: 'audio/*',
+                    folder: null, // Let server determine bucket
+                    showPreview: true,
+                    onUploadComplete: (result) => {
+                        document.getElementById('sermon-audio-url').value = result.url;
+                        document.getElementById('sermon-audio-url-manual').value = result.url;
+                    },
+                    onUploadError: (error) => {
+                        alert('Audio upload failed: ' + error);
+                    }
+                });
+                if (document.getElementById('audio-file-input')) {
+                    document.getElementById('audio-file-input').dataset.targetInput = 'sermon-audio-url';
+                }
+            }
+
+            if (!videoUploader && document.getElementById('video-upload-container')) {
+                // Video uploader
+                videoUploader = createFileUploadComponent({
+                    containerId: 'video-upload-container',
+                    inputId: 'video-file-input',
+                    accept: 'video/*',
+                    folder: null, // Let server determine bucket
+                    showPreview: true,
+                    onUploadComplete: (result) => {
+                        document.getElementById('sermon-video-url').value = result.url;
+                        document.getElementById('sermon-video-url-manual').value = result.url;
+                    },
+                    onUploadError: (error) => {
+                        alert('Video upload failed: ' + error);
+                    }
+                });
+                if (document.getElementById('video-file-input')) {
+                    document.getElementById('video-file-input').dataset.targetInput = 'sermon-video-url';
+                }
+            }
+
+            if (!thumbnailUploader && document.getElementById('thumbnail-upload-container')) {
+                // Thumbnail uploader
+                thumbnailUploader = createFileUploadComponent({
+                    containerId: 'thumbnail-upload-container',
+                    inputId: 'thumbnail-file-input',
+                    accept: 'image/*',
+                    folder: null, // Let server determine bucket
+                    showPreview: true,
+                    onUploadComplete: (result) => {
+                        document.getElementById('sermon-thumbnail').value = result.url;
+                        document.getElementById('sermon-thumbnail-manual').value = result.url;
+                    },
+                    onUploadError: (error) => {
+                        alert('Thumbnail upload failed: ' + error);
+                    }
+                });
+                if (document.getElementById('thumbnail-file-input')) {
+                    document.getElementById('thumbnail-file-input').dataset.targetInput = 'sermon-thumbnail';
+                }
+            }
+        }
+
+        // Load sermons
+        async function loadSermons() {
+            try {
+                const container = document.getElementById('sermons-table-container');
+                container.innerHTML = '<div class="p-8 text-center text-gray-500"><p>Loading sermons...</p></div>';
+                
+                const response = await window.api.getSermons();
+                sermons = Array.isArray(response) ? response : (response.data || []);
+                
+                if (sermons.length === 0) {
+                    container.innerHTML = `
+                        <div class="p-8 text-center">
+                            <p class="text-gray-500 mb-4">No sermons found.</p>
+                            <button id="add-first-sermon-btn-empty" class="btn btn-primary">Add Your First Sermon</button>
+                        </div>
+                    `;
+                    // Attach listener to the empty state button
+                    setTimeout(() => {
+                        const addFirstBtn = document.getElementById('add-first-sermon-btn-empty');
+                        if (addFirstBtn) {
+                            addFirstBtn.addEventListener('click', () => openSermonModal());
+                        }
+                    }, 100);
+                    return;
+                }
+
+                renderSermonsTable();
+            } catch (error) {
+                console.error('Error loading sermons:', error);
+                document.getElementById('sermons-table-container').innerHTML = `
+                    <div class="p-8 text-center text-red-500">
+                        <p>Error loading sermons: ${error.message}</p>
+                    </div>
+                `;
+            }
+        }
+
+        // Render sermons table
+        function renderSermonsTable() {
+            const container = document.getElementById('sermons-table-container');
+            const tableHTML = `
+                <table class="min-w-full divide-y divide-gray-200">
+                    <thead class="bg-gray-50">
+                        <tr>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Title</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Speaker</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Downloads</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white divide-y divide-gray-200">
+                        ${sermons.map(sermon => `
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm font-medium text-gray-900">${sermon.title || 'Untitled'}</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm text-gray-500">${sermon.speaker || '-'}</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm text-gray-500">${sermon.date ? new Date(sermon.date).toLocaleDateString() : '-'}</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm text-gray-500">${sermon.downloads || 0}</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                    <button class="edit-sermon-btn text-primary-600 hover:text-primary-900 mr-4" data-sermon-id="${sermon._id}">Edit</button>
+                                    <button class="delete-sermon-btn text-red-600 hover:text-red-900" data-sermon-id="${sermon._id}">Delete</button>
+                                </td>
+                            </tr>
+                        `).join('')}
+                    </tbody>
+                </table>
+            `;
+            container.innerHTML = tableHTML;
+        }
+
+        // Open sermon modal
+        function openSermonModal(sermonId = null) {
+            editingSermonId = sermonId;
+            const modal = document.getElementById('sermon-modal');
+            const form = document.getElementById('sermon-form');
+            const title = document.getElementById('modal-title');
+            
+            // Initialize file uploaders when modal opens
+            initFileUploaders();
+            
+            if (sermonId) {
+                title.textContent = 'Edit Sermon';
+                const sermon = sermons.find(s => s._id === sermonId);
+                if (sermon) {
+                    document.getElementById('sermon-title').value = sermon.title || '';
+                    document.getElementById('sermon-speaker').value = sermon.speaker || '';
+                    document.getElementById('sermon-date').value = sermon.date ? new Date(sermon.date).toISOString().split('T')[0] : '';
+                    document.getElementById('sermon-description').value = sermon.description || '';
+                    document.getElementById('sermon-audio-url').value = sermon.audioUrl || '';
+                    document.getElementById('sermon-audio-url-manual').value = sermon.audioUrl || '';
+                    document.getElementById('sermon-video-url').value = sermon.videoUrl || '';
+                    document.getElementById('sermon-video-url-manual').value = sermon.videoUrl || '';
+                    document.getElementById('sermon-thumbnail').value = sermon.thumbnail || '';
+                    document.getElementById('sermon-thumbnail-manual').value = sermon.thumbnail || '';
+                    
+                    // Reset uploaders
+                    if (audioUploader) audioUploader.reset();
+                    if (videoUploader) videoUploader.reset();
+                    if (thumbnailUploader) thumbnailUploader.reset();
+                }
+            } else {
+                title.textContent = 'Add New Sermon';
+                form.reset();
+                // Reset uploaders
+                if (audioUploader) audioUploader.reset();
+                if (videoUploader) videoUploader.reset();
+                if (thumbnailUploader) thumbnailUploader.reset();
+            }
+            
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        // Close sermon modal
+        function closeSermonModal() {
+            const modal = document.getElementById('sermon-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            editingSermonId = null;
+            document.getElementById('sermon-form').reset();
+        }
+
+        // Handle form submission
+        document.getElementById('sermon-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            // Get URLs from hidden inputs or manual inputs
+            const audioUrl = document.getElementById('sermon-audio-url').value || document.getElementById('sermon-audio-url-manual').value || undefined;
+            const videoUrl = document.getElementById('sermon-video-url').value || document.getElementById('sermon-video-url-manual').value || undefined;
+            const thumbnail = document.getElementById('sermon-thumbnail').value || document.getElementById('sermon-thumbnail-manual').value || undefined;
+
+            const sermonData = {
+                title: document.getElementById('sermon-title').value,
+                speaker: document.getElementById('sermon-speaker').value,
+                date: new Date(document.getElementById('sermon-date').value),
+                description: document.getElementById('sermon-description').value,
+                audioUrl: audioUrl || undefined,
+                videoUrl: videoUrl || undefined,
+                thumbnail: thumbnail || undefined,
+            };
+
+            try {
+                if (editingSermonId) {
+                    await window.api.updateSermon(editingSermonId, sermonData);
+                } else {
+                    await window.api.createSermon(sermonData);
+                }
+                
+                closeSermonModal();
+                loadSermons();
+            } catch (error) {
+                alert('Error saving sermon: ' + error.message);
+            }
+        });
+
+        // Edit sermon
+        function editSermon(id) {
+            openSermonModal(id);
+        }
+
+        // Delete sermon
+        async function deleteSermon(id) {
+            if (!confirm('Are you sure you want to delete this sermon?')) {
+                return;
+            }
+
+            try {
+                await window.api.deleteSermon(id);
+                loadSermons();
+            } catch (error) {
+                alert('Error deleting sermon: ' + error.message);
+            }
+        }
+
+        // Close modal on outside click
+        document.getElementById('sermon-modal').addEventListener('click', (e) => {
+            if (e.target.id === 'sermon-modal') {
+                closeSermonModal();
+            }
+        });
+
+        // Attach event listeners to buttons
+        function attachSermonPageListeners() {
+            // Logout button
+            const logoutBtn = document.getElementById('logout-btn');
+            if (logoutBtn) {
+                logoutBtn.addEventListener('click', logout);
+            }
+            
+            // Add sermon buttons
+            const addSermonBtn = document.getElementById('add-sermon-btn');
+            if (addSermonBtn) {
+                addSermonBtn.addEventListener('click', () => openSermonModal());
+            }
+            
+            const addFirstSermonBtn = document.getElementById('add-first-sermon-btn');
+            if (addFirstSermonBtn) {
+                addFirstSermonBtn.addEventListener('click', () => openSermonModal());
+            }
+            
+            const addFirstSermonBtnEmpty = document.getElementById('add-first-sermon-btn-empty');
+            if (addFirstSermonBtnEmpty) {
+                addFirstSermonBtnEmpty.addEventListener('click', () => openSermonModal());
+            }
+            
+            // Close modal button
+            const closeModalBtn = document.getElementById('close-sermon-modal-btn');
+            if (closeModalBtn) {
+                closeModalBtn.addEventListener('click', closeSermonModal);
+            }
+        }
+
+        // Initialize on page load
+        window.addEventListener('DOMContentLoaded', () => {
+            attachSermonPageListeners();
+            loadSermons();
+            
+            // Handle manual URL inputs (set up once)
+            const audioManualInput = document.getElementById('sermon-audio-url-manual');
+            const videoManualInput = document.getElementById('sermon-video-url-manual');
+            const thumbnailManualInput = document.getElementById('sermon-thumbnail-manual');
+            
+            if (audioManualInput) {
+                audioManualInput.addEventListener('input', (e) => {
+                    document.getElementById('sermon-audio-url').value = e.target.value;
+                });
+            }
+            if (videoManualInput) {
+                videoManualInput.addEventListener('input', (e) => {
+                    document.getElementById('sermon-video-url').value = e.target.value;
+                });
+            }
+            if (thumbnailManualInput) {
+                thumbnailManualInput.addEventListener('input', (e) => {
+                    document.getElementById('sermon-thumbnail').value = e.target.value;
+                });
+            }
+        });
+    </script>
+</body>
+</html>
+

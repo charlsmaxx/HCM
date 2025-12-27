@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - HCM International</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body class="bg-gray-100">
+    <!-- Admin Navigation -->
+    <nav class="bg-gray-900 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <h1 class="text-xl font-bold">Admin Dashboard</h1>
+                <div class="flex space-x-4">
+                    <a href="/" class="hover:text-gray-300">View Site</a>
+                    <button id="logout-btn" class="hover:text-gray-300">Logout</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Admin Sidebar -->
+    <div class="flex">
+        <aside class="w-64 bg-white shadow-lg min-h-screen">
+            <nav class="p-4 space-y-2">
+                <a href="/admin/" class="block px-4 py-2 bg-primary-100 text-primary-700 rounded">Dashboard</a>
+                <a href="/admin/sermons.html" class="block px-4 py-2 hover:bg-gray-100 rounded">Sermons</a>
+                <a href="/admin/events.html" class="block px-4 py-2 hover:bg-gray-100 rounded">Events</a>
+                <a href="/admin/blog.html" class="block px-4 py-2 hover:bg-gray-100 rounded">Blog</a>
+                <a href="/admin/team.html" class="block px-4 py-2 hover:bg-gray-100 rounded">Team</a>
+                <a href="/admin/testimonials.html" class="block px-4 py-2 hover:bg-gray-100 rounded">Testimonials</a>
+                <a href="/admin/donations.html" class="block px-4 py-2 hover:bg-gray-100 rounded">Donations</a>
+                <a href="/admin/prayers.html" class="block px-4 py-2 hover:bg-gray-100 rounded">Prayer Requests</a>
+                <a href="/admin/settings.html" class="block px-4 py-2 hover:bg-gray-100 rounded">Settings</a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 p-8">
+            <h2 class="text-3xl font-bold mb-8">Dashboard Overview</h2>
+
+            <!-- Statistics Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+                <div class="bg-white rounded-lg shadow p-6">
+                    <h3 class="text-gray-600 mb-2">Total Sermons</h3>
+                    <p class="text-3xl font-bold text-primary-600" id="sermons-count">0</p>
+                </div>
+                <div class="bg-white rounded-lg shadow p-6">
+                    <h3 class="text-gray-600 mb-2">Upcoming Events</h3>
+                    <p class="text-3xl font-bold text-primary-600" id="events-count">0</p>
+                </div>
+                <div class="bg-white rounded-lg shadow p-6">
+                    <h3 class="text-gray-600 mb-2">Blog Posts</h3>
+                    <p class="text-3xl font-bold text-primary-600" id="blog-count">0</p>
+                </div>
+                <div class="bg-white rounded-lg shadow p-6">
+                    <h3 class="text-gray-600 mb-2">Testimonials</h3>
+                    <p class="text-3xl font-bold text-primary-600" id="testimonials-count">0</p>
+                </div>
+                <div class="bg-white rounded-lg shadow p-6">
+                    <h3 class="text-gray-600 mb-2">Total Donations</h3>
+                    <p class="text-3xl font-bold text-primary-600" id="donations-count">0</p>
+                </div>
+                <div class="bg-white rounded-lg shadow p-6">
+                    <h3 class="text-gray-600 mb-2">Prayer Requests</h3>
+                    <p class="text-3xl font-bold text-primary-600" id="prayers-count">0</p>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="bg-white rounded-lg shadow p-6">
+                <h3 class="text-xl font-bold mb-4">Quick Actions</h3>
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+                    <a href="/admin/sermons.html" class="btn btn-primary text-center">Add Sermon</a>
+                    <a href="/admin/events.html" class="btn btn-secondary text-center">Add Event</a>
+                    <a href="/admin/blog.html" class="btn btn-primary text-center">New Blog Post</a>
+                    <a href="/admin/testimonials.html" class="btn btn-secondary text-center">Add Testimonial</a>
+                    <a href="/admin/donations.html" class="btn btn-primary text-center">View Donations</a>
+                    <a href="/admin/settings.html" class="btn btn-secondary text-center">Settings</a>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="/js/api.js"></script>
+    <script src="/admin/js/admin-layout.js"></script>
+    <script>
+        // Load dashboard statistics
+        async function loadStats() {
+            try {
+                const [sermonsRes, eventsRes, blogRes, testimonialsRes, donationsRes, prayersRes] = await Promise.all([
+                    window.api.getSermons().catch(() => ({ data: [], pagination: { total: 0 } })),
+                    window.api.getEvents().catch(() => ({ data: [], pagination: { total: 0 } })),
+                    window.api.getBlogPosts().catch(() => ({ data: [], pagination: { total: 0 } })),
+                    window.api.getTestimonials().catch(() => ({ data: [], pagination: { total: 0 } })),
+                    window.api.getDonations().catch(() => ({ data: [], pagination: { total: 0 } })),
+                    window.api.getPrayerRequests().catch(() => ({ data: [], pagination: { total: 0 } }))
+                ]);
+
+                // Handle both paginated and array responses
+                const sermons = Array.isArray(sermonsRes) ? sermonsRes : (sermonsRes.data || []);
+                const events = Array.isArray(eventsRes) ? eventsRes : (eventsRes.data || []);
+                const blogPosts = Array.isArray(blogRes) ? blogRes : (blogRes.data || []);
+                const testimonials = Array.isArray(testimonialsRes) ? testimonialsRes : (testimonialsRes.data || []);
+                const donations = Array.isArray(donationsRes) ? donationsRes : (donationsRes.data || []);
+                const prayers = Array.isArray(prayersRes) ? prayersRes : (prayersRes.data || []);
+
+                // Filter upcoming events
+                const today = new Date();
+                today.setHours(0, 0, 0, 0);
+                const upcomingEvents = events.filter(event => {
+                    const eventDate = event.date ? new Date(event.date) : null;
+                    return eventDate && eventDate >= today;
+                });
+
+                // Use pagination total if available, otherwise use array length
+                document.getElementById('sermons-count').textContent = 
+                    sermonsRes.pagination?.total || sermons.length;
+                document.getElementById('events-count').textContent = upcomingEvents.length;
+                document.getElementById('blog-count').textContent = 
+                    blogRes.pagination?.total || blogPosts.length;
+                document.getElementById('testimonials-count').textContent = 
+                    testimonialsRes.pagination?.total || testimonials.length;
+                document.getElementById('donations-count').textContent = 
+                    donationsRes.pagination?.total || donations.length;
+                document.getElementById('prayers-count').textContent = 
+                    prayersRes.pagination?.total || prayers.length;
+            } catch (error) {
+                console.error('Error loading stats:', error);
+                // Show error state
+                document.getElementById('sermons-count').textContent = 'Error';
+                document.getElementById('events-count').textContent = 'Error';
+                document.getElementById('blog-count').textContent = 'Error';
+                document.getElementById('testimonials-count').textContent = 'Error';
+                document.getElementById('donations-count').textContent = 'Error';
+                document.getElementById('prayers-count').textContent = 'Error';
+            }
+        }
+
+        function logout() {
+            localStorage.removeItem('auth_token');
+            window.location.href = '/admin/login.html';
+        }
+
+        // Check authentication
+        if (!localStorage.getItem('auth_token')) {
+            window.location.href = '/admin/login.html';
+        }
+
+        // Attach logout button listener
+        window.addEventListener('DOMContentLoaded', () => {
+            const logoutBtn = document.getElementById('logout-btn');
+            if (logoutBtn) {
+                logoutBtn.addEventListener('click', logout);
+            }
+            loadStats();
+        });
+    </script>
+</body>
+</html>
+
+
+
+
+

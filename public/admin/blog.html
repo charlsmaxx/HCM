@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Management - Admin - HCM International</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body class="bg-gray-100">
+    <!-- Admin Navigation -->
+    <nav class="bg-gray-900 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <h1 class="text-xl font-bold">Admin Dashboard</h1>
+                <div class="flex space-x-4">
+                    <a href="/" class="hover:text-gray-300">View Site</a>
+                    <button id="logout-btn" class="hover:text-gray-300">Logout</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Admin Sidebar -->
+    <div class="flex">
+        <aside class="w-64 bg-white shadow-lg min-h-screen">
+            <nav class="p-4 space-y-2">
+                <a href="/admin/" class="admin-nav-link block px-4 py-2 hover:bg-gray-100 rounded">Dashboard</a>
+                <a href="/admin/sermons.html" class="admin-nav-link block px-4 py-2 hover:bg-gray-100 rounded">Sermons</a>
+                <a href="/admin/events.html" class="admin-nav-link block px-4 py-2 hover:bg-gray-100 rounded">Events</a>
+                <a href="/admin/blog.html" class="admin-nav-link block px-4 py-2 bg-primary-100 text-primary-700 rounded">Blog</a>
+                <a href="/admin/team.html" class="admin-nav-link block px-4 py-2 hover:bg-gray-100 rounded">Team</a>
+                <a href="/admin/testimonials.html" class="admin-nav-link block px-4 py-2 hover:bg-gray-100 rounded">Testimonials</a>
+                <a href="/admin/donations.html" class="admin-nav-link block px-4 py-2 hover:bg-gray-100 rounded">Donations</a>
+                <a href="/admin/prayers.html" class="admin-nav-link block px-4 py-2 hover:bg-gray-100 rounded">Prayer Requests</a>
+                <a href="/admin/settings.html" class="admin-nav-link block px-4 py-2 hover:bg-gray-100 rounded">Settings</a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 p-8">
+            <div class="flex justify-between items-center mb-8">
+                <h2 class="text-3xl font-bold">Blog Posts Management</h2>
+                <button id="add-blog-btn" class="btn btn-primary">+ Add New Post</button>
+            </div>
+
+            <!-- Blog Posts Table -->
+            <div class="bg-white rounded-lg shadow overflow-hidden">
+                <div id="blog-table-container">
+                    <div class="p-8 text-center text-gray-500">
+                        <p>Loading blog posts...</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Blog Post Modal -->
+    <div id="blog-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+        <div class="bg-white rounded-lg shadow-xl max-w-4xl w-full mx-4 max-h-[90vh] overflow-y-auto">
+            <div class="p-6 border-b">
+                <h3 class="text-2xl font-bold" id="modal-title">Add New Blog Post</h3>
+            </div>
+            <form id="blog-form" class="p-6 space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Title *</label>
+                    <input type="text" id="blog-title" required class="input w-full" placeholder="Blog post title">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Author</label>
+                    <input type="text" id="blog-author" class="input w-full" placeholder="Author name">
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Publish Date *</label>
+                        <input type="date" id="blog-publish-date" required class="input w-full">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Featured Image</label>
+                        <div id="blog-image-upload-container"></div>
+                        <input type="hidden" id="blog-image" class="input w-full">
+                        <input type="url" id="blog-image-manual" class="input w-full mt-2" placeholder="Or enter image URL manually">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Excerpt/Summary</label>
+                    <textarea id="blog-excerpt" rows="3" class="input w-full" placeholder="Short summary of the post"></textarea>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Content *</label>
+                    <textarea id="blog-content" rows="10" required class="input w-full" placeholder="Blog post content (supports HTML)"></textarea>
+                    <p class="text-sm text-gray-500 mt-1">You can use HTML tags for formatting</p>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Tags (comma-separated)</label>
+                    <input type="text" id="blog-tags" class="input w-full" placeholder="faith, prayer, ministry">
+                </div>
+                <div class="flex space-x-4 pt-4">
+                    <button type="submit" class="btn btn-primary flex-1">Save Post</button>
+                    <button type="button" id="close-blog-modal-btn" class="btn btn-secondary flex-1">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="/js/api.js"></script>
+    <script src="/admin/js/admin-layout.js"></script>
+    <script src="/admin/js/file-upload.js"></script>
+    <script>
+        let blogPosts = [];
+        let editingBlogId = null;
+        let imageUploader;
+
+        // Load blog posts
+        async function loadBlogPosts() {
+            try {
+                const container = document.getElementById('blog-table-container');
+                container.innerHTML = '<div class="p-8 text-center text-gray-500"><p>Loading blog posts...</p></div>';
+                
+                const response = await window.api.getBlogPosts();
+                blogPosts = Array.isArray(response) ? response : (response.data || []);
+                
+                if (blogPosts.length === 0) {
+                    container.innerHTML = `
+                        <div class="p-8 text-center">
+                            <p class="text-gray-500 mb-4">No blog posts found.</p>
+                            <button id="add-first-blog-btn-empty" class="btn btn-primary">Add Your First Post</button>
+                        </div>
+                    `;
+                    // Attach listener to the empty state button
+                    setTimeout(() => {
+                        const addFirstBtn = document.getElementById('add-first-blog-btn-empty');
+                        if (addFirstBtn) {
+                            addFirstBtn.addEventListener('click', () => openBlogModal());
+                        }
+                    }, 100);
+                    return;
+                }
+
+                renderBlogTable();
+            } catch (error) {
+                console.error('Error loading blog posts:', error);
+                document.getElementById('blog-table-container').innerHTML = `
+                    <div class="p-8 text-center text-red-500">
+                        <p>Error loading blog posts: ${error.message}</p>
+                    </div>
+                `;
+            }
+        }
+
+        // Render blog table
+        function renderBlogTable() {
+            const container = document.getElementById('blog-table-container');
+            const tableHTML = `
+                <table class="min-w-full divide-y divide-gray-200">
+                    <thead class="bg-gray-50">
+                        <tr>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Title</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Author</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Publish Date</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white divide-y divide-gray-200">
+                        ${blogPosts.map(post => `
+                            <tr>
+                                <td class="px-6 py-4">
+                                    <div class="text-sm font-medium text-gray-900">${post.title || 'Untitled'}</div>
+                                    ${post.excerpt ? `<div class="text-sm text-gray-500 truncate max-w-xs mt-1">${post.excerpt}</div>` : ''}
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm text-gray-500">${post.author || '-'}</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm text-gray-500">${post.publishDate ? new Date(post.publishDate).toLocaleDateString() : '-'}</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                    <button class="edit-blog-btn text-primary-600 hover:text-primary-900 mr-4" data-post-id="${post._id}">Edit</button>
+                                    <button class="delete-blog-btn text-red-600 hover:text-red-900" data-post-id="${post._id}">Delete</button>
+                                </td>
+                            </tr>
+                        `).join('')}
+                    </tbody>
+                </table>
+            `;
+            container.innerHTML = tableHTML;
+            
+            // Attach event listeners to edit/delete buttons
+            attachBlogTableListeners();
+        }
+        
+        // Attach event listeners to blog table buttons
+        function attachBlogTableListeners() {
+            // Edit buttons
+            document.querySelectorAll('.edit-blog-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const postId = btn.getAttribute('data-post-id');
+                    if (postId) {
+                        editBlogPost(postId);
+                    }
+                });
+            });
+            
+            // Delete buttons
+            document.querySelectorAll('.delete-blog-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const postId = btn.getAttribute('data-post-id');
+                    if (postId) {
+                        deleteBlogPost(postId);
+                    }
+                });
+            });
+        }
+
+        // Initialize image uploader
+        function initImageUploader() {
+            if (!imageUploader && document.getElementById('blog-image-upload-container')) {
+                imageUploader = createFileUploadComponent({
+                    containerId: 'blog-image-upload-container',
+                    inputId: 'blog-image-file-input',
+                    accept: 'image/*',
+                    folder: null,
+                    showPreview: true,
+                    onUploadComplete: (result) => {
+                        document.getElementById('blog-image').value = result.url;
+                        document.getElementById('blog-image-manual').value = result.url;
+                    },
+                    onUploadError: (error) => {
+                        alert('Image upload failed: ' + error);
+                    }
+                });
+            }
+        }
+
+        // Open blog modal
+        function openBlogModal(blogId = null) {
+            editingBlogId = blogId;
+            const modal = document.getElementById('blog-modal');
+            const form = document.getElementById('blog-form');
+            const title = document.getElementById('modal-title');
+            
+            // Initialize uploader when modal opens
+            initImageUploader();
+            
+            if (blogId) {
+                title.textContent = 'Edit Blog Post';
+                const post = blogPosts.find(p => p._id === blogId);
+                if (post) {
+                    document.getElementById('blog-title').value = post.title || '';
+                    document.getElementById('blog-author').value = post.author || '';
+                    const publishDate = post.publishDate ? new Date(post.publishDate) : null;
+                    document.getElementById('blog-publish-date').value = publishDate ? publishDate.toISOString().split('T')[0] : '';
+                    document.getElementById('blog-image').value = post.image || '';
+                    document.getElementById('blog-image-manual').value = post.image || '';
+                    document.getElementById('blog-excerpt').value = post.excerpt || '';
+                    document.getElementById('blog-content').value = post.content || '';
+                    document.getElementById('blog-tags').value = post.tags ? (Array.isArray(post.tags) ? post.tags.join(', ') : post.tags) : '';
+                    if (imageUploader) imageUploader.reset();
+                }
+            } else {
+                title.textContent = 'Add New Blog Post';
+                form.reset();
+                // Set default publish date to today
+                document.getElementById('blog-publish-date').value = new Date().toISOString().split('T')[0];
+                if (imageUploader) imageUploader.reset();
+            }
+            
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        // Close blog modal
+        function closeBlogModal() {
+            const modal = document.getElementById('blog-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            editingBlogId = null;
+            document.getElementById('blog-form').reset();
+        }
+
+        // Handle form submission
+        document.getElementById('blog-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const tagsInput = document.getElementById('blog-tags').value;
+            const tags = tagsInput ? tagsInput.split(',').map(tag => tag.trim()).filter(tag => tag) : [];
+            
+            const imageUrl = document.getElementById('blog-image').value || document.getElementById('blog-image-manual').value || undefined;
+            
+            const blogData = {
+                title: document.getElementById('blog-title').value,
+                author: document.getElementById('blog-author').value || undefined,
+                publishDate: new Date(document.getElementById('blog-publish-date').value),
+                image: imageUrl,
+                excerpt: document.getElementById('blog-excerpt').value || undefined,
+                content: document.getElementById('blog-content').value,
+                tags: tags.length > 0 ? tags : undefined,
+            };
+
+            try {
+                if (editingBlogId) {
+                    await window.api.updateBlogPost(editingBlogId, blogData);
+                } else {
+                    await window.api.createBlogPost(blogData);
+                }
+                
+                closeBlogModal();
+                loadBlogPosts();
+            } catch (error) {
+                alert('Error saving blog post: ' + error.message);
+            }
+        });
+
+        // Edit blog post
+        function editBlogPost(id) {
+            openBlogModal(id);
+        }
+
+        // Delete blog post
+        async function deleteBlogPost(id) {
+            if (!confirm('Are you sure you want to delete this blog post?')) {
+                return;
+            }
+
+            try {
+                await window.api.deleteBlogPost(id);
+                loadBlogPosts();
+            } catch (error) {
+                alert('Error deleting blog post: ' + error.message);
+            }
+        }
+
+        // Close modal on outside click
+        document.getElementById('blog-modal').addEventListener('click', (e) => {
+            if (e.target.id === 'blog-modal') {
+                closeBlogModal();
+            }
+        });
+
+        // Attach event listeners to buttons
+        function attachBlogPageListeners() {
+            // Logout button
+            const logoutBtn = document.getElementById('logout-btn');
+            if (logoutBtn) {
+                logoutBtn.addEventListener('click', logout);
+            }
+            
+            // Add blog button
+            const addBlogBtn = document.getElementById('add-blog-btn');
+            if (addBlogBtn) {
+                addBlogBtn.addEventListener('click', () => openBlogModal());
+            }
+            
+            // Close modal button
+            const closeModalBtn = document.getElementById('close-blog-modal-btn');
+            if (closeModalBtn) {
+                closeModalBtn.addEventListener('click', closeBlogModal);
+            }
+        }
+
+        // Load blog posts on page load
+        window.addEventListener('DOMContentLoaded', () => {
+            attachBlogPageListeners();
+            loadBlogPosts();
+            
+            // Handle manual URL input
+            const imageManualInput = document.getElementById('blog-image-manual');
+            if (imageManualInput) {
+                imageManualInput.addEventListener('input', (e) => {
+                    document.getElementById('blog-image').value = e.target.value;
+                });
+            }
+        });
+    </script>
+</body>
+</html>
+

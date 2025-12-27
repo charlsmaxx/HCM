@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events Management - Admin - HCM International</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body class="bg-gray-100">
+    <!-- Admin Navigation -->
+    <nav class="bg-gray-900 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <h1 class="text-xl font-bold">Admin Dashboard</h1>
+                <div class="flex space-x-4">
+                    <a href="/" class="hover:text-gray-300">View Site</a>
+                    <button id="logout-btn" class="hover:text-gray-300">Logout</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Admin Sidebar -->
+    <div class="flex">
+        <aside class="w-64 bg-white shadow-lg min-h-screen">
+            <nav class="p-4 space-y-2">
+                <a href="/admin/" class="admin-nav-link block px-4 py-2 hover:bg-gray-100 rounded">Dashboard</a>
+                <a href="/admin/sermons.html" class="admin-nav-link block px-4 py-2 hover:bg-gray-100 rounded">Sermons</a>
+                <a href="/admin/events.html" class="admin-nav-link block px-4 py-2 bg-primary-100 text-primary-700 rounded">Events</a>
+                <a href="/admin/blog.html" class="admin-nav-link block px-4 py-2 hover:bg-gray-100 rounded">Blog</a>
+                <a href="/admin/team.html" class="admin-nav-link block px-4 py-2 hover:bg-gray-100 rounded">Team</a>
+                <a href="/admin/testimonials.html" class="admin-nav-link block px-4 py-2 hover:bg-gray-100 rounded">Testimonials</a>
+                <a href="/admin/donations.html" class="admin-nav-link block px-4 py-2 hover:bg-gray-100 rounded">Donations</a>
+                <a href="/admin/prayers.html" class="admin-nav-link block px-4 py-2 hover:bg-gray-100 rounded">Prayer Requests</a>
+                <a href="/admin/settings.html" class="admin-nav-link block px-4 py-2 hover:bg-gray-100 rounded">Settings</a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 p-8">
+            <div class="flex justify-between items-center mb-8">
+                <h2 class="text-3xl font-bold">Events Management</h2>
+                <button id="add-event-btn" class="btn btn-primary">+ Add New Event</button>
+            </div>
+
+            <!-- Events Table -->
+            <div class="bg-white rounded-lg shadow overflow-hidden">
+                <div id="events-table-container">
+                    <div class="p-8 text-center text-gray-500">
+                        <p>Loading events...</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Event Modal -->
+    <div id="event-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+        <div class="bg-white rounded-lg shadow-xl max-w-3xl w-full mx-4 max-h-[90vh] overflow-y-auto">
+            <div class="p-6 border-b">
+                <h3 class="text-2xl font-bold" id="modal-title">Add New Event</h3>
+            </div>
+            <form id="event-form" class="p-6 space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Title *</label>
+                    <input type="text" id="event-title" required class="input w-full" placeholder="Event title">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Description *</label>
+                    <textarea id="event-description" rows="4" required class="input w-full" placeholder="Event description"></textarea>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Date *</label>
+                        <input type="date" id="event-date" required class="input w-full">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Time</label>
+                        <input type="time" id="event-time" class="input w-full">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Location</label>
+                    <input type="text" id="event-location" class="input w-full" placeholder="Event location">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Event Image</label>
+                    <div id="event-image-upload-container"></div>
+                    <input type="hidden" id="event-image" class="input w-full">
+                    <p class="text-sm text-gray-500 mt-1">Upload image or paste URL below</p>
+                    <input type="url" id="event-image-manual" class="input w-full mt-2" placeholder="Or enter image URL manually">
+                </div>
+                <div class="flex space-x-4 pt-4">
+                    <button type="submit" class="btn btn-primary flex-1">Save Event</button>
+                    <button type="button" id="close-event-modal-btn" class="btn btn-secondary flex-1">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="/js/api.js"></script>
+    <script src="/admin/js/admin-layout.js"></script>
+    <script src="/admin/js/file-upload.js"></script>
+    <script>
+        let events = [];
+        let editingEventId = null;
+        let imageUploader;
+
+        // Load events
+        async function loadEvents() {
+            try {
+                const container = document.getElementById('events-table-container');
+                container.innerHTML = '<div class="p-8 text-center text-gray-500"><p>Loading events...</p></div>';
+                
+                const response = await window.api.getEvents();
+                events = Array.isArray(response) ? response : (response.data || []);
+                
+                if (events.length === 0) {
+                    container.innerHTML = `
+                        <div class="p-8 text-center">
+                            <p class="text-gray-500 mb-4">No events found.</p>
+                            <button id="add-first-event-btn-empty" class="btn btn-primary">Add Your First Event</button>
+                        </div>
+                    `;
+                    // Attach listener to the empty state button
+                    setTimeout(() => {
+                        const addFirstBtn = document.getElementById('add-first-event-btn-empty');
+                        if (addFirstBtn) {
+                            addFirstBtn.addEventListener('click', () => openEventModal());
+                        }
+                    }, 100);
+                    return;
+                }
+
+                renderEventsTable();
+            } catch (error) {
+                console.error('Error loading events:', error);
+                document.getElementById('events-table-container').innerHTML = `
+                    <div class="p-8 text-center text-red-500">
+                        <p>Error loading events: ${error.message}</p>
+                    </div>
+                `;
+            }
+        }
+
+        // Render events table
+        function renderEventsTable() {
+            const container = document.getElementById('events-table-container');
+            const tableHTML = `
+                <table class="min-w-full divide-y divide-gray-200">
+                    <thead class="bg-gray-50">
+                        <tr>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Title</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Location</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white divide-y divide-gray-200">
+                        ${events.map(event => {
+                            const eventDate = event.date ? new Date(event.date) : null;
+                            const isUpcoming = eventDate && eventDate >= new Date();
+                            const statusClass = isUpcoming ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-800';
+                            const statusText = isUpcoming ? 'Upcoming' : 'Past';
+                            
+                            return `
+                                <tr>
+                                    <td class="px-6 py-4">
+                                        <div class="text-sm font-medium text-gray-900">${event.title || 'Untitled'}</div>
+                                        <div class="text-sm text-gray-500 truncate max-w-xs">${event.description || ''}</div>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="text-sm text-gray-500">${eventDate ? eventDate.toLocaleDateString() : '-'}</div>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="text-sm text-gray-500">${event.location || '-'}</div>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span class="px-2 py-1 text-xs font-semibold rounded-full ${statusClass}">${statusText}</span>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                        <button class="edit-event-btn text-primary-600 hover:text-primary-900 mr-4" data-event-id="${event._id}">Edit</button>
+                                        <button class="delete-event-btn text-red-600 hover:text-red-900" data-event-id="${event._id}">Delete</button>
+                                    </td>
+                                </tr>
+                            `;
+                        }).join('')}
+                    </tbody>
+                </table>
+            `;
+            container.innerHTML = tableHTML;
+            
+            // Attach event listeners to edit/delete buttons
+            attachEventTableListeners();
+        }
+        
+        // Attach event listeners to event table buttons
+        function attachEventTableListeners() {
+            // Edit buttons
+            document.querySelectorAll('.edit-event-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const eventId = btn.getAttribute('data-event-id');
+                    if (eventId) {
+                        editEvent(eventId);
+                    }
+                });
+            });
+            
+            // Delete buttons
+            document.querySelectorAll('.delete-event-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const eventId = btn.getAttribute('data-event-id');
+                    if (eventId) {
+                        deleteEvent(eventId);
+                    }
+                });
+            });
+        }
+
+        // Initialize image uploader
+        function initImageUploader() {
+            if (!imageUploader && document.getElementById('event-image-upload-container')) {
+                imageUploader = createFileUploadComponent({
+                    containerId: 'event-image-upload-container',
+                    inputId: 'event-image-file-input',
+                    accept: 'image/*',
+                    folder: null,
+                    showPreview: true,
+                    onUploadComplete: (result) => {
+                        document.getElementById('event-image').value = result.url;
+                        document.getElementById('event-image-manual').value = result.url;
+                    },
+                    onUploadError: (error) => {
+                        alert('Image upload failed: ' + error);
+                    }
+                });
+            }
+        }
+
+        // Open event modal
+        function openEventModal(eventId = null) {
+            editingEventId = eventId;
+            const modal = document.getElementById('event-modal');
+            const form = document.getElementById('event-form');
+            const title = document.getElementById('modal-title');
+            
+            // Initialize uploader when modal opens
+            initImageUploader();
+            
+            if (eventId) {
+                title.textContent = 'Edit Event';
+                const event = events.find(e => e._id === eventId);
+                if (event) {
+                    document.getElementById('event-title').value = event.title || '';
+                    document.getElementById('event-description').value = event.description || '';
+                    const eventDate = event.date ? new Date(event.date) : null;
+                    document.getElementById('event-date').value = eventDate ? eventDate.toISOString().split('T')[0] : '';
+                    document.getElementById('event-time').value = event.time || '';
+                    document.getElementById('event-location').value = event.location || '';
+                    document.getElementById('event-image').value = event.image || '';
+                    document.getElementById('event-image-manual').value = event.image || '';
+                    if (imageUploader) imageUploader.reset();
+                }
+            } else {
+                title.textContent = 'Add New Event';
+                form.reset();
+                if (imageUploader) imageUploader.reset();
+            }
+            
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        // Close event modal
+        function closeEventModal() {
+            const modal = document.getElementById('event-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            editingEventId = null;
+            document.getElementById('event-form').reset();
+        }
+
+        // Handle form submission
+        document.getElementById('event-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const dateInput = document.getElementById('event-date').value;
+            const timeInput = document.getElementById('event-time').value;
+            let eventDate = new Date(dateInput);
+            
+            if (timeInput) {
+                const [hours, minutes] = timeInput.split(':');
+                eventDate.setHours(parseInt(hours), parseInt(minutes));
+            }
+            
+            const imageUrl = document.getElementById('event-image').value || document.getElementById('event-image-manual').value || undefined;
+            
+            const eventData = {
+                title: document.getElementById('event-title').value,
+                description: document.getElementById('event-description').value,
+                date: eventDate,
+                time: timeInput || undefined,
+                location: document.getElementById('event-location').value || undefined,
+                image: imageUrl,
+            };
+
+            try {
+                if (editingEventId) {
+                    await window.api.updateEvent(editingEventId, eventData);
+                } else {
+                    await window.api.createEvent(eventData);
+                }
+                
+                closeEventModal();
+                loadEvents();
+            } catch (error) {
+                alert('Error saving event: ' + error.message);
+            }
+        });
+
+        // Edit event
+        function editEvent(id) {
+            openEventModal(id);
+        }
+
+        // Delete event
+        async function deleteEvent(id) {
+            if (!confirm('Are you sure you want to delete this event?')) {
+                return;
+            }
+
+            try {
+                await window.api.deleteEvent(id);
+                loadEvents();
+            } catch (error) {
+                alert('Error deleting event: ' + error.message);
+            }
+        }
+
+        // Close modal on outside click
+        document.getElementById('event-modal').addEventListener('click', (e) => {
+            if (e.target.id === 'event-modal') {
+                closeEventModal();
+            }
+        });
+
+        // Attach event listeners to buttons
+        function attachEventPageListeners() {
+            // Logout button
+            const logoutBtn = document.getElementById('logout-btn');
+            if (logoutBtn) {
+                logoutBtn.addEventListener('click', logout);
+            }
+            
+            // Add event buttons
+            const addEventBtn = document.getElementById('add-event-btn');
+            if (addEventBtn) {
+                addEventBtn.addEventListener('click', () => openEventModal());
+            }
+            
+            // Close modal button
+            const closeModalBtn = document.getElementById('close-event-modal-btn');
+            if (closeModalBtn) {
+                closeModalBtn.addEventListener('click', closeEventModal);
+            }
+        }
+
+        // Load events on page load
+        window.addEventListener('DOMContentLoaded', () => {
+            attachEventPageListeners();
+            loadEvents();
+            
+            // Handle manual URL input
+            const imageManualInput = document.getElementById('event-image-manual');
+            if (imageManualInput) {
+                imageManualInput.addEventListener('input', (e) => {
+                    document.getElementById('event-image').value = e.target.value;
+                });
+            }
+        });
+    </script>
+</body>
+</html>
+

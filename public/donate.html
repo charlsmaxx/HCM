@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Donate - Heavenly Concordance Ministry International</title>
+  <link rel="icon" type="image/png" href="/images/logo.png">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body class="bg-gray-50">
+  <!-- Navigation -->
+  <nav class="bg-white shadow-lg sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-16 nav-bar">
+        <div class="flex items-center">
+          <a href="/"><img src="/images/logo.png" alt="Heavenly Concordance Ministry International logo" class="site-logo"></a>
+        </div>
+        <div class="nav-links-center space-x-8">
+          <a href="/" class="text-gray-700 hover:text-primary-600 font-medium">Home</a>
+          <a href="/about.html" class="text-gray-700 hover:text-primary-600 font-medium">About</a>
+          <a href="/sermons.html" class="text-gray-700 hover:text-primary-600 font-medium">Sermons</a>
+          <a href="/events.html" class="text-gray-700 hover:text-primary-600 font-medium">Events</a>
+          <a href="/blog.html" class="text-gray-700 hover:text-primary-600 font-medium">Blog</a>
+          <a href="/contact.html" class="text-gray-700 hover:text-primary-600 font-medium">Contact</a>
+        </div>
+        <div class="flex space-x-4 items-center">
+          <div class="nav-center hidden md:block">
+            <a href="/donate.html" class="btn btn-primary">Donate</a>
+          </div>
+          <a href="/donate.html" class="btn btn-primary md:hidden">Donate</a>
+          <button id="mobile-menu-btn" class="md:hidden inline-flex items-center justify-center p-2 rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100 focus:outline-none" aria-label="Open menu">
+            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="md:hidden hidden bg-white shadow-lg border-t border-gray-100">
+    <div class="px-4 py-3 space-y-2">
+      <a href="/" class="block text-gray-700 hover:text-primary-600">Home</a>
+      <a href="/about.html" class="block text-gray-700 hover:text-primary-600">About</a>
+      <a href="/sermons.html" class="block text-gray-700 hover:text-primary-600">Sermons</a>
+      <a href="/events.html" class="block text-gray-700 hover:text-primary-600">Events</a>
+      <a href="/blog.html" class="block text-gray-700 hover:text-primary-600">Blog</a>
+      <a href="/contact.html" class="block text-gray-700 hover:text-primary-600">Contact</a>
+    </div>
+  </div>
+
+  <!-- Donate Hero -->
+  <section class="bg-gradient-to-r from-primary-600 to-secondary-600 py-16 relative overflow-hidden">
+    <div class="absolute inset-0 opacity-10 bg-[url('https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1400&q=80')] bg-cover bg-center"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+      <div class="max-w-3xl">
+        <p class="uppercase tracking-widest text-sm mb-3 text-gray-700">Give • Support • Transform</p>
+        <h1 class="text-4xl md:text-5xl font-bold leading-tight mb-4 text-gray-900">Partner with the Mission</h1>
+        <p class="text-lg text-gray-700">Your generosity helps us spread the Gospel, support outreaches, care for the needy, and build the Church. Thank you for giving.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Donate Form Section -->
+  <section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-2 gap-10 items-start">
+        <div>
+          <h2 class="text-3xl font-bold text-gray-900 mb-4">Why Give?</h2>
+          <p class="text-gray-600 leading-relaxed mb-6">Your support enables us to continue our mission of spreading God's love and transforming lives in our community and beyond.</p>
+          <ul class="space-y-3 text-gray-700">
+            <li class="flex items-start gap-3">
+              <svg class="w-6 h-6 text-primary-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+              <span>Secure online payment processing</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <svg class="w-6 h-6 text-primary-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+              <span>One-time or recurring donations</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <svg class="w-6 h-6 text-primary-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+              <span>Instant confirmation email receipt</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <svg class="w-6 h-6 text-primary-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+              <span>Multiple currency support</span>
+            </li>
+          </ul>
+        </div>
+      <div>
+        <div class="bg-white rounded-2xl shadow-xl border border-gray-100 p-6 md:p-8">
+          <h3 class="text-2xl font-bold text-gray-900 mb-6">Make a Donation</h3>
+          <form id="donation-form" class="space-y-6">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2">Select currency</label>
+              <select name="currency" id="currency" class="contact-input w-full mb-3">
+                <option value="NGN">Nigerian Naira (₦)</option>
+                <option value="USD">US Dollar ($)</option>
+                <option value="GBP">British Pound (£)</option>
+                <option value="EUR">Euro (€)</option>
+                <option value="GHS">Ghanaian Cedi (₵)</option>
+                <option value="KES">Kenyan Shilling (KSh)</option>
+                <option value="ZAR">South African Rand (R)</option>
+              </select>
+              <input type="number" min="1" step="1" id="custom-amount" name="amount" placeholder="Enter amount" class="input mt-3 w-full" required>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-4">
+              <input type="text" name="fullName" placeholder="Full name" class="input" required>
+              <input type="email" name="email" placeholder="Email address" class="input" required>
+            </div>
+
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2">Purpose</label>
+              <select name="purpose" class="input w-full">
+                <option value="General Offering">General Offering</option>
+                <option value="Tithe">Tithe</option>
+                <option value="Missions">Missions</option>
+                <option value="Building Project">Building Project</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2">Message (optional)</label>
+              <textarea name="message" rows="3" class="input w-full" placeholder="Add a note"></textarea>
+            </div>
+
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+              <label class="flex items-center gap-2 text-sm text-gray-600 cursor-pointer">
+                <input type="checkbox" class="w-4 h-4 text-primary-600 border-gray-300 rounded focus:ring-primary-500">
+                <span>Make this a monthly gift</span>
+              </label>
+              <button type="submit" class="btn btn-primary w-full md:w-auto">Give Now</button>
+            </div>
+          </form>
+        </div>
+        <p class="text-xs text-gray-500 mt-4 text-center md:text-left">Payments are processed securely via Flutterwave. If you encounter any issues, please <a href="/contact.html" class="text-primary-600 hover:underline">contact us</a>.</p>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // Mobile menu toggle
+    const mobileBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    if (mobileBtn && mobileMenu) {
+      mobileBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+    }
+
+    // Form submission - initialize payment via backend
+    const form = document.getElementById('donation-form');
+
+    // Check for payment status and verify payment
+    const urlParams = new URLSearchParams(window.location.search);
+    const txRef = urlParams.get('tx_ref');
+    const status = urlParams.get('status');
+
+    if (status === 'success' && txRef) {
+      // Verify payment status
+      verifyPayment(txRef);
+    } else if (status === 'success') {
+      // Legacy support - show generic success message
+      showSuccessMessage('Thank you! Your donation was successful.');
+      window.history.replaceState({}, document.title, '/donate.html');
+    }
+
+    // Function to verify payment status
+    async function verifyPayment(txRef) {
+      try {
+        // Show loading message
+        showLoadingMessage('Verifying your payment...');
+
+        // Poll for payment verification (Flutterwave may take a few seconds)
+        let attempts = 0;
+        const maxAttempts = 10;
+        const pollInterval = 2000; // 2 seconds
+
+        const verify = async () => {
+          attempts++;
+          try {
+            const response = await fetch(`/api/donations/verify/${txRef}`);
+            const result = await response.json();
+
+            if (result.status === 'success' && result.donation?.status === 'completed') {
+              // Payment verified successfully
+              showSuccessMessage(
+                `Thank you! Your donation of ${result.donation.currency} ${result.donation.amount} was successful. ` +
+                `You will receive a confirmation email shortly.`
+              );
+              window.history.replaceState({}, document.title, '/donate.html');
+              form.reset();
+              return true;
+            } else if (result.donation?.status === 'failed') {
+              showErrorMessage('Payment verification failed. Please contact us if you have been charged.');
+              window.history.replaceState({}, document.title, '/donate.html');
+              return true;
+            } else if (attempts < maxAttempts) {
+              // Still pending, poll again
+              setTimeout(verify, pollInterval);
+              return false;
+            } else {
+              // Timeout - payment might still be processing
+              showInfoMessage(
+                'Your payment is being processed. You will receive a confirmation email once it\'s complete. ' +
+                'If you have any questions, please contact us.'
+              );
+              window.history.replaceState({}, document.title, '/donate.html');
+              return true;
+            }
+          } catch (error) {
+            console.error('Verification error:', error);
+            if (attempts < maxAttempts) {
+              setTimeout(verify, pollInterval);
+              return false;
+            } else {
+              showInfoMessage(
+                'We\'re verifying your payment. You will receive a confirmation email once it\'s complete.'
+              );
+              window.history.replaceState({}, document.title, '/donate.html');
+              return true;
+            }
+          }
+        };
+
+        await verify();
+      } catch (error) {
+        console.error('Payment verification error:', error);
+        showInfoMessage(
+          'Thank you for your donation! We\'re processing your payment and will send you a confirmation email shortly.'
+        );
+        window.history.replaceState({}, document.title, '/donate.html');
+      }
+    }
+
+    // Helper functions for user feedback
+    function showSuccessMessage(message) {
+      hideMessages();
+      const messageDiv = document.createElement('div');
+      messageDiv.id = 'payment-message';
+      messageDiv.className = 'fixed top-20 left-1/2 transform -translate-x-1/2 bg-green-500 text-white px-6 py-4 rounded-lg shadow-lg z-50 max-w-md';
+      messageDiv.innerHTML = `
+        <div class="flex items-center gap-3">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+          </svg>
+          <p>${message}</p>
+        </div>
+      `;
+      document.body.appendChild(messageDiv);
+      setTimeout(() => {
+        messageDiv.style.opacity = '0';
+        messageDiv.style.transition = 'opacity 0.5s';
+        setTimeout(() => messageDiv.remove(), 500);
+      }, 5000);
+    }
+
+    function showErrorMessage(message) {
+      hideMessages();
+      const messageDiv = document.createElement('div');
+      messageDiv.id = 'payment-message';
+      messageDiv.className = 'fixed top-20 left-1/2 transform -translate-x-1/2 bg-red-500 text-white px-6 py-4 rounded-lg shadow-lg z-50 max-w-md';
+      messageDiv.innerHTML = `
+        <div class="flex items-center gap-3">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+          <p>${message}</p>
+        </div>
+      `;
+      document.body.appendChild(messageDiv);
+      setTimeout(() => {
+        messageDiv.style.opacity = '0';
+        messageDiv.style.transition = 'opacity 0.5s';
+        setTimeout(() => messageDiv.remove(), 5000);
+      }, 5000);
+    }
+
+    function showInfoMessage(message) {
+      hideMessages();
+      const messageDiv = document.createElement('div');
+      messageDiv.id = 'payment-message';
+      messageDiv.className = 'fixed top-20 left-1/2 transform -translate-x-1/2 bg-blue-500 text-white px-6 py-4 rounded-lg shadow-lg z-50 max-w-md';
+      messageDiv.innerHTML = `
+        <div class="flex items-center gap-3">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+          </svg>
+          <p>${message}</p>
+        </div>
+      `;
+      document.body.appendChild(messageDiv);
+      setTimeout(() => {
+        messageDiv.style.opacity = '0';
+        messageDiv.style.transition = 'opacity 0.5s';
+        setTimeout(() => messageDiv.remove(), 500);
+      }, 7000);
+    }
+
+    function showLoadingMessage(message) {
+      hideMessages();
+      const messageDiv = document.createElement('div');
+      messageDiv.id = 'payment-message';
+      messageDiv.className = 'fixed top-20 left-1/2 transform -translate-x-1/2 bg-blue-500 text-white px-6 py-4 rounded-lg shadow-lg z-50 max-w-md';
+      messageDiv.innerHTML = `
+        <div class="flex items-center gap-3">
+          <svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+          </svg>
+          <p>${message}</p>
+        </div>
+      `;
+      document.body.appendChild(messageDiv);
+    }
+
+    function hideMessages() {
+      const existing = document.getElementById('payment-message');
+      if (existing) existing.remove();
+    }
+
+    // Form submission handler
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const data = Object.fromEntries(new FormData(form).entries());
+      const amount = Number(data.amount || 0);
+      if (!amount || amount <= 0) { 
+        alert('Please enter a valid amount'); 
+        return; 
+      }
+
+      // Check if monthly gift is selected
+      const isRecurring = form.querySelector('input[type="checkbox"]:checked') !== null;
+
+      try {
+        const submitBtn = form.querySelector('button[type="submit"]');
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Processing...';
+
+        const response = await fetch('/api/donations/initialize', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            amount: amount,
+            email: data.email,
+            fullName: data.fullName,
+            purpose: data.purpose,
+            message: data.message,
+            isRecurring: isRecurring
+          })
+        });
+
+        const result = await response.json();
+
+        if (!response.ok) {
+          throw new Error(result.error || 'Failed to initialize payment');
+        }
+
+        // Redirect to Flutterwave payment page
+        window.location.href = result.payment_link;
+
+      } catch (error) {
+        alert(error.message || 'Failed to process donation. Please try again.');
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Give Now';
+      }
+    });
+  </script>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-white py-12 mt-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div>
+          <img src="/images/logo.png" alt="Heavenly Concordance Ministry International" class="h-20 w-20 mb-4 object-contain">
+          <h3 class="text-xl font-bold mb-2">HCM International</h3>
+          <p class="text-gray-300">Heavenly Concordance Ministry International</p>
+          <div class="mt-4 social-icons">
+            <a href="#" class="social-icon social-icon--light" aria-label="Facebook" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12.06C22 6.48 17.52 2 11.94 2S2 6.48 2 12.06c0 5.02 3.66 9.19 8.44 9.94v-7.03H8.34v-2.9h2.1V9.41c0-2.07 1.23-3.22 3.12-3.22.9 0 1.84.16 1.84.16v2.02h-1.04c-1.03 0-1.35.64-1.35 1.3v1.56h2.3l-.37 2.9h-1.93V22c4.78-.75 8.44-4.92 8.44-9.94Z"/></svg>
+            </a>
+            <a href="#" class="social-icon social-icon--light" aria-label="Twitter" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.7 7.1c.01.18.01.36.01.53 0 5.38-4.09 11.58-11.58 11.58-2.3 0-4.44-.67-6.24-1.82.32.04.64.05.97.05 1.91 0 3.67-.65 5.07-1.75-1.79-.03-3.3-1.22-3.82-2.84.25.05.5.07.76.07.37 0 .73-.05 1.07-.14-1.87-.38-3.28-2.03-3.28-4.02v-.05c.55.3 1.18.49 1.84.51-1.1-.73-1.82-1.98-1.82-3.39 0-.75.2-1.46.55-2.07 2 2.46 5.03 4.08 8.43 4.25-.07-.3-.1-.61-.1-.93 0-2.25 1.82-4.07 4.07-4.07 1.17 0 2.22.49 2.96 1.27.93-.18 1.8-.52 2.59-.98-.31.96-.96 1.77-1.8 2.28.83-.1 1.63-.32 2.37-.65-.55.83-1.25 1.56-2.05 2.14Z"/></svg>
+            </a>
+            <a href="#" class="social-icon social-icon--light" aria-label="Instagram" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7Zm5 3.5A5.5 5.5 0 1 1 6.5 13 5.51 5.51 0 0 1 12 7.5Zm0 2A3.5 3.5 0 1 0 15.5 13 3.5 3.5 0 0 0 12 9.5Zm5.75-2.25a1 1 0 1 1-1.5 1.32 1 1 0 0 1 1.5-1.32Z"/></svg>
+            </a>
+            <a href="#" class="social-icon social-icon--light" aria-label="YouTube" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .6 5.8 3 3 0 0 0 2.1 2.1C4.6 20.5 12 20.5 12 20.5s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.5 15.5V8.5l6 3.5-6 3.5Z"/></svg>
+            </a>
+          </div>
+        </div>
+        <div>
+          <h4 class="font-semibold mb-4">Quick Links</h4>
+          <ul class="space-y-2">
+            <li><a href="/about.html" class="hover:text-primary-400">About Us</a></li>
+            <li><a href="/sermons.html" class="hover:text-primary-400">Sermons</a></li>
+            <li><a href="/events.html" class="hover:text-primary-400">Events</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold mb-4">More</h4>
+          <ul class="space-y-2">
+            <li><a href="/blog.html" class="hover:text-primary-400">Blog</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold mb-4">Contact</h4>
+          <ul class="space-y-2">
+            <li><a href="/contact.html" class="hover:text-primary-400">Get in Touch</a></li>
+            <li><a href="/donate.html" class="hover:text-primary-400">Donate</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="border-t border-gray-800 mt-8 pt-8 text-center">
+        <p>&copy; 2024 Heavenly Concordance Ministry International. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
+
+

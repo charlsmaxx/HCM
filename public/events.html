@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events - HCM International</title>
+    <link rel="icon" type="image/png" href="/images/logo.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16 nav-bar">
+                <div class="flex items-center">
+                    <a href="/"><img src="/images/logo.png" alt="Heavenly Concordance Ministry International logo" class="site-logo"></a>
+                </div>
+                <div class="nav-links-center space-x-8">
+                    <a href="/" class="text-gray-700 hover:text-primary-600 font-medium">Home</a>
+                    <a href="/about.html" class="text-gray-700 hover:text-primary-600 font-medium">About</a>
+                    <a href="/sermons.html" class="text-gray-700 hover:text-primary-600 font-medium">Sermons</a>
+                    <a href="/events.html" class="text-primary-600 font-semibold">Events</a>
+                    <a href="/blog.html" class="text-gray-700 hover:text-primary-600 font-medium">Blog</a>
+                    <a href="/contact.html" class="text-gray-700 hover:text-primary-600 font-medium">Contact</a>
+                </div>
+                <div class="flex space-x-4 items-center">
+                    <div class="nav-center hidden md:block">
+                        <a href="/donate.html" class="btn btn-primary">Donate</a>
+                    </div>
+                    <a href="/donate.html" class="btn btn-primary md:hidden">Donate</a>
+                    <button id="mobile-menu-btn" class="md:hidden inline-flex items-center justify-center p-2 rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100 focus:outline-none" aria-label="Open menu">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="md:hidden hidden bg-white shadow-lg border-t border-gray-100">
+        <div class="px-4 py-3 space-y-2">
+            <a href="/" class="block text-gray-700 hover:text-primary-600">Home</a>
+            <a href="/about.html" class="block text-gray-700 hover:text-primary-600">About</a>
+            <a href="/sermons.html" class="block text-gray-700 hover:text-primary-600">Sermons</a>
+            <a href="/events.html" class="block text-primary-600 font-semibold">Events</a>
+            <a href="/blog.html" class="block text-gray-700 hover:text-primary-600">Blog</a>
+            <a href="/contact.html" class="block text-gray-700 hover:text-primary-600">Contact</a>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-r from-primary-600 to-secondary-600 text-white py-16 relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10 bg-[url('https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1400&q=80')] bg-cover bg-center"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+            <div class="max-w-3xl">
+                <p class="uppercase tracking-widest text-sm mb-3 text-white/80">Gather • Grow • Go</p>
+                <h1 class="text-4xl md:text-5xl font-bold leading-tight mb-4">Upcoming Gatherings & Community Events</h1>
+                <p class="text-lg text-white/90">Stay connected with everything happening at Heavenly Concordance Ministry. Join us for worship services, conferences, outreach programs, and special encounters.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Event -->
+    <section class="py-12 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div id="featured-event" class="hidden">
+                <!-- Featured event will render here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Filters -->
+    <section class="bg-gray-100 py-6 border-t border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+            <h2 class="text-2xl font-semibold text-gray-800">Explore Our Events</h2>
+            <div class="flex flex-wrap gap-3">
+                <button class="filter-chip active" data-filter="upcoming">Upcoming Events</button>
+                <button class="filter-chip" data-filter="past">Past Events</button>
+                <button class="filter-chip" data-filter="all">All Events</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Events Grid -->
+    <section class="py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div id="events-status" class="text-center text-gray-500 py-12">Loading events...</div>
+            <div id="events-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+        </div>
+    </section>
+
+    <!-- Stay Connected -->
+    <section class="bg-primary-50 py-16">
+        <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+            <h3 class="text-3xl font-bold text-primary-700 mb-4">Never Miss an Event</h3>
+            <p class="text-gray-600 mb-8">Follow us on our social platforms or subscribe to receive updates about upcoming services, conferences, and outreach initiatives.</p>
+            <a href="/contact.html" class="btn btn-primary">Stay Connected</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <img src="/images/logo.png" alt="Heavenly Concordance Ministry International" class="h-20 w-20 mb-4 object-contain">
+                    <h3 class="text-xl font-bold mb-2">HCM International</h3>
+                    <p class="text-gray-300">Heavenly Concordance Ministry International</p>
+                    <div class="mt-4 social-icons">
+                        <a href="#" class="social-icon social-icon--light" aria-label="Facebook" target="_blank" rel="noopener">
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12.06C22 6.48 17.52 2 11.94 2S2 6.48 2 12.06c0 5.02 3.66 9.19 8.44 9.94v-7.03H8.34v-2.9h2.1V9.41c0-2.07 1.23-3.22 3.12-3.22.9 0 1.84.16 1.84.16v2.02h-1.04c-1.03 0-1.35.64-1.35 1.3v1.56h2.3l-.37 2.9h-1.93V22c4.78-.75 8.44-4.92 8.44-9.94Z"/></svg>
+                        </a>
+                        <a href="#" class="social-icon social-icon--light" aria-label="Twitter" target="_blank" rel="noopener">
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.7 7.1c.01.18.01.36.01.53 0 5.38-4.09 11.58-11.58 11.58-2.3 0-4.44-.67-6.24-1.82.32.04.64.05.97.05 1.91 0 3.67-.65 5.07-1.75-1.79-.03-3.3-1.22-3.82-2.84.25.05.5.07.76.07.37 0 .73-.05 1.07-.14-1.87-.38-3.28-2.03-3.28-4.02v-.05c.55.3 1.18.49 1.84.51-1.1-.73-1.82-1.98-1.82-3.39 0-.75.2-1.46.55-2.07 2 2.46 5.03 4.08 8.43 4.25-.07-.3-.1-.61-.1-.93 0-2.25 1.82-4.07 4.07-4.07 1.17 0 2.22.49 2.96 1.27.93-.18 1.8-.52 2.59-.98-.31.96-.96 1.77-1.8 2.28.83-.1 1.63-.32 2.37-.65-.55.83-1.25 1.56-2.05 2.14Z"/></svg>
+                        </a>
+                        <a href="#" class="social-icon social-icon--light" aria-label="Instagram" target="_blank" rel="noopener">
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7Zm5 3.5A5.5 5.5 0 1 1 6.5 13 5.51 5.51 0 0 1 12 7.5Zm0 2A3.5 3.5 0 1 0 15.5 13 3.5 3.5 0 0 0 12 9.5Zm5.75-2.25a1 1 0 1 1-1.5 1.32 1 1 0 0 1 1.5-1.32Z"/></svg>
+                        </a>
+                        <a href="#" class="social-icon social-icon--light" aria-label="YouTube" target="_blank" rel="noopener">
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .6 5.8 3 3 0 0 0 2.1 2.1C4.6 20.5 12 20.5 12 20.5s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.5 15.5V8.5l6 3.5-6 3.5Z"/></svg>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="/about.html" class="hover:text-primary-400">About Us</a></li>
+                        <li><a href="/sermons.html" class="hover:text-primary-400">Sermons</a></li>
+                        <li><a href="/events.html" class="hover:text-primary-400">Events</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">More</h4>
+                    <ul class="space-y-2">
+                        <li><a href="/blog.html" class="hover:text-primary-400">Blog</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Contact</h4>
+                    <ul class="space-y-2">
+                        <li><a href="/contact.html" class="hover:text-primary-400">Get in Touch</a></li>
+                        <li><a href="/donate.html" class="hover:text-primary-400">Donate</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center">
+                <p>&copy; 2024 Heavenly Concordance Ministry International. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/api.js"></script>
+    <script>
+        const state = {
+            events: [],
+            filter: 'upcoming',
+        };
+
+        const filterLabels = {
+            upcoming: 'Upcoming Events',
+            past: 'Past Events',
+            all: 'All Events',
+        };
+
+        async function fetchAllEvents() {
+            const accumulated = [];
+            let page = 1;
+            let hasNextPage = true;
+            const maxPages = 10; // Safety limit to prevent infinite loops
+
+            try {
+                while (hasNextPage && page <= maxPages) {
+                    const response = await fetch(`/api/events?page=${page}&limit=20`);
+                    
+                    if (!response.ok) {
+                        const errorData = await response.json().catch(() => ({ error: 'Unable to load events' }));
+                        throw new Error(errorData.error || `HTTP ${response.status}: Unable to load events`);
+                    }
+
+                    const payload = await response.json();
+                    
+                    // Handle both array and paginated response formats
+                    const events = Array.isArray(payload) ? payload : (payload.data || payload.events || []);
+
+                    if (events.length === 0) {
+                        hasNextPage = false;
+                        break;
+                    }
+
+                    const normalized = events.map(event => {
+                        let eventDate = null;
+                        if (event.date) {
+                            eventDate = new Date(event.date);
+                            // Check if date is valid
+                            if (isNaN(eventDate.getTime())) {
+                                console.warn('Invalid date for event:', event._id, event.date);
+                                eventDate = null;
+                            }
+                        }
+                        return {
+                            ...event,
+                            eventDate: eventDate,
+                        };
+                    });
+
+                    accumulated.push(...normalized);
+
+                    // Check pagination
+                    const pagination = payload.pagination;
+                    if (pagination && pagination.hasNextPage && page < pagination.totalPages) {
+                        page += 1;
+                    } else {
+                        hasNextPage = false;
+                    }
+                }
+            } catch (error) {
+                console.error('Error fetching events:', error);
+                // Re-throw to be handled by initializeEventsPage
+                throw error;
+            }
+
+            return accumulated;
+        }
+
+        function splitEvents(events) {
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+
+            const upcoming = [];
+            const past = [];
+
+            events.forEach(event => {
+                if (!event.eventDate || isNaN(event.eventDate.getTime())) {
+                    past.push(event);
+                    return;
+                }
+
+                if (event.eventDate >= today) {
+                    upcoming.push(event);
+                } else {
+                    past.push(event);
+                }
+            });
+
+            upcoming.sort((a, b) => a.eventDate - b.eventDate);
+            past.sort((a, b) => b.eventDate - a.eventDate);
+
+            return { upcoming, past, all: [...upcoming, ...past] };
+        }
+
+        function formatDate(event) {
+            if (!event.eventDate || isNaN(event.eventDate.getTime())) {
+                return 'Date to be announced';
+            }
+
+            const options = { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' };
+            return event.eventDate.toLocaleDateString(undefined, options);
+        }
+
+        function formatTime(event) {
+            if (!event.time) {
+                return '';
+            }
+            try {
+                const [hours, minutes] = event.time.split(':');
+                const date = new Date();
+                date.setHours(parseInt(hours, 10), parseInt(minutes, 10));
+                return date.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
+            } catch (error) {
+                return event.time;
+            }
+        }
+
+        function renderFeaturedEvent(eventsByFilter) {
+            const container = document.getElementById('featured-event');
+            const highlight = eventsByFilter.upcoming.length > 0
+                ? eventsByFilter.upcoming[0]
+                : eventsByFilter.past.length > 0
+                    ? eventsByFilter.past[0]
+                    : null;
+
+            if (!highlight) {
+                container.classList.add('hidden');
+                container.innerHTML = '';
+                return;
+            }
+
+            const timeDisplay = formatTime(highlight);
+            const image = highlight.image || 'https://images.unsplash.com/photo-1529158062015-cad636e69505?auto=format&fit=crop&w=1200&q=80';
+
+            const description = highlight.description || 'Join us for a special time together in God\'s presence.';
+            const truncatedDescription = description.length > 200 ? description.substring(0, 200) + '...' : description;
+            const isUpcoming = highlight.eventDate && highlight.eventDate >= new Date();
+
+            container.innerHTML = `
+                <div class="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100 hover:shadow-2xl transition-shadow duration-300">
+                    <div class="grid grid-cols-1 md:grid-cols-2">
+                        <div class="h-64 md:h-full relative">
+                            <img src="${image}" alt="${highlight.title || 'Event Image'}" class="w-full h-full object-cover">
+                            ${isUpcoming ? `
+                                <div class="absolute top-4 right-4">
+                                    <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary-600 text-white text-sm font-semibold shadow-lg backdrop-blur-sm">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                        </svg>
+                                        Upcoming
+                                    </span>
+                                </div>
+                            ` : ''}
+                        </div>
+                        <div class="p-8 flex flex-col justify-between">
+                            <div>
+                                <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary-100 text-primary-700 text-sm font-medium">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/>
+                                    </svg>
+                                    ${state.filter === 'past' ? 'Recent Highlight' : 'Featured Event'}
+                                </span>
+                                <h2 class="text-3xl font-bold text-gray-900 mt-4 leading-tight">${highlight.title || 'Upcoming Event'}</h2>
+                                <p class="text-gray-600 mt-4 leading-relaxed">${truncatedDescription}</p>
+                            </div>
+                            <div class="mt-6 space-y-3 text-gray-700">
+                                <div class="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
+                                    <svg class="w-5 h-5 text-primary-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2h-1V3a1 1 0 00-1-1h-2a1 1 0 00-1 1v2H8V3a1 1 0 00-1-1H5a1 1 0 00-1 1v2H3a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                                    </svg>
+                                    <div>
+                                        <p class="text-sm text-gray-500">Date & Time</p>
+                                        <p class="font-semibold">${formatDate(highlight)}${timeDisplay ? ` • ${timeDisplay}` : ''}</p>
+                                    </div>
+                                </div>
+                                ${highlight.location ? `
+                                    <div class="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
+                                        <svg class="w-5 h-5 text-primary-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                        </svg>
+                                        <div>
+                                            <p class="text-sm text-gray-500">Location</p>
+                                            <p class="font-semibold">${highlight.location}</p>
+                                        </div>
+                                    </div>
+                                ` : ''}
+                            </div>
+                            <div class="mt-8 flex flex-wrap items-center gap-4">
+                                <button class="btn btn-primary inline-flex items-center gap-2" onclick="openEventModal('${highlight._id}')">
+                                    View Full Details
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                                    </svg>
+                                </button>
+                                ${state.filter !== 'upcoming' && eventsByFilter.upcoming.length > 0 ? `
+                                    <button class="btn btn-secondary" data-filter-target="upcoming">Next Upcoming Event</button>
+                                ` : ''}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            container.classList.remove('hidden');
+
+            container.querySelectorAll('[data-filter-target]').forEach(button => {
+                button.addEventListener('click', () => {
+                    const target = button.dataset.filterTarget;
+                    setFilter(target);
+                });
+            });
+        }
+
+        function renderEvents(eventsByFilter) {
+            const grid = document.getElementById('events-grid');
+            const status = document.getElementById('events-status');
+            const filteredEvents = eventsByFilter[state.filter];
+
+            status.textContent = '';
+
+            if (!filteredEvents || filteredEvents.length === 0) {
+                grid.innerHTML = `
+                    <div class="col-span-full text-center py-16">
+                        <p class="text-gray-500 mb-4">No ${filterLabels[state.filter].toLowerCase()} at the moment.</p>
+                        <p class="text-gray-400 text-sm">Please check back soon or explore other categories.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            grid.innerHTML = filteredEvents.map(event => {
+                const image = event.image || 'https://images.unsplash.com/photo-1529158062015-cad636e69505?auto=format&fit=crop&w=900&q=80';
+                const timeDisplay = formatTime(event);
+                const isUpcoming = event.eventDate && event.eventDate >= new Date();
+                const description = event.description || 'Join us for a powerful time together.';
+                const truncatedDescription = description.length > 150 ? description.substring(0, 150) + '...' : description;
+
+                return `
+                    <article class="bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 flex flex-col overflow-hidden cursor-pointer" onclick="openEventModal('${event._id}')">
+                        <div class="relative">
+                            <img src="${image}" alt="${event.title || 'Event'}" class="w-full h-56 object-cover">
+                            ${event.eventDate ? `
+                                <div class="absolute top-4 left-4 bg-white/95 text-primary-600 rounded-lg py-2 px-3 text-center shadow-lg backdrop-blur-sm">
+                                    <p class="text-xs font-semibold uppercase tracking-wide">${event.eventDate.toLocaleString('default', { month: 'short' })}</p>
+                                    <p class="text-2xl font-bold leading-none mt-1">${event.eventDate.getDate()}</p>
+                                    <p class="text-xs text-gray-500 mt-1">${event.eventDate.getFullYear()}</p>
+                                </div>
+                            ` : ''}
+                            ${isUpcoming ? `
+                                <div class="absolute top-4 right-4">
+                                    <span class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-primary-600 text-white text-xs font-semibold shadow-lg">
+                                        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                        </svg>
+                                        Upcoming
+                                    </span>
+                                </div>
+                            ` : ''}
+                        </div>
+                        <div class="p-6 flex flex-col flex-1">
+                            <h3 class="text-xl font-bold text-gray-900 mb-2 hover:text-primary-600 transition-colors">${event.title || 'Upcoming Event'}</h3>
+                            <p class="text-gray-600 mt-2 mb-4 flex-1 text-sm leading-relaxed">${truncatedDescription}</p>
+                            <div class="mt-auto space-y-2 text-sm">
+                                <div class="flex items-center gap-2 text-gray-600">
+                                    <svg class="w-4 h-4 text-primary-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2h-1V3a1 1 0 00-1-1h-2a1 1 0 00-1 1v2H8V3a1 1 0 00-1-1H5a1 1 0 00-1 1v2H3a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                                    </svg>
+                                    <span class="font-medium">${formatDate(event)}</span>
+                                </div>
+                                ${timeDisplay ? `
+                                    <div class="flex items-center gap-2 text-gray-600">
+                                        <svg class="w-4 h-4 text-primary-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                        </svg>
+                                        <span class="font-medium">${timeDisplay}</span>
+                                    </div>
+                                ` : ''}
+                                ${event.location ? `
+                                    <div class="flex items-center gap-2 text-gray-600">
+                                        <svg class="w-4 h-4 text-primary-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                        </svg>
+                                        <span class="font-medium truncate">${event.location}</span>
+                                    </div>
+                                ` : ''}
+                            </div>
+                            <div class="mt-6 pt-4 border-t border-gray-100">
+                                <button class="btn btn-primary w-full" onclick="event.stopPropagation(); openEventModal('${event._id}')">
+                                    View Full Details
+                                    <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </article>
+                `;
+            }).join('');
+        }
+
+        function setFilter(filter) {
+            state.filter = filter;
+            document.querySelectorAll('[data-filter]').forEach(button => {
+                button.classList.toggle('active', button.dataset.filter === filter);
+            });
+
+            const eventsByFilter = splitEvents(state.events);
+            renderFeaturedEvent(eventsByFilter);
+            renderEvents(eventsByFilter);
+        }
+
+        async function initializeEventsPage() {
+            const status = document.getElementById('events-status');
+            const grid = document.getElementById('events-grid');
+
+            try {
+                status.textContent = 'Loading events...';
+                status.classList.remove('text-red-500', 'text-gray-500');
+                status.classList.add('text-gray-500');
+                
+                const events = await fetchAllEvents();
+                state.events = events;
+
+                if (events.length === 0) {
+                    status.textContent = 'No events available at this time.';
+                    status.classList.remove('text-gray-500');
+                    status.classList.add('text-gray-500');
+                    grid.innerHTML = `
+                        <div class="col-span-full text-center py-16">
+                            <p class="text-gray-500 mb-4">No events found.</p>
+                            <p class="text-gray-400 text-sm">Please check back soon for upcoming events.</p>
+                        </div>
+                    `;
+                    return;
+                }
+
+                status.textContent = '';
+                status.classList.remove('text-gray-500', 'text-red-500');
+                setFilter(state.filter);
+            } catch (error) {
+                console.error('Error loading events:', error);
+                status.textContent = `Unable to load events: ${error.message || 'Please try again later.'}`;
+                status.classList.remove('text-gray-500');
+                status.classList.add('text-red-500');
+                grid.innerHTML = `
+                    <div class="col-span-full text-center py-16">
+                        <p class="text-red-500 mb-4">Error loading events</p>
+                        <p class="text-gray-500 text-sm mb-4">${error.message || 'Please check your connection and try again.'}</p>
+                        <button onclick="location.reload()" class="btn btn-primary">Retry</button>
+                    </div>
+                `;
+            }
+        }
+
+        async function openEventModal(eventId) {
+            try {
+                const event = state.events.find(item => item._id === eventId) || (await window.api.getEvent(eventId));
+                showEventModal(event);
+            } catch (error) {
+                console.error('Error loading event:', error);
+                alert('Unable to load event details. Please try again.');
+            }
+        }
+
+        function showEventModal(event) {
+            const modal = document.createElement('div');
+            modal.className = 'fixed inset-0 bg-black bg-opacity-70 z-50 flex items-center justify-center p-4';
+
+            const eventDate = event.eventDate instanceof Date ? event.eventDate : (event.date ? new Date(event.date) : null);
+            const image = event.image || 'https://images.unsplash.com/photo-1529158062015-cad636e69505?auto=format&fit=crop&w=1200&q=80';
+            const timeDisplay = formatTime(event);
+            const isUpcoming = eventDate && eventDate >= new Date();
+
+            modal.innerHTML = `
+                <div class="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl">
+                    <div class="relative">
+                        <img src="${image}" alt="${event.title || 'Event'}" class="w-full h-72 object-cover">
+                        <button class="absolute top-4 right-4 bg-white/90 hover:bg-white rounded-full p-2 shadow-lg transition-all" aria-label="Close">
+                            <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                            </svg>
+                        </button>
+                        ${isUpcoming ? `
+                            <div class="absolute top-4 left-4">
+                                <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary-600 text-white text-sm font-semibold shadow-lg">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                    </svg>
+                                    Upcoming Event
+                                </span>
+                            </div>
+                        ` : ''}
+                    </div>
+                    <div class="p-8 space-y-6">
+                        <div>
+                            <h3 class="text-4xl font-bold text-gray-900 mb-3">${event.title || 'Ministry Event'}</h3>
+                            ${eventDate ? `
+                                <div class="flex flex-wrap items-center gap-4 text-gray-600">
+                                    <p class="flex items-center gap-2">
+                                        <svg class="w-5 h-5 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2h-1V3a1 1 0 00-1-1h-2a1 1 0 00-1 1v2H8V3a1 1 0 00-1-1H5a1 1 0 00-1 1v2H3a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                                        </svg>
+                                        <span class="font-medium">${eventDate.toLocaleDateString(undefined, { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' })}</span>
+                                    </p>
+                                    ${timeDisplay ? `
+                                        <p class="flex items-center gap-2">
+                                            <svg class="w-5 h-5 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                            </svg>
+                                            <span class="font-medium">${timeDisplay}</span>
+                                        </p>
+                                    ` : ''}
+                                </div>
+                            ` : '<p class="text-gray-500">Date to be announced</p>'}
+                        </div>
+
+                        ${event.location ? `
+                            <div class="flex items-start gap-3 p-4 bg-gray-50 rounded-lg">
+                                <svg class="w-6 h-6 text-primary-600 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                </svg>
+                                <div>
+                                    <p class="text-sm font-medium text-gray-500 mb-1">Location</p>
+                                    <p class="text-gray-900 font-semibold">${event.location}</p>
+                                </div>
+                            </div>
+                        ` : ''}
+
+                        ${event.description ? `
+                            <div class="border-t border-b border-gray-200 py-6">
+                                <h4 class="text-xl font-semibold text-gray-900 mb-4">Event Details</h4>
+                                <div class="prose max-w-none">
+                                    <p class="text-gray-700 leading-relaxed whitespace-pre-wrap">${event.description}</p>
+                                </div>
+                            </div>
+                        ` : ''}
+
+                        <div class="bg-gradient-to-r from-primary-50 to-secondary-50 border border-primary-100 rounded-xl p-6">
+                            <div class="flex items-start gap-4">
+                                <div class="flex-shrink-0">
+                                    <svg class="w-8 h-8 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                    </svg>
+                                </div>
+                                <div class="flex-1">
+                                    <h4 class="text-lg font-semibold text-primary-900 mb-2">Need More Information?</h4>
+                                    <p class="text-primary-700 mb-4">Contact the church office for directions, registration details, or how to get involved in this event.</p>
+                                    <div class="flex flex-wrap gap-3">
+                                        <a href="/contact.html" class="btn btn-primary inline-flex items-center gap-2">
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                                            </svg>
+                                            Contact Us
+                                        </a>
+                                        ${isUpcoming ? `
+                                            <button onclick="window.location.href='/donate.html'" class="btn btn-secondary inline-flex items-center gap-2">
+                                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                                </svg>
+                                                Support This Event
+                                            </button>
+                                        ` : ''}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            modal.addEventListener('click', (event) => {
+                if (event.target === modal || event.target.closest('button[aria-label="Close"]')) {
+                    modal.remove();
+                }
+            });
+
+            document.body.appendChild(modal);
+        }
+
+        // Initialize listeners and data on load
+        window.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('[data-filter]').forEach(button => {
+                button.addEventListener('click', () => setFilter(button.dataset.filter));
+            });
+
+            const mobileBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            if (mobileBtn && mobileMenu) {
+                mobileBtn.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+
+            initializeEventsPage();
+        });
+    </script>
+</body>
+</html>
+
+

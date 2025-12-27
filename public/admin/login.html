@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login - HCM International</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body class="bg-gradient-to-br from-primary-600 to-secondary-600 min-h-screen flex items-center justify-center p-4">
+    <div class="bg-white rounded-lg shadow-2xl p-8 w-full max-w-md">
+        <div class="text-center mb-8">
+            <h1 class="text-3xl font-bold text-gray-800 mb-2">Admin Login</h1>
+            <p class="text-gray-600">HCM International</p>
+        </div>
+
+        <form id="login-form" class="space-y-6">
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                <input type="email" id="email" required 
+                       class="input w-full" placeholder="admin@example.com">
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Password</label>
+                <input type="password" id="password" required 
+                       class="input w-full" placeholder="••••••••">
+            </div>
+            <button type="submit" class="btn btn-primary w-full">Login</button>
+        </form>
+
+        <div id="error-message" class="mt-4 text-red-600 text-sm hidden"></div>
+        
+        <div class="mt-6 pt-6 border-t border-gray-200">
+            <p class="text-sm text-gray-600 text-center mb-3">Forgot your password or need admin access?</p>
+            <div class="text-center space-y-2">
+                <p class="text-xs text-gray-500">
+                    Use the recovery script:<br>
+                    <code class="bg-gray-100 px-2 py-1 rounded text-xs">node server/scripts/recover-admin.js</code>
+                </p>
+                <p class="text-xs text-gray-500">
+                    Or set up via Supabase Dashboard:<br>
+                    Authentication → Users → Edit User → App Metadata → Add "role": "admin"
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let supabaseClient = null;
+
+        // Load Supabase configuration from server
+        async function initSupabase() {
+            try {
+                const response = await fetch('/api/config');
+                
+                // Get response text first to check content type
+                const text = await response.text();
+                
+                // Check if response is actually JSON
+                const contentType = response.headers.get('content-type');
+                if (!contentType || !contentType.includes('application/json')) {
+                    console.error('Expected JSON but got HTML/text:', text.substring(0, 200));
+                    throw new Error('Server returned non-JSON response. The /api/config endpoint may not be working. Please check if the server is running and the endpoint is accessible at: ' + window.location.origin + '/api/config');
+                }
+                
+                // Parse JSON from text
+                let config;
+                try {
+                    config = JSON.parse(text);
+                } catch (parseError) {
+                    console.error('Failed to parse JSON:', text.substring(0, 200));
+                    throw new Error('Invalid JSON response from server. Check server logs for errors.');
+                }
+                
+                if (!response.ok) {
+                    throw new Error(config.error || 'Failed to load configuration');
+                }
+                
+                if (!config.supabaseUrl || !config.supabaseKey) {
+                    throw new Error('Supabase configuration is missing in server. Please check your .env file has SUPABASE_URL and SUPABASE_ANON_KEY set.');
+                }
+
+                supabaseClient = window.supabase.createClient(config.supabaseUrl, config.supabaseKey);
+                console.log('Supabase initialized successfully');
+            } catch (error) {
+                console.error('Failed to load Supabase config:', error);
+                const errorDiv = document.getElementById('error-message');
+                errorDiv.innerHTML = '<strong>Configuration Error:</strong> ' + error.message + 
+                    '<br><br><small>Please make sure:<br>' +
+                    '1. The server is running (check terminal)<br>' +
+                    '2. Your .env file has SUPABASE_URL and SUPABASE_ANON_KEY<br>' +
+                    '3. The server was restarted after adding environment variables<br>' +
+                    '4. Visit <a href="/api/config" target="_blank">/api/config</a> to test the endpoint</small>';
+                errorDiv.classList.remove('hidden');
+            }
+        }
+
+        // Initialize Supabase on page load
+        initSupabase();
+
+        // Handle login
+        document.getElementById('login-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            if (!supabaseClient) {
+                const errorDiv = document.getElementById('error-message');
+                errorDiv.textContent = 'Supabase not initialized. Please refresh the page.';
+                errorDiv.classList.remove('hidden');
+                return;
+            }
+
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const errorDiv = document.getElementById('error-message');
+            const submitBtn = document.querySelector('button[type="submit"]');
+
+            // Clear previous errors
+            errorDiv.classList.add('hidden');
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Logging in...';
+
+            try {
+                const { data, error } = await supabaseClient.auth.signInWithPassword({
+                    email,
+                    password
+                });
+
+                if (error) {
+                    console.error('Supabase login error:', error);
+                    throw error;
+                }
+
+                if (!data || !data.user) {
+                    throw new Error('Login failed: No user data received');
+                }
+
+                // Check if user is admin
+                // Check app_metadata first (more secure - only admins can modify)
+                // Fall back to user_metadata for backward compatibility
+                const userRole = data.user.app_metadata?.role || data.user.user_metadata?.role;
+                console.log('User role:', userRole);
+                console.log('User metadata:', {
+                    app_metadata: data.user.app_metadata,
+                    user_metadata: data.user.user_metadata
+                });
+                
+                if (userRole !== 'admin') {
+                    throw new Error('You do not have admin access. The user role is: ' + (userRole || 'not set') + '. Please use the recovery script to assign admin role: node server/scripts/recover-admin.js');
+                }
+
+                // Store token and redirect
+                localStorage.setItem('auth_token', data.session.access_token);
+                console.log('Login successful, redirecting to admin dashboard...');
+                window.location.href = '/admin/';
+            } catch (error) {
+                console.error('Login error:', error);
+                let errorMessage = error.message || 'Login failed. Please check your credentials.';
+                
+                // Provide more helpful error messages
+                if (error.message && error.message.includes('Invalid login credentials')) {
+                    errorMessage = 'Invalid email or password. Use the recovery script to reset: node server/scripts/recover-admin.js';
+                } else if (error.message && error.message.includes('admin access')) {
+                    errorMessage = error.message;
+                }
+                
+                errorDiv.textContent = errorMessage;
+                errorDiv.classList.remove('hidden');
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Login';
+            }
+        });
+    </script>
+</body>
+</html>
+
