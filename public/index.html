@@ -87,8 +87,8 @@
             <!-- Section Header -->
             <div class="text-center mb-16">
                 <p class="text-gray-500 text-sm uppercase tracking-wide mb-4">Who we are</p>
-                <h2 class="text-4xl md:text-5xl font-serif text-gray-900 leading-tight">
-                    An Inter-denominational Outreach Ministry That Loves God And<br>People
+                <h2 class="text-lg md:text-xl font-serif text-gray-900 leading-tight max-w-4xl mx-auto italic">
+                    An Inter-Denominational Outreach Ministry Committed To Reaching Out To The Lost, The Less Privileged, Discipling and Setting The End Time Soldiers On Fire For God
                 </h2>
             </div>
             
@@ -100,44 +100,63 @@
                         <div class="icon-container">
                             <svg viewBox="0 0 100 100" class="beliefs-svg">
                                 <defs>
-                                    <clipPath id="triangle">
-                                        <polygon points="50,10 90,80 10,80" />
-                                    </clipPath>
+                                    <linearGradient id="beliefGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" style="stop-color:#f59e0b;stop-opacity:1" />
+                                        <stop offset="100%" style="stop-color:#f59e0b;stop-opacity:1" />
+                                    </linearGradient>
                                 </defs>
-                                <g clip-path="url(#triangle)">
-                                    <circle cx="50" cy="40" r="8" fill="none" stroke="#333" stroke-width="2"/>
-                                    <path d="M35,60 Q50,45 65,60" fill="none" stroke="#333" stroke-width="2"/>
-                                    <path d="M30,70 Q50,55 70,70" fill="none" stroke="#333" stroke-width="2"/>
-                                    <circle cx="40" cy="35" r="3" fill="#333"/>
-                                    <circle cx="60" cy="35" r="3" fill="#333"/>
-                                </g>
+                                <!-- Open Bible/Book representing beliefs (scaled up) -->
+                                <rect x="20" y="35" width="60" height="40" rx="3" fill="url(#beliefGradient)" stroke="#333" stroke-width="2.5"/>
+                                <!-- Book pages -->
+                                <line x1="50" y1="35" x2="50" y2="75" stroke="#fff" stroke-width="2" opacity="0.8"/>
+                                <!-- Text lines on pages -->
+                                <line x1="25" y1="48" x2="40" y2="48" stroke="#fff" stroke-width="2" stroke-linecap="round" opacity="0.7"/>
+                                <line x1="25" y1="55" x2="40" y2="55" stroke="#fff" stroke-width="2" stroke-linecap="round" opacity="0.7"/>
+                                <line x1="60" y1="48" x2="75" y2="48" stroke="#fff" stroke-width="2" stroke-linecap="round" opacity="0.7"/>
+                                <line x1="60" y1="55" x2="75" y2="55" stroke="#fff" stroke-width="2" stroke-linecap="round" opacity="0.7"/>
+                                <!-- Cross on top (scaled up) -->
+                                <line x1="50" y1="15" x2="50" y2="35" stroke="url(#beliefGradient)" stroke-width="4" stroke-linecap="round"/>
+                                <line x1="38" y1="25" x2="62" y2="25" stroke="url(#beliefGradient)" stroke-width="4" stroke-linecap="round"/>
+                                <!-- Light rays (scaled up) -->
+                                <path d="M50,10 L50,5 M30,25 L20,20 M70,25 L80,20" 
+                                      stroke="url(#beliefGradient)" stroke-width="2.5" stroke-linecap="round" opacity="0.5"/>
                             </svg>
                         </div>
                     </div>
-                    <h3 class="text-2xl font-serif text-gray-900 mb-4">Our Beliefs</h3>
-                    <p class="text-gray-600 mb-6 leading-relaxed">
+                    <h3 class="text-xl font-serif text-gray-900 mb-3">Our Beliefs</h3>
+                    <p class="text-gray-600 mb-6 leading-relaxed text-sm">
                         Worry Ends When Faith Begins. The Magnificent Story of a Life-Changing Journey to God
                     </p>
                    
                 </div>
                 
-                <!-- Our Church -->
+                <!-- Our Mandate -->
                 <div class="text-center">
                     <div class="church-icon mb-6">
                         <div class="icon-container">
                             <svg viewBox="0 0 100 100" class="church-svg">
-                                <rect x="30" y="50" width="40" height="30" fill="none" stroke="#333" stroke-width="2"/>
-                                <polygon points="50,20 20,50 80,50" fill="none" stroke="#333" stroke-width="2"/>
-                                <rect x="45" y="60" width="10" height="20" fill="none" stroke="#333" stroke-width="2"/>
-                                <circle cx="50" cy="30" r="3" fill="#333"/>
-                                <rect x="35" y="40" width="6" height="6" fill="none" stroke="#333" stroke-width="1"/>
-                                <rect x="59" y="40" width="6" height="6" fill="none" stroke="#333" stroke-width="1"/>
+                                <defs>
+                                    <linearGradient id="mandateGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" style="stop-color:#f59e0b;stop-opacity:1" />
+                                        <stop offset="100%" style="stop-color:#f59e0b;stop-opacity:1" />
+                                    </linearGradient>
+                                </defs>
+                                <!-- Shield representing mandate and authority (scaled up) -->
+                                <path d="M50,15 L70,28 L70,58 Q70,75 50,85 Q30,75 30,58 L30,28 Z" 
+                                      fill="url(#mandateGradient)" stroke="#333" stroke-width="2.5" stroke-linejoin="round"/>
+                                <!-- Cross inside shield (scaled up) -->
+                                <line x1="50" y1="35" x2="50" y2="70" stroke="#fff" stroke-width="4" stroke-linecap="round"/>
+                                <line x1="38" y1="52.5" x2="62" y2="52.5" stroke="#fff" stroke-width="4" stroke-linecap="round"/>
+                                <!-- Decorative elements (scaled up) -->
+                                <circle cx="50" cy="25" r="4" fill="#fff" opacity="0.8"/>
+                                <path d="M50,15 L50,10 M70,28 L75,25 M30,28 L25,25" 
+                                      stroke="url(#mandateGradient)" stroke-width="2.5" stroke-linecap="round" opacity="0.4"/>
                             </svg>
                         </div>
                     </div>
-                    <h3 class="text-2xl font-serif text-gray-900 mb-4">Our Mandate</h3>
-                    <p class="text-gray-600 mb-6 leading-relaxed">
-                        To Root out and Pull down, To destroy and To Overthrow, To build and To plant.
+                    <h3 class="text-xl font-serif text-gray-900 mb-3">Our Mandate</h3>
+                    <p class="text-gray-600 mb-6 leading-relaxed text-sm">
+                        Committed to the restoration of men back to the original purpose of God at creation.
                         - Jer. 1:10
                     </p>
                     
@@ -149,25 +168,46 @@
                         <div class="icon-container">
                             <svg viewBox="0 0 100 100" class="mission-svg">
                                 <defs>
-                                    <clipPath id="circle">
-                                        <circle cx="50" cy="50" r="40" />
-                                    </clipPath>
+                                    <linearGradient id="missionGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" style="stop-color:#f59e0b;stop-opacity:1" />
+                                        <stop offset="100%" style="stop-color:#f59e0b;stop-opacity:1" />
+                                    </linearGradient>
                                 </defs>
-                                <g clip-path="url(#circle)">
-                                    <circle cx="50" cy="50" r="15" fill="none" stroke="#333" stroke-width="2"/>
-                                    <path d="M50,35 Q45,45 50,55 Q55,45 50,35" fill="none" stroke="#333" stroke-width="2"/>
-                                    <path d="M35,50 Q45,45 55,50 Q45,55 35,50" fill="none" stroke="#333" stroke-width="2"/>
-                                    <circle cx="50" cy="50" r="3" fill="#333"/>
-                                    <path d="M50,20 Q50,10 50,20" fill="none" stroke="#333" stroke-width="2"/>
-                                    <path d="M50,80 Q50,90 50,80" fill="none" stroke="#333" stroke-width="2"/>
-                                    <path d="M20,50 Q10,50 20,50" fill="none" stroke="#333" stroke-width="2"/>
-                                    <path d="M80,50 Q90,50 80,50" fill="none" stroke="#333" stroke-width="2"/>
-                                </g>
+                                <!-- Target board - solid filled rings (dark gold/brown) -->
+                                <!-- Target center slightly offset towards lower-left (cx=48, cy=52) -->
+                                <!-- Create rings by drawing outer circle filled, then inner circle with background -->
+                                <!-- Outer ring (ring 3) - radius 28 to 38 -->
+                                <circle cx="48" cy="52" r="38" fill="url(#missionGradient)"/>
+                                <circle cx="48" cy="52" r="28" fill="white"/>
+                                <!-- Middle ring (ring 2) - radius 18 to 28 -->
+                                <circle cx="48" cy="52" r="28" fill="url(#missionGradient)"/>
+                                <circle cx="48" cy="52" r="18" fill="white"/>
+                                <!-- Inner ring (ring 1) - radius 6 to 18 -->
+                                <circle cx="48" cy="52" r="18" fill="url(#missionGradient)"/>
+                                <circle cx="48" cy="52" r="6" fill="white"/>
+                                <!-- Bullseye center (solid circle) -->
+                                <circle cx="48" cy="52" r="6" fill="url(#missionGradient)"/>
+                                
+                                <!-- Arrow (dark grey #333333) -->
+                                <!-- Arrow shaft - thick bar with rounded ends, diagonal from upper-right to lower-left -->
+                                <!-- Arrow passes through bullseye, slightly offset (hits at 47, 51) -->
+                                <line x1="75" y1="25" x2="47" y2="51" stroke="#333" stroke-width="6.5" stroke-linecap="round"/>
+                                <!-- Arrow point - solid circular shape, slightly wider than shaft -->
+                                <circle cx="47" cy="51" r="4.5" fill="#333"/>
+                                <!-- Arrow fletching - outline only (not filled), three stylized feather shapes -->
+                                <!-- Fletching extends from upper-right end of shaft (around 75, 25) -->
+                                <!-- Three feather outlines -->
+                                <path d="M75,25 L82,20" fill="none" stroke="#333" stroke-width="2.5" stroke-linecap="round"/>
+                                <path d="M75,25 L82,28" fill="none" stroke="#333" stroke-width="2.5" stroke-linecap="round"/>
+                                <path d="M75,25 L80,30" fill="none" stroke="#333" stroke-width="2.5" stroke-linecap="round"/>
+                                <!-- Curved feather shapes (outlines) -->
+                                <path d="M82,20 Q79,22 80,24 Q79,26 82,28" fill="none" stroke="#333" stroke-width="2.5" stroke-linecap="round"/>
+                                <path d="M80,30 Q78,27.5 79,25 Q78,22.5 80,20" fill="none" stroke="#333" stroke-width="2.5" stroke-linecap="round"/>
                             </svg>
                         </div>
                     </div>
-                    <h3 class="text-2xl font-serif text-gray-900 mb-4">Our Mission</h3>
-                    <p class="text-gray-600 mb-6 leading-relaxed">
+                    <h3 class="text-xl font-serif text-gray-900 mb-3">Our Mission</h3>
+                    <p class="text-gray-600 mb-6 leading-relaxed text-sm">
                         Leading our Generation Back to God, We are saved to save Others, Called to call Others with Jesus our ability
                     </p>
                    
@@ -264,7 +304,7 @@
                     <h3 class="text-xl font-bold mb-2">HCM International</h3>
                     <p class="text-gray-300">Heavenly Concordance Ministry International</p>
                     <div class="mt-4 social-icons">
-                        <a href="#" class="social-icon social-icon--light" aria-label="Facebook" target="_blank" rel="noopener">
+                        <a href="https://web.facebook.com/DemahanaimAssembly" class="social-icon social-icon--light" aria-label="Facebook" target="_blank" rel="noopener">
                             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12.06C22 6.48 17.52 2 11.94 2S2 6.48 2 12.06c0 5.02 3.66 9.19 8.44 9.94v-7.03H8.34v-2.9h2.1V9.41c0-2.07 1.23-3.22 3.12-3.22.9 0 1.84.16 1.84.16v2.02h-1.04c-1.03 0-1.35.64-1.35 1.3v1.56h2.3l-.37 2.9h-1.93V22c4.78-.75 8.44-4.92 8.44-9.94Z"/></svg>
                         </a>
                         <a href="#" class="social-icon social-icon--light" aria-label="Twitter" target="_blank" rel="noopener">
@@ -273,7 +313,7 @@
                         <a href="#" class="social-icon social-icon--light" aria-label="Instagram" target="_blank" rel="noopener">
                             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7Zm5 3.5A5.5 5.5 0 1 1 6.5 13 5.51 5.51 0 0 1 12 7.5Zm0 2A3.5 3.5 0 1 0 15.5 13 3.5 3.5 0 0 0 12 9.5Zm5.75-2.25a1 1 0 1 1-1.5 1.32 1 1 0 0 1 1.5-1.32Z"/></svg>
                         </a>
-                        <a href="#" class="social-icon social-icon--light" aria-label="YouTube" target="_blank" rel="noopener">
+                        <a href="https://www.youtube.com/@HEAVENLYCONCORDANCEMINISTRYINT" class="social-icon social-icon--light" aria-label="YouTube" target="_blank" rel="noopener">
                             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .6 5.8 3 3 0 0 0 2.1 2.1C4.6 20.5 12 20.5 12 20.5s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.5 15.5V8.5l6 3.5-6 3.5Z"/></svg>
                         </a>
                     </div>
@@ -298,6 +338,9 @@
                         <li><a href="/contact.html" class="hover:text-primary-400">Get in Touch</a></li>
                         <li><a href="/donate.html" class="hover:text-primary-400">Donate</a></li>
                     </ul>
+                    <div class="mt-4">
+                        <p class="text-gray-300 text-sm">Agbede Street, Opposite Motor Licensing Office, By Guinness Depot, Jakpa Road, Effurun, Delta State Nigeria., Warri, Nigeria</p>
+                    </div>
                 </div>
             </div>
             <div class="border-t border-gray-800 mt-8 pt-8 text-center">
@@ -324,16 +367,24 @@
                     return;
                 }
                 
-                container.innerHTML = upcomingEvents.map(event => `
+                container.innerHTML = upcomingEvents.map(event => {
+                    // Handle image URL - ensure it's valid or use fallback
+                    let imageUrl = '/images/crowd.jpg';
+                    if (event.image && event.image.trim() !== '') {
+                        imageUrl = event.image;
+                    }
+                    
+                    return `
                     <div class="card">
-                        <img src="${event.image || '/placeholder.jpg'}" alt="${event.title}" class="w-full h-48 object-cover">
+                        <img src="${imageUrl}" alt="${event.title}" class="w-full h-48 object-cover" onerror="this.onerror=null; this.src='/images/crowd.jpg';">
                         <div class="p-6">
                             <h3 class="text-xl font-bold mb-2">${event.title}</h3>
                             <p class="text-gray-600 mb-4">${event.description}</p>
                             <p class="text-primary-600 font-semibold">${new Date(event.date).toLocaleDateString()}</p>
                         </div>
                     </div>
-                `).join('');
+                `;
+                }).join('');
             } catch (error) {
                 console.error('Error loading events:', error);
             }
@@ -398,7 +449,11 @@
                 }
 
                 const slidesHtml = approvedTestimonials.map((testimonial, index) => {
-                    const image = testimonial.image && testimonial.image.trim() !== '' ? testimonial.image : '/images/logo.png';
+                    // Handle image URL - ensure it's valid or use fallback
+                    let image = '/images/logo.png';
+                    if (testimonial.image && testimonial.image.trim() !== '') {
+                        image = testimonial.image;
+                    }
                     const quote = testimonial.testimonial || testimonial.text || '';
                     const author = testimonial.name || 'Anonymous';
                     const location = testimonial.location ? `<span class="block text-sm text-gray-400 mt-1">${testimonial.location}</span>` : '';
@@ -407,7 +462,7 @@
                         <div class="testimonial-slide ${index === 0 ? 'active' : ''}">
                             <div class="testimonial-content">
                                 <div class="testimonial-image">
-                                    <img src="${image}" alt="${author}" class="profile-image">
+                                    <img src="${image}" alt="${author}" class="profile-image" onerror="this.onerror=null; this.src='/images/logo.png';">
                                 </div>
                                 <div class="testimonial-text">
                                     <div class="quote-marks">"</div>
@@ -466,7 +521,17 @@
             }
             
             init() {
-                // Set initial background
+                // Set initial background immediately
+                const firstItem = this.backgroundItems[0];
+                if (firstItem) {
+                    const firstSrc = firstItem.dataset.src;
+                    const firstType = firstItem.dataset.type;
+                    if (firstType === 'image' && firstSrc) {
+                        firstItem.style.backgroundImage = `url(${firstSrc})`;
+                    }
+                }
+                
+                // Set initial background (this will handle the active state)
                 this.setBackground(0);
                 
                 // Auto-rotate every 4 seconds
@@ -532,6 +597,10 @@
                         this.isVideoPlaying = true;
                     } else {
                         // Show image with error handling
+                        // Set background image immediately
+                        currentItem.style.backgroundImage = `url(${src})`;
+                        
+                        // Preload image to ensure it's ready
                         const img = new Image();
                         img.onerror = () => {
                             console.warn('Image failed to load:', src);
@@ -539,7 +608,8 @@
                             setTimeout(() => this.nextSlide(), 1000);
                         };
                         img.onload = () => {
-                        currentItem.style.backgroundImage = `url(${src})`;
+                            // Image is loaded, ensure background is set
+                            currentItem.style.backgroundImage = `url(${src})`;
                         };
                         img.src = src;
                     }

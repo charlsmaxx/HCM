@@ -1,47 +1,32 @@
-# HCM Church Website - Frontend
+# HCM Church Website - Backend API
 
-Frontend repository for Heavenly Concordance Ministry International Church Website.
-
-> **Note**: This repository contains only the frontend code. The backend API is in a separate repository: [HCM-Backend](https://github.com/charlsmaxx/HCM-Backend)
-
-## Features
-
-### Public Pages
-- **Homepage** with hero section, upcoming events, latest sermons, and testimonials
-- **Sermons Page** with audio/video streaming and downloadable sermons
-- **Events Page** for upcoming and past church events
-- **Blog Page** for church news and articles
-- **Contact Page** with contact form
-- **Donate Page** for online giving
-
-### Admin Dashboard
-- **Authentication** via Supabase with role-based access
-- **Sermon Management** - Upload audio/video files to Supabase Storage
-- **Content Management** for events, blog posts, team members, testimonials
-- **Donations Tracking** - View donation history
-- **Prayer Requests Management** - Review and respond to prayer requests
-- **Site Settings** - Manage banners, announcements, live streaming URL
-- **Statistics Dashboard** with overview of all content
+Backend API server for Heavenly Concordance Ministry International Church Website.
 
 ## Tech Stack
 
-- **Frontend**: HTML, Tailwind CSS, Vanilla JavaScript
+- **Runtime**: Node.js
+- **Framework**: Express.js
+- **Database**: MongoDB Atlas
 - **Authentication & Storage**: Supabase
 - **Package Manager**: npm
 
-## Prerequisites
+## Features
 
-- Node.js (v14 or higher) - for building CSS
-- npm (v6 or higher)
-- Supabase account (for authentication and file storage)
-- Backend API server (see [HCM-Backend](https://github.com/charlsmaxx/HCM-Backend))
+- RESTful API endpoints for sermons, events, blog, testimonials, team, donations, prayers
+- Admin authentication via Supabase
+- File uploads to Supabase Storage
+- Input validation and sanitization
+- Security headers (Helmet.js)
+- Rate limiting
+- MongoDB connection management
+- Pagination support
 
 ## Installation
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/charlsmaxx/HCM.git
-   cd HCM
+   git clone https://github.com/charlsmaxx/HCM-Backend.git
+   cd HCM-Backend
    ```
 
 2. **Install dependencies**
@@ -49,103 +34,113 @@ Frontend repository for Heavenly Concordance Ministry International Church Websi
    npm install
    ```
 
-3. **Set up Supabase**
-   - Create a new Supabase project
-   - Create storage buckets: `sermons-audio`, `sermons-video`, `images` (all public)
-   - Set storage policies for public read access
-   - Get your project URL and anon key from Settings > API
-   - Update `public/js/supabase-client.js` with your Supabase credentials
+3. **Set up environment variables**
+   - Create a `.env` file in the root directory
+   - Copy the contents from `env.example`
+   - Fill in your credentials:
+     ```
+     MONGODB_URI=your_mongodb_atlas_connection_string
+     SUPABASE_URL=your_supabase_project_url
+     SUPABASE_ANON_KEY=your_supabase_anon_key
+     SUPABASE_SERVICE_ROLE_KEY=your_supabase_service_role_key
+     PORT=3000
+     ALLOWED_ORIGINS=http://localhost:3000,https://yourdomain.com
+     ```
 
-4. **Build CSS** (optional, for development)
+4. **Start the server**
    ```bash
-   npm run build-css
+   npm start
    ```
    
-   This will watch for changes and rebuild the CSS automatically.
-
-5. **Set up Backend API**
-   - Clone and set up the [HCM-Backend](https://github.com/charlsmaxx/HCM-Backend) repository
-   - Update API endpoints in `public/js/api.js` to point to your backend server URL
-
-6. **Serve the files**
-   - You can use any static file server (e.g., `http-server`, `live-server`, or deploy to Netlify/Vercel)
-   - Or use the backend server to serve static files (see backend repository)
+   Or start in development mode with auto-reload:
+   ```bash
+   npm run dev
+   ```
 
 ## Project Structure
 
 ```
-HCM/
-├── public/
-│   ├── index.html               # Homepage
-│   ├── about.html
-│   ├── sermons.html             # Sermons listing and player
-│   ├── events.html
-│   ├── blog.html
-│   ├── contact.html
-│   ├── donate.html
-│   ├── admin/
-│   │   ├── index.html           # Admin dashboard
-│   │   ├── login.html           # Admin login
-│   │   ├── sermons.html         # Sermon management
-│   │   ├── events.html          # Event management
-│   │   ├── blog.html            # Blog management
-│   │   ├── testimonials.html    # Testimonial management
-│   │   └── js/
-│   │       ├── admin-layout.js  # Shared admin JavaScript
-│   │       └── file-upload.js   # File upload utilities
-│   ├── css/
-│   │   ├── input.css            # Tailwind input
-│   │   └── styles.css           # Compiled CSS
-│   ├── js/
-│   │   ├── api.js               # API helper functions
-│   │   └── supabase-client.js   # Supabase client initialization
-│   └── images/                  # Static images
-├── package.json
-├── tailwind.config.js
-├── postcss.config.js
-├── .gitignore
-└── README.md
+server/
+├── index.js                 # Express server entry point
+├── config/
+│   ├── db.js                # MongoDB connection
+│   └── supabase.js          # Supabase client
+├── routes/                  # API routes
+│   ├── sermons.js
+│   ├── events.js
+│   ├── blog.js
+│   ├── testimonials.js
+│   ├── team.js
+│   ├── donations.js
+│   ├── prayers.js
+│   ├── contact.js
+│   ├── settings.js
+│   └── upload.js
+├── middleware/
+│   ├── auth.js              # Admin authentication middleware
+│   ├── checkDB.js           # Database connection check
+│   ├── errorHandler.js      # Error handling middleware
+│   ├── rateLimit.js         # Rate limiting middleware
+│   └── validateObjectId.js  # MongoDB ObjectId validation
+├── utils/
+│   ├── pagination.js        # Pagination utilities
+│   └── sanitize.js          # HTML/text sanitization
+└── scripts/
+    ├── recover-admin.js     # Admin recovery script
+    ├── setup-admin-user.js  # Admin user setup
+    └── ...
 ```
 
-## API Integration
+## API Endpoints
 
-The frontend communicates with the backend API. Make sure to:
+### Public Endpoints
+- `GET /api/sermons` - Get all sermons (paginated)
+- `GET /api/sermons/:id` - Get single sermon
+- `GET /api/events` - Get all events (paginated)
+- `GET /api/blog` - Get all blog posts (paginated)
+- `GET /api/testimonials` - Get all testimonials (paginated)
+- `GET /api/team` - Get team members
+- `GET /api/settings` - Get site settings
+- `POST /api/donations/initialize` - Initialize donation payment
+- `POST /api/donations/webhook` - Payment webhook
+- `POST /api/contact` - Submit contact form
+- `POST /api/prayers` - Submit prayer request
 
-1. Update the API base URL in `public/js/api.js`:
-   ```javascript
-   const API_BASE_URL = 'http://localhost:3000/api'; // or your backend URL
-   ```
+### Admin Endpoints (Requires Auth)
+- `POST /api/sermons` - Create sermon
+- `PUT /api/sermons/:id` - Update sermon
+- `DELETE /api/sermons/:id` - Delete sermon
+- Similar CRUD operations for events, blog, testimonials, team
+- `GET /api/donations` - View donation history
+- `GET /api/prayers` - View prayer requests
+- `PUT /api/prayers/:id` - Update prayer request status
 
-2. Ensure CORS is properly configured on the backend to allow requests from your frontend domain.
+## Database Collections
 
-## Deployment
+- `sermons` - Sermon information, URLs, metadata
+- `events` - Church events and announcements
+- `blog` - Blog posts and articles
+- `testimonials` - Member testimonials
+- `team` - Team/leadership information
+- `donations` - Donation records
+- `prayerRequests` - Prayer request submissions
+- `siteSettings` - Site configuration
 
-### Static Hosting (Frontend Only)
+## Security Features
 
-You can deploy this frontend to any static hosting service:
+- Helmet.js for security headers
+- CORS configuration
+- Input validation with express-validator
+- HTML sanitization with DOMPurify
+- MongoDB ObjectId validation
+- Request body size limits
+- Rate limiting
+- Secure admin authentication via Supabase
 
-- **Netlify**: Connect your GitHub repository and deploy
-- **Vercel**: Connect your GitHub repository and deploy
-- **GitHub Pages**: Enable GitHub Pages in repository settings
+## Development
 
-### Environment Variables
-
-For static hosting, you may need to configure:
-- Supabase URL and keys (can be hardcoded in `supabase-client.js` or injected via build process)
-- Backend API URL (update in `api.js`)
-
-## Related Repositories
-
-- **Backend API**: [HCM-Backend](https://github.com/charlsmaxx/HCM-Backend)
-
-## Contributing
-
-This is a church website project. For suggestions or improvements, please contact the development team.
+The server uses Express.js and connects to MongoDB Atlas for data storage and Supabase for authentication and file storage.
 
 ## License
 
 © 2024 Heavenly Concordance Ministry International. All rights reserved.
-
-## Support
-
-For technical support or questions, please contact the ministry administration.

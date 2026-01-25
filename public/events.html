@@ -52,13 +52,13 @@
     </div>
 
     <!-- Hero Section -->
-    <section class="bg-gradient-to-r from-primary-600 to-secondary-600 text-white py-16 relative overflow-hidden">
-        <div class="absolute inset-0 opacity-10 bg-[url('https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1400&q=80')] bg-cover bg-center"></div>
+    <section class="bg-gradient-to-r from-primary-600 to-secondary-600 py-16 relative overflow-hidden">
+        <div class="absolute inset-0 opacity-30 bg-[url('/images/crowd.jpg')] bg-cover bg-center"></div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
             <div class="max-w-3xl">
-                <p class="uppercase tracking-widest text-sm mb-3 text-white/80">Gather • Grow • Go</p>
-                <h1 class="text-4xl md:text-5xl font-bold leading-tight mb-4">Upcoming Gatherings & Community Events</h1>
-                <p class="text-lg text-white/90">Stay connected with everything happening at Heavenly Concordance Ministry. Join us for worship services, conferences, outreach programs, and special encounters.</p>
+                <p class="uppercase tracking-widest text-sm mb-3 text-[#6b7280]">Gather • Grow • Go</p>
+                <h1 class="text-4xl md:text-5xl font-bold leading-tight mb-4 text-[#6b7280]">Upcoming Gatherings & Community Events</h1>
+                <p class="text-lg text-[#6b7280]">Stay connected with everything happening at Heavenly Concordance Ministry. Join us for worship services, conferences, outreach programs, and special encounters.</p>
             </div>
         </div>
     </section>
@@ -110,7 +110,7 @@
                     <h3 class="text-xl font-bold mb-2">HCM International</h3>
                     <p class="text-gray-300">Heavenly Concordance Ministry International</p>
                     <div class="mt-4 social-icons">
-                        <a href="#" class="social-icon social-icon--light" aria-label="Facebook" target="_blank" rel="noopener">
+                        <a href="https://web.facebook.com/DemahanaimAssembly" class="social-icon social-icon--light" aria-label="Facebook" target="_blank" rel="noopener">
                             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12.06C22 6.48 17.52 2 11.94 2S2 6.48 2 12.06c0 5.02 3.66 9.19 8.44 9.94v-7.03H8.34v-2.9h2.1V9.41c0-2.07 1.23-3.22 3.12-3.22.9 0 1.84.16 1.84.16v2.02h-1.04c-1.03 0-1.35.64-1.35 1.3v1.56h2.3l-.37 2.9h-1.93V22c4.78-.75 8.44-4.92 8.44-9.94Z"/></svg>
                         </a>
                         <a href="#" class="social-icon social-icon--light" aria-label="Twitter" target="_blank" rel="noopener">
@@ -119,7 +119,7 @@
                         <a href="#" class="social-icon social-icon--light" aria-label="Instagram" target="_blank" rel="noopener">
                             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7Zm5 3.5A5.5 5.5 0 1 1 6.5 13 5.51 5.51 0 0 1 12 7.5Zm0 2A3.5 3.5 0 1 0 15.5 13 3.5 3.5 0 0 0 12 9.5Zm5.75-2.25a1 1 0 1 1-1.5 1.32 1 1 0 0 1 1.5-1.32Z"/></svg>
                         </a>
-                        <a href="#" class="social-icon social-icon--light" aria-label="YouTube" target="_blank" rel="noopener">
+                        <a href="https://www.youtube.com/@HEAVENLYCONCORDANCEMINISTRYINT" class="social-icon social-icon--light" aria-label="YouTube" target="_blank" rel="noopener">
                             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .6 5.8 3 3 0 0 0 2.1 2.1C4.6 20.5 12 20.5 12 20.5s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.5 15.5V8.5l6 3.5-6 3.5Z"/></svg>
                         </a>
                     </div>
@@ -289,7 +289,11 @@
             }
 
             const timeDisplay = formatTime(highlight);
-            const image = highlight.image || 'https://images.unsplash.com/photo-1529158062015-cad636e69505?auto=format&fit=crop&w=1200&q=80';
+            // Handle image URL - ensure it's valid or use fallback
+            let image = '/images/crowd.jpg';
+            if (highlight.image && highlight.image.trim() !== '') {
+                image = highlight.image;
+            }
 
             const description = highlight.description || 'Join us for a special time together in God\'s presence.';
             const truncatedDescription = description.length > 200 ? description.substring(0, 200) + '...' : description;
@@ -299,7 +303,7 @@
                 <div class="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100 hover:shadow-2xl transition-shadow duration-300">
                     <div class="grid grid-cols-1 md:grid-cols-2">
                         <div class="h-64 md:h-full relative">
-                            <img src="${image}" alt="${highlight.title || 'Event Image'}" class="w-full h-full object-cover">
+                            <img src="${image}" alt="${highlight.title || 'Event Image'}" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='/images/crowd.jpg';">
                             ${isUpcoming ? `
                                 <div class="absolute top-4 right-4">
                                     <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary-600 text-white text-sm font-semibold shadow-lg backdrop-blur-sm">
@@ -389,7 +393,11 @@
             }
 
             grid.innerHTML = filteredEvents.map(event => {
-                const image = event.image || 'https://images.unsplash.com/photo-1529158062015-cad636e69505?auto=format&fit=crop&w=900&q=80';
+                // Handle image URL - ensure it's valid or use fallback
+                let image = '/images/crowd.jpg';
+                if (event.image && event.image.trim() !== '') {
+                    image = event.image;
+                }
                 const timeDisplay = formatTime(event);
                 const isUpcoming = event.eventDate && event.eventDate >= new Date();
                 const description = event.description || 'Join us for a powerful time together.';
@@ -398,7 +406,7 @@
                 return `
                     <article class="bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 flex flex-col overflow-hidden cursor-pointer" onclick="openEventModal('${event._id}')">
                         <div class="relative">
-                            <img src="${image}" alt="${event.title || 'Event'}" class="w-full h-56 object-cover">
+                            <img src="${image}" alt="${event.title || 'Event'}" class="w-full h-56 object-cover" onerror="this.onerror=null; this.src='/images/crowd.jpg';">
                             ${event.eventDate ? `
                                 <div class="absolute top-4 left-4 bg-white/95 text-primary-600 rounded-lg py-2 px-3 text-center shadow-lg backdrop-blur-sm">
                                     <p class="text-xs font-semibold uppercase tracking-wide">${event.eventDate.toLocaleString('default', { month: 'short' })}</p>
@@ -528,14 +536,18 @@
             modal.className = 'fixed inset-0 bg-black bg-opacity-70 z-50 flex items-center justify-center p-4';
 
             const eventDate = event.eventDate instanceof Date ? event.eventDate : (event.date ? new Date(event.date) : null);
-            const image = event.image || 'https://images.unsplash.com/photo-1529158062015-cad636e69505?auto=format&fit=crop&w=1200&q=80';
+            // Handle image URL - ensure it's valid or use fallback
+            let image = '/images/crowd.jpg';
+            if (event.image && event.image.trim() !== '') {
+                image = event.image;
+            }
             const timeDisplay = formatTime(event);
             const isUpcoming = eventDate && eventDate >= new Date();
 
             modal.innerHTML = `
                 <div class="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl">
                     <div class="relative">
-                        <img src="${image}" alt="${event.title || 'Event'}" class="w-full h-72 object-cover">
+                        <img src="${image}" alt="${event.title || 'Event'}" class="w-full h-72 object-cover" onerror="this.onerror=null; this.src='/images/crowd.jpg';">
                         <button class="absolute top-4 right-4 bg-white/90 hover:bg-white rounded-full p-2 shadow-lg transition-all" aria-label="Close">
                             <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>

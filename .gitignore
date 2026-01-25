@@ -1,10 +1,7 @@
 node_modules/
 .env
-/public/css/styles.css
 *.log
 .DS_Store
-dist/
-build/
 .vscode/
 .env.local
 .env.*.local
@@ -17,8 +14,11 @@ coverage/
 .vscode-test/
 .history/
 backend-temp/
+backend-repo/
 
-
-
-
+# Backend files (tracked in separate HCM-Backend repo via backend-repo/)
+# Note: Backend files are kept locally for development but synced to backend-repo/ for pushing
+server/
+env.example
+package-lock.json
 

@@ -258,6 +258,32 @@
                 </table>
             `;
             container.innerHTML = tableHTML;
+            
+            // Attach event listeners to edit/delete buttons
+            attachSermonTableListeners();
+        }
+        
+        // Attach event listeners to sermon table buttons
+        function attachSermonTableListeners() {
+            // Edit buttons
+            document.querySelectorAll('.edit-sermon-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const sermonId = btn.getAttribute('data-sermon-id');
+                    if (sermonId) {
+                        editSermon(sermonId);
+                    }
+                });
+            });
+            
+            // Delete buttons
+            document.querySelectorAll('.delete-sermon-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const sermonId = btn.getAttribute('data-sermon-id');
+                    if (sermonId) {
+                        deleteSermon(sermonId);
+                    }
+                });
+            });
         }
 
         // Open sermon modal
