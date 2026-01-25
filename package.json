@@ -6,7 +6,9 @@
   "scripts": {
     "start": "node server/index.js",
     "dev": "nodemon server/index.js",
-    "build-css": "tailwindcss -i ./public/css/input.css -o ./public/css/styles.css --watch",
+    "build-css": "npx tailwindcss -i ./public/css/input.css -o ./public/css/styles.css",
+    "build-css:watch": "npx tailwindcss -i ./public/css/input.css -o ./public/css/styles.css --watch",
+    "build": "npm run build-css",
     "serve": "npx http-server public -p 3000 -o"
   },
   "keywords": [
