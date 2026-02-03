@@ -214,6 +214,180 @@
   margin-top: 1.5rem;
 }
 
+/* Contact section (homepage) & Contact page */
+.contact-accent {
+  color: #0284c7;
+}
+
+.contact-card {
+  @apply bg-white rounded-2xl shadow-xl p-8 border border-gray-100;
+}
+
+.contact-checkbox {
+  @apply rounded border-gray-300 text-primary-600 focus:ring-primary-500 mt-0.5;
+}
+
+.recaptcha-box {
+  @apply px-4 py-2 border-2 border-dashed border-gray-300 rounded-lg text-gray-500 text-sm;
+}
+
+.contact-hero {
+  @apply bg-gradient-to-br from-primary-600 to-secondary-600 min-h-[28rem];
+}
+
+.contact-blob {
+  position: absolute;
+  top: -4rem;
+  left: -4rem;
+  width: 20rem;
+  height: 20rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+}
+
+.contact-info-card {
+  @apply bg-white/95 backdrop-blur-sm rounded-2xl shadow-xl p-6 border border-white/20;
+}
+
+.contact-info-item {
+  padding: 0.75rem 0;
+}
+
+.contact-info-title {
+  @apply text-xs uppercase tracking-wider text-gray-500 font-semibold mb-1;
+}
+
+.contact-info-text {
+  @apply text-gray-800 font-medium;
+}
+
+.contact-info-sep {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #e5e7eb, transparent);
+}
+
+.contact-bg-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 24rem;
+  height: 24rem;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+}
+
+.contact-float-circle {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.contact-float-circle:first-of-type {
+  width: 12rem;
+  height: 12rem;
+  bottom: 2rem;
+  right: 4rem;
+}
+
+.contact-float-circle--sm {
+  width: 6rem;
+  height: 6rem;
+  top: 4rem;
+  right: 8rem;
+}
+
+/* About page */
+.about-hero {
+  @apply bg-gradient-to-r from-primary-600 to-secondary-600;
+}
+
+.about-hero-bg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(2, 132, 199, 0.9) 0%, rgba(147, 51, 234, 0.85) 100%);
+  opacity: 0.95;
+}
+
+.about-label {
+  @apply text-sm uppercase tracking-widest text-primary-500 font-semibold;
+}
+
+.about-story-content {
+  @apply space-y-4;
+}
+
+.about-image-container {
+  @apply relative;
+}
+
+.about-image-wrapper {
+  @apply relative rounded-2xl overflow-hidden shadow-2xl;
+}
+
+.about-main-image {
+  @apply w-full h-80 object-cover;
+}
+
+.about-image-badge {
+  @apply absolute bottom-4 left-4 bg-primary-600 text-white px-4 py-3 rounded-xl;
+}
+
+.about-badge-number {
+  @apply text-2xl font-bold;
+}
+
+.about-badge-label {
+  @apply text-xs uppercase tracking-wider opacity-90;
+}
+
+.about-card {
+  @apply bg-white rounded-2xl p-8 shadow-lg border border-gray-100 hover:shadow-xl transition-shadow;
+}
+
+.about-card-icon {
+  @apply w-14 h-14 rounded-xl bg-primary-100 text-primary-600 flex items-center justify-center mb-4;
+}
+
+.about-card-icon svg {
+  width: 1.75rem;
+  height: 1.75rem;
+}
+
+.about-stats-section {
+  @apply bg-gradient-to-r from-primary-600 to-secondary-600 text-white;
+}
+
+.about-stat-item {
+  @apply py-4;
+}
+
+.about-stat-number {
+  @apply text-4xl md:text-5xl font-bold;
+}
+
+.about-stat-label {
+  @apply text-white/90 text-sm mt-1;
+}
+
+.about-value-card {
+  @apply bg-white rounded-xl p-6 shadow-md border border-gray-100 hover:shadow-lg transition-shadow text-center;
+}
+
+.about-value-icon {
+  @apply w-12 h-12 mx-auto mb-3 text-primary-600;
+}
+
+.about-value-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.about-leader-card {
+  @apply bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100;
+}
+
 
 
 
