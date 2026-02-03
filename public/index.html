@@ -461,7 +461,7 @@
                         <div class="testimonial-slide ${index === 0 ? 'active' : ''}">
                             <div class="testimonial-content">
                                 <div class="testimonial-image">
-                                    <img src="${image}" alt="${author}" class="profile-image" onerror="this.onerror=null; this.src='/images/logo.png';">
+                                    <img src="${image}" alt="${author}" class="profile-image" fetchpriority="high" loading="eager" onerror="this.onerror=null; this.src='/images/logo.png';">
                                 </div>
                                 <div class="testimonial-text">
                                     <div class="quote-marks">"</div>

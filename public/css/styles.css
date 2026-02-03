@@ -1655,6 +1655,25 @@ video {
      object-fit: cover;
 }
 
+/* Testimonial images - larger size, high resolution */
+.testimonial-image .profile-image {
+  width: 9rem;
+  height: 9rem;
+  min-width: 9rem;
+  min-height: 9rem;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+@media (min-resolution: 192dpi) {
+  .testimonial-image .profile-image {
+    width: 11rem;
+    height: 11rem;
+    min-width: 11rem;
+    min-height: 11rem;
+  }
+}
+
 .icon-container {
   display: inline-flex;
   align-items: center;
