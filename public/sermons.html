@@ -729,6 +729,20 @@
                 </div>
             `;
             
+            // Handle audio load errors (e.g. Supabase URL unreachable)
+            const audioEl = modal.querySelector('audio');
+            if (audioEl) {
+                audioEl.addEventListener('error', () => {
+                    const msg = audioEl.parentElement.querySelector('.audio-error-msg');
+                    if (!msg) {
+                        const errDiv = document.createElement('p');
+                        errDiv.className = 'audio-error-msg text-red-500 text-sm mt-2';
+                        errDiv.textContent = 'Unable to load audio. The file may be unavailable.';
+                        audioEl.parentElement.appendChild(errDiv);
+                    }
+                });
+            }
+
             // Attach event listeners to modal buttons
             const closeBtn = modal.querySelector('.modal-close-btn');
             if (closeBtn) {
