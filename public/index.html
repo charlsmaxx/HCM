@@ -479,7 +479,7 @@
                 }).join('');
 
                 const dotsHtml = approvedTestimonials.map((_, index) => `
-                    <span class="pagination-dot ${index === 0 ? 'active' : ''}" data-slide="${index}">${index + 1}</span>
+                    <span class="pagination-dot ${index === 0 ? 'active' : ''}" data-slide="${index}" aria-label="Slide ${index + 1}"></span>
                 `).join('');
 
                 container.innerHTML = slidesHtml;
