@@ -146,6 +146,7 @@
     </div>
   </section>
 
+  <script src="/js/api.js"></script>
   <script>
     // Mobile menu toggle
     const mobileBtn = document.getElementById('mobile-menu-btn');
@@ -188,7 +189,7 @@
         const verify = async () => {
           attempts++;
           try {
-            const response = await fetch(`/api/donations/verify/${txRef}`);
+            const response = await fetch(window.api.getUrl(`/donations/verify/${txRef}`));
             const result = await response.json();
 
             if (result.status === 'success' && result.donation?.status === 'completed') {
@@ -346,7 +347,7 @@
         submitBtn.disabled = true;
         submitBtn.textContent = 'Processing...';
 
-        const response = await fetch('/api/donations/initialize', {
+        const response = await fetch(window.api.getUrl('/donations/initialize'), {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({

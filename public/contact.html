@@ -176,6 +176,7 @@
         </div>
     </footer>
 
+    <script src="/js/api.js"></script>
     <script>
         // Submit handler -> same backend endpoint
         const contactPageForm = document.getElementById('contact-page-form');
@@ -187,7 +188,7 @@
                 // Map to backend expected fields
                 payload.fullName = [payload.fullName, payload.lastName].filter(Boolean).join(' ');
                 try {
-                    const res = await fetch('/api/contact', {
+                    const res = await fetch(window.api.getUrl('/contact'), {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({ fullName: payload.fullName, email: payload.email, message: payload.message })

@@ -183,7 +183,7 @@
         // Initialize Supabase
         async function initSupabase() {
             try {
-                const response = await fetch('/api/config');
+                const response = await fetch(window.api.getUrl('/config'));
                 const config = await response.json();
                 
                 if (!config.supabaseUrl || !config.supabaseKey) {
@@ -363,7 +363,7 @@
                 if (fileUrl.startsWith('http://') || fileUrl.startsWith('https://')) {
                     // Track download via API
                     try {
-                        await fetch(`/api/sermons/${sermonId}/download`, {
+                        await fetch(window.api.getUrl(`/sermons/${sermonId}/download`), {
                             method: 'POST',
                             headers: {
                                 'Authorization': `Bearer ${token}`,
@@ -377,7 +377,7 @@
                     window.open(fileUrl, '_blank');
                 } else {
                     // For local files, use the download endpoint
-                    const response = await fetch(`/api/sermons/${sermonId}/download/${type}`, {
+                    const response = await fetch(window.api.getUrl(`/sermons/${sermonId}/download/${type}`), {
                         method: 'GET',
                         headers: {
                             'Authorization': `Bearer ${token}`
@@ -531,8 +531,8 @@
                     
                     return `
                         <div class="card hover:shadow-xl transition-shadow" data-sermon-id="${sermonId}">
-                            ${sermon.thumbnail ? `
-                                <img src="${sermon.thumbnail}" alt="${title}" class="w-full h-48 object-cover cursor-pointer sermon-view-trigger" data-sermon-id="${sermonId}">
+                            ${sermon.thumbnail && sermon.thumbnail.startsWith('http') ? `
+                                <img src="${sermon.thumbnail}" alt="${title}" class="w-full h-48 object-cover cursor-pointer sermon-view-trigger" data-sermon-id="${sermonId}" onerror="this.onerror=null; this.src='/images/logo.png';">
                             ` : `
                                 <div class="w-full h-48 bg-gradient-to-br from-primary-400 to-secondary-400 flex items-center justify-center cursor-pointer sermon-view-trigger" data-sermon-id="${sermonId}">
                                     <svg class="w-16 h-16 text-white opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -672,27 +672,43 @@
                             </div>
                         ` : ''}
                         
-                        ${sermon.videoUrl ? `
+                        ${sermon.videoUrl ? (() => {
+                            const url = sermon.videoUrl;
+                            const isYoutube = url.includes('youtube.com') || url.includes('youtu.be');
+                            let videoId = '';
+                            if (isYoutube) {
+                                const match = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&?]+)/);
+                                videoId = match ? match[1] : '';
+                            }
+                            return `
                             <div class="mb-6">
                                 <h3 class="text-lg font-semibold mb-2">Video</h3>
-                                <video controls class="w-full rounded-lg shadow-lg">
-                                    <source src="${sermon.videoUrl}" type="video/mp4">
-                                    Your browser does not support the video tag.
-                                </video>
+                                ${videoId ? `
+                                    <iframe class="w-full aspect-video rounded-lg shadow-lg" src="https://www.youtube.com/embed/${videoId}" allowfullscreen></iframe>
+                                ` : `
+                                    <video controls class="w-full rounded-lg shadow-lg">
+                                        <source src="${url}" type="video/mp4">
+                                        Your browser does not support the video tag.
+                                    </video>
+                                `}
+                                ${url.startsWith('http') && !isYoutube ? `
                                 <button class="btn btn-primary mt-3 inline-flex items-center gap-2 modal-download-btn" data-sermon-id="${sermon._id}" data-download-type="video">
                                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
                                     </svg>
                                     Download Video
                                 </button>
+                                ` : ''}
                             </div>
-                        ` : ''}
+                        `;
+                        })() : ''}
 
-                        ${sermon.audioUrl ? `
+                        ${sermon.audioUrl && sermon.audioUrl.startsWith('http') ? `
                             <div class="mb-6">
                                 <h3 class="text-lg font-semibold mb-2">Audio</h3>
                                 <audio controls class="w-full">
                                     <source src="${sermon.audioUrl}" type="audio/mpeg">
+                                    <source src="${sermon.audioUrl}" type="audio/mp3">
                                     Your browser does not support the audio tag.
                                 </audio>
                                 <button class="btn btn-primary mt-3 inline-flex items-center gap-2 modal-download-btn" data-sermon-id="${sermon._id}" data-download-type="audio">

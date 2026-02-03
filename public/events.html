@@ -172,7 +172,7 @@
 
             try {
                 while (hasNextPage && page <= maxPages) {
-                    const response = await fetch(`/api/events?page=${page}&limit=20`);
+                    const response = await fetch(window.api.getUrl(`/events?page=${page}&limit=20`));
                     
                     if (!response.ok) {
                         const errorData = await response.json().catch(() => ({ error: 'Unable to load events' }));

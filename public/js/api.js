@@ -138,6 +138,9 @@ const api = {
   deleteTestimonial: (id) => apiCall(`/testimonials/${id}`, { method: 'DELETE' }),
 };
 
+// Helper to get full API URL for inline fetch calls
+api.getUrl = (path) => API_BASE + (path.startsWith('/') ? path : '/' + path);
+
 // Make it globally available
 window.api = api;
 
